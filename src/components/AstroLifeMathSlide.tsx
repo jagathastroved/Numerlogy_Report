@@ -34,7 +34,7 @@ export default function AstroLifeMathSlide() {
 
         {/* Header Title */}
         <div className="space-y-2">
-          <h2 className="font-display text-2xl font-extrabold text-gray-950 tracking-tight">
+          <h2 className="font-display text-2xl font-normal text-gray-950 tracking-tight">
             What is a Life Path Number?
           </h2>
           <p className="text-gray-600 text-xs leading-relaxed">
@@ -50,22 +50,22 @@ export default function AstroLifeMathSlide() {
 
         {/* Input Pills Block */}
         <div className="space-y-4 bg-slate-50 border border-slate-100 p-5 rounded-2xl">
-          <p className="text-gray-800 font-bold text-xs text-center uppercase tracking-wide">
+          <p className="text-gray-800 font-normal text-xs text-center uppercase tracking-wide">
             Take your birth date (day/month/year).
           </p>
 
           <div className="flex justify-center gap-3">
             <div className="flex flex-col items-center gap-1">
-              <span className="text-[10px] text-gray-400 font-bold uppercase">DD</span>
-              <span className="bg-emerald-300 text-slate-800 font-bold px-4 py-2 rounded-lg text-sm">{dayVal}</span>
+              <span className="text-[10px] text-gray-400 font-normal uppercase">DD</span>
+              <span className="bg-emerald-300 text-slate-800 font-normal px-4 py-2 rounded-lg text-sm">{dayVal}</span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <span className="text-[10px] text-gray-400 font-bold uppercase">MM</span>
-              <span className="bg-emerald-300 text-slate-800 font-bold px-4 py-2 rounded-lg text-sm">{monthVal}</span>
+              <span className="text-[10px] text-gray-400 font-normal uppercase">MM</span>
+              <span className="bg-emerald-300 text-slate-800 font-normal px-4 py-2 rounded-lg text-sm">{monthVal}</span>
             </div>
             <div className="flex flex-col items-center gap-1">
-              <span className="text-[10px] text-gray-400 font-bold uppercase">YYYY</span>
-              <span className="bg-emerald-300 text-slate-800 font-bold px-4 py-2 rounded-lg text-sm">{yearVal}</span>
+              <span className="text-[10px] text-gray-400 font-normal uppercase">YYYY</span>
+              <span className="bg-emerald-300 text-slate-800 font-normal px-4 py-2 rounded-lg text-sm">{yearVal}</span>
             </div>
           </div>
         </div>
@@ -78,11 +78,11 @@ export default function AstroLifeMathSlide() {
               <strong className="text-gray-950">Step 1</strong> Reduce numbers to two digits. Keep master numbers (11, 22, 33) as is.
             </p>
             <div className="flex justify-center items-center gap-2">
-              <span className="bg-teal-100 text-teal-800 font-bold px-3 py-1.5 rounded-lg text-sm">{dayReduced}</span>
-              <span className="text-gray-400 font-bold">+</span>
-              <span className="bg-teal-100 text-teal-800 font-bold px-3 py-1.5 rounded-lg text-sm">{monthReduced}</span>
-              <span className="text-gray-400 font-bold">+</span>
-              <span className="bg-teal-100 text-teal-800 font-bold px-3 py-1.5 rounded-lg text-sm">{yearReduced}</span>
+              <span className="bg-teal-100 text-teal-800 font-normal px-3 py-1.5 rounded-lg text-sm">{dayReduced}</span>
+              <span className="text-gray-400 font-normal">+</span>
+              <span className="bg-teal-100 text-teal-800 font-normal px-3 py-1.5 rounded-lg text-sm">{monthReduced}</span>
+              <span className="text-gray-400 font-normal">+</span>
+              <span className="bg-teal-100 text-teal-800 font-normal px-3 py-1.5 rounded-lg text-sm">{yearReduced}</span>
             </div>
           </div>
 
@@ -92,7 +92,7 @@ export default function AstroLifeMathSlide() {
               <strong className="text-gray-950">Step 2</strong> Add all birthdate numbers. If result is two digits, add those too.
             </p>
             <div className="flex justify-center">
-              <span className="bg-teal-100 text-teal-800 font-bold px-4 py-2 rounded-lg text-sm">{rawSum}</span>
+              <span className="bg-teal-100 text-teal-800 font-normal px-4 py-2 rounded-lg text-sm">{rawSum}</span>
             </div>
           </div>
 
@@ -103,11 +103,11 @@ export default function AstroLifeMathSlide() {
             </p>
 
             {/* Giant Circular Output */}
-            <div className="w-24 h-24 rounded-full border-[6px] border-indigo-400 bg-indigo-50 flex items-center justify-center font-display font-extrabold text-4xl text-indigo-950 shadow-inner relative mt-2">
+            <div className="w-24 h-24 rounded-full border-[6px] border-indigo-400 bg-indigo-50 flex items-center justify-center font-display font-normal text-4xl text-indigo-950 shadow-inner relative mt-2">
               <span>{lifePathFinal}</span>
             </div>
             
-            <p className="text-sm font-extrabold text-gray-900 tracking-tight uppercase">
+            <p className="text-sm font-normal text-gray-900 tracking-tight uppercase">
               Your Life Path Number
             </p>
           </div>
@@ -118,7 +118,7 @@ export default function AstroLifeMathSlide() {
           <div className="relative shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-100/75 rounded-full border border-indigo-200">
             <Compass className="w-5 h-5 text-indigo-600 animate-spin" style={{ animationDuration: '40s' }} />
           </div>
-          <p className="text-indigo-950 font-bold text-xs leading-snug">
+          <p className="text-indigo-950 font-normal text-xs leading-snug">
             Let’s keep going and find out your Life Path Number. We’ll also look at what it says about your personality, strengths, and weaknesses.
           </p>
         </div>

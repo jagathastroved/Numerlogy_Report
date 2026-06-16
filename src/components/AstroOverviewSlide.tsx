@@ -42,7 +42,7 @@ export default function AstroOverviewSlide() {
             <h2 className="font-display text-xl sm:text-2xl font-black text-gray-950 tracking-tight leading-snug">
               Here We Have Prepared Your In-Depth Personalized Numerology Report
             </h2>
-            <p className="text-gray-400 text-[10px] uppercase font-bold tracking-wider">
+            <p className="text-gray-400 text-[10px] uppercase font-normal tracking-wider">
               Your Personal Numerology Report Is Here
             </p>
           </div>
@@ -50,17 +50,17 @@ export default function AstroOverviewSlide() {
           {/* Cover book */}
           <div className="relative shrink-0 w-20 h-28 bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-950 rounded-lg shadow-md border border-white/20 p-2 flex flex-col justify-between text-white overflow-hidden select-none">
             <div className="absolute inset-0 bg-orange-500/10 rounded-full blur-xl" />
-            <div className="text-[6px] font-semibold text-orange-400 tracking-widest uppercase">ASTROVED</div>
-            <div className="text-[8px] font-extrabold leading-tight tracking-tight text-white mt-1">Your Personalized Numerology Report</div>
+            <div className="text-[6px] font-normal text-orange-400 tracking-widest uppercase">ASTROVED</div>
+            <div className="text-[8px] font-normal leading-tight tracking-tight text-white mt-1">Your Personalized Numerology Report</div>
             <div className="flex items-center gap-1 mt-auto border-t border-white/10 pt-1">
               <ShieldCheck className="w-2 h-2 text-orange-400" />
-              <span className="text-[5px] text-slate-300 font-bold">PREUI V1.2</span>
+              <span className="text-[5px] text-slate-300 font-normal">PREUI V1.2</span>
             </div>
           </div>
         </div>
 
         {/* Heading checklist description */}
-        <p className="text-xs text-gray-900 font-extrabold tracking-wide uppercase">
+        <p className="text-xs text-gray-900 font-normal tracking-wide uppercase">
           What You'll Find Inside -
         </p>
 
@@ -74,7 +74,7 @@ export default function AstroOverviewSlide() {
               {/* Check circle */}
               <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
               <div className="space-y-1">
-                <h3 className="text-sm font-extrabold text-gray-950 tracking-tight">{item.title}</h3>
+                <h3 className="text-sm font-normal text-gray-950 tracking-tight">{item.title}</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
               </div>
             </div>
@@ -84,11 +84,11 @@ export default function AstroOverviewSlide() {
         {/* Testimonial Card */}
         <div className="bg-white border border-gray-200 p-5 rounded-2xl space-y-3 shadow-xs">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-800 font-extrabold text-sm border border-orange-200">
+            <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-800 font-normal text-sm border border-orange-200">
               AS
             </div>
             <div>
-              <h4 className="text-xs font-extrabold text-gray-900">Anjali Sharma</h4>
+              <h4 className="text-xs font-normal text-gray-900">Anjali Sharma</h4>
               <p className="text-[10px] text-gray-400">Teacher</p>
             </div>
 
@@ -110,7 +110,7 @@ export default function AstroOverviewSlide() {
           <button
             onClick={() => navigate('/report/6')}
             type="button"
-            className="w-full py-4 bg-purple-500 hover:bg-purple-600 active:scale-[0.98] text-white font-extrabold rounded-2xl shadow-lg shadow-purple-500/20 transition-all duration-200 cursor-pointer text-sm flex items-center justify-center gap-2"
+            className="w-full py-4 bg-purple-500 hover:bg-purple-600 active:scale-[0.98] text-white font-normal rounded-2xl shadow-lg shadow-purple-500/20 transition-all duration-200 cursor-pointer text-sm flex items-center justify-center gap-2"
           >
             <span>Get Your Numerology Report Now</span>
             <ArrowRight className="w-4 h-4" />

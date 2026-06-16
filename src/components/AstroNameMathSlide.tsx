@@ -49,7 +49,7 @@ export default function AstroNameMathSlide() {
 
         {/* Title details */}
         <div className="space-y-2">
-          <h2 className="font-display text-2xl font-extrabold text-gray-950 tracking-tight">
+          <h2 className="font-display text-2xl font-normal text-gray-950 tracking-tight">
             Your Name/ Destiny Number
           </h2>
           <p className="text-gray-600 text-xs leading-relaxed">
@@ -62,14 +62,14 @@ export default function AstroNameMathSlide() {
 
         {/* Full Name letter pills */}
         <div className="space-y-4">
-          <p className="text-xs text-gray-900 font-bold uppercase tracking-wider text-center">Your Full Name</p>
+          <p className="text-xs text-gray-900 font-normal uppercase tracking-wider text-center">Your Full Name</p>
           <div className="flex flex-wrap justify-center items-center gap-2 bg-pink-100/50 p-4 border border-pink-150 rounded-2xl">
             {characters.map((char, index) => (
               <React.Fragment key={index}>
-                <span className="w-8 h-8 rounded-lg bg-pink-300 text-slate-800 font-extrabold text-sm flex items-center justify-center shadow-xs">
+                <span className="w-8 h-8 rounded-lg bg-pink-300 text-slate-800 font-normal text-sm flex items-center justify-center shadow-xs">
                   {char}
                 </span>
-                {index < characters.length - 1 && <span className="text-pink-300 font-bold text-xs">+</span>}
+                {index < characters.length - 1 && <span className="text-pink-300 font-normal text-xs">+</span>}
               </React.Fragment>
             ))}
           </div>
@@ -85,10 +85,10 @@ export default function AstroNameMathSlide() {
             <div className="flex flex-wrap justify-center items-center gap-2 bg-purple-50 p-4 border border-purple-100 rounded-2xl">
               {values.map((v, index) => (
                 <React.Fragment key={index}>
-                  <span className="w-8 h-8 rounded-lg bg-purple-200 text-purple-950 font-bold text-sm flex items-center justify-center shadow-xs">
+                  <span className="w-8 h-8 rounded-lg bg-purple-200 text-purple-950 font-normal text-sm flex items-center justify-center shadow-xs">
                     {v}
                   </span>
-                  {index < values.length - 1 && <span className="text-purple-300 font-bold text-xs">+</span>}
+                  {index < values.length - 1 && <span className="text-purple-300 font-normal text-xs">+</span>}
                 </React.Fragment>
               ))}
             </div>
@@ -100,7 +100,7 @@ export default function AstroNameMathSlide() {
               <strong className="text-gray-950">Step 2</strong> Find total for first, middle(s), and last name separately.
             </p>
             <div className="flex justify-center">
-              <span className="bg-pink-100 text-pink-800 font-bold px-4 py-2 rounded-lg text-xs leading-none">
+              <span className="bg-pink-100 text-pink-800 font-normal px-4 py-2 rounded-lg text-xs leading-none">
                 {reductionPath}
               </span>
             </div>
@@ -113,11 +113,11 @@ export default function AstroNameMathSlide() {
             </p>
 
             {/* Huge badge */}
-            <div className="w-24 h-24 rounded-full border-[6px] border-indigo-400 bg-indigo-50 flex items-center justify-center font-display font-extrabold text-4xl text-indigo-950 shadow-inner relative mt-2">
+            <div className="w-24 h-24 rounded-full border-[6px] border-indigo-400 bg-indigo-50 flex items-center justify-center font-display font-normal text-4xl text-indigo-950 shadow-inner relative mt-2">
               <span>{finalDestiny}</span>
             </div>
 
-            <p className="text-sm font-extrabold text-gray-900 tracking-tight uppercase">
+            <p className="text-sm font-normal text-gray-900 tracking-tight uppercase">
               Your Name Number
             </p>
           </div>
@@ -137,13 +137,13 @@ export default function AstroNameMathSlide() {
             <p className="text-[10px] text-gray-700 font-medium leading-relaxed">
               Those were just a few of your <strong>main core numbers</strong>. To learn more about the other important numbers too, <strong>get full access</strong> to your complete, <strong>in-depth numerology report</strong> now!
             </p>
-            <div className="text-xs font-bold text-gray-950">
+            <div className="text-xs font-normal text-gray-950">
               Get your report now for <span className="line-through text-gray-400">₹999</span> <span className="text-purple-700">₹399</span>
             </div>
             {/* CTA action button */}
             <button
               type="button"
-              className="px-3.5 py-1.5 bg-indigo-200 hover:bg-indigo-300 rounded-lg text-[10px] font-bold text-indigo-950 cursor-not-allowed flex items-center gap-1"
+              className="px-3.5 py-1.5 bg-indigo-200 hover:bg-indigo-300 rounded-lg text-[10px] font-normal text-indigo-950 cursor-not-allowed flex items-center gap-1"
             >
               <span>Get Your Complete Report</span>
               <ArrowRight className="w-3 h-3" />
@@ -154,11 +154,11 @@ export default function AstroNameMathSlide() {
           <div className="relative shrink-0 w-24 h-32 bg-gradient-to-br from-indigo-950 to-indigo-800 rounded-lg shadow-md border border-white/20 p-2 flex flex-col justify-between text-white overflow-hidden select-none">
             {/* Swirl element */}
             <div className="absolute inset-0 bg-orange-500/10 rounded-full blur-xl" />
-            <div className="text-[7px] font-semibold text-orange-400 tracking-widest uppercase">ASTROVED</div>
-            <div className="text-[10px] font-extrabold leading-tight tracking-tight text-white mt-1">Your Personalized Numerology Report</div>
+            <div className="text-[7px] font-normal text-orange-400 tracking-widest uppercase">ASTROVED</div>
+            <div className="text-[10px] font-normal leading-tight tracking-tight text-white mt-1">Your Personalized Numerology Report</div>
             <div className="flex items-center gap-1 mt-auto border-t border-white/10 pt-1.5">
               <ShieldCheck className="w-2.5 h-2.5 text-orange-400" />
-              <span className="text-[6px] text-slate-300 font-bold">PREUI V1.2</span>
+              <span className="text-[6px] text-slate-300 font-normal">PREUI V1.2</span>
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function AstroNameMathSlide() {
           <div className="relative shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-100/75 rounded-full border border-indigo-200">
             <Compass className="w-5 h-5 text-indigo-600 animate-spin" style={{ animationDuration: '40s' }} />
           </div>
-          <p className="text-indigo-950 font-bold text-xs leading-snug">
+          <p className="text-indigo-950 font-normal text-xs leading-snug">
             Let's proceed to magical grid of numerology.
           </p>
         </div>

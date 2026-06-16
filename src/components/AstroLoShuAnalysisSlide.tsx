@@ -107,7 +107,7 @@ export default function AstroLoShuAnalysisSlide() {
 
         {/* Title */}
         <div className="space-y-1">
-          <h2 className="font-display text-2xl font-extrabold text-gray-950 tracking-tight text-center">
+          <h2 className="font-display text-2xl font-normal text-gray-950 tracking-tight text-center">
             Analysis of Lo Shu Grid
           </h2>
           <div className="w-12 h-0.5 bg-orange-450 mx-auto" />
@@ -140,7 +140,7 @@ export default function AstroLoShuAnalysisSlide() {
                         return (
                           <div 
                             key={cellNum} 
-                            className={`w-5 h-5 rounded-xs flex items-center justify-center font-bold text-[8px] border ${
+                            className={`w-5 h-5 rounded-xs flex items-center justify-center font-normal text-[8px] border ${
                               isTarget 
                                 ? 'bg-red-400 border-red-500 text-white shadow-xs' 
                                 : 'bg-slate-200/50 border-slate-200 text-slate-400'
@@ -157,7 +157,7 @@ export default function AstroLoShuAnalysisSlide() {
                 {/* Paragraphs */}
                 <div className="space-y-2.5 flex-1">
                   {arrow.descParagraphs.slice(1).map((p, pIdx) => (
-                    <p key={pIdx} className="text-xs text-gray-700 leading-relaxed font-semibold">
+                    <p key={pIdx} className="text-xs text-gray-700 leading-relaxed font-normal">
                       {p}
                     </p>
                   ))}
@@ -170,16 +170,16 @@ export default function AstroLoShuAnalysisSlide() {
         {/* Promotional Banner Card */}
         <div className="bg-purple-100/40 border border-purple-200/50 rounded-2xl p-5 relative overflow-hidden flex items-center justify-between gap-4">
           <div className="space-y-2 max-w-[200px]">
-            <div className="text-xs font-bold text-gray-950">
+            <div className="text-xs font-normal text-gray-950">
               Get Your <span className="text-purple-700">Complete Numerology Report</span> for Just <span className="line-through text-gray-400">₹999</span> ₹399!
             </div>
-            <p className="text-[9px] text-gray-650 leading-relaxed font-semibold">
+            <p className="text-[9px] text-gray-650 leading-relaxed font-normal">
               Gain comprehensive breakdowns of remedies, trigrams, elements, and daily advice compiled in your custom report.
             </p>
             {/* CTA action button */}
             <button 
               type="button"
-              className="px-3.5 py-1.5 bg-indigo-200 hover:bg-indigo-300 rounded-lg text-[10px] font-bold text-indigo-950 cursor-not-allowed flex items-center gap-1"
+              className="px-3.5 py-1.5 bg-indigo-200 hover:bg-indigo-300 rounded-lg text-[10px] font-normal text-indigo-950 cursor-not-allowed flex items-center gap-1"
             >
               <span>Download Your Report Now</span>
               <ArrowRight className="w-3 h-3" />
@@ -189,11 +189,11 @@ export default function AstroLoShuAnalysisSlide() {
           {/* Book Illustration */}
           <div className="relative shrink-0 w-24 h-32 bg-gradient-to-br from-indigo-950 to-[#2A1D54] rounded-lg shadow-md border border-white/20 p-2 flex flex-col justify-between text-white overflow-hidden select-none">
             <div className="absolute inset-0 bg-amber-500/10 rounded-full blur-xl" />
-            <div className="text-[7px] font-semibold text-orange-400 tracking-widest uppercase">ASTROVED</div>
-            <div className="text-[10px] font-extrabold leading-tight tracking-tight text-white mt-1">Your Personalized Numerology Report</div>
+            <div className="text-[7px] font-normal text-orange-400 tracking-widest uppercase">ASTROVED</div>
+            <div className="text-[10px] font-normal leading-tight tracking-tight text-white mt-1">Your Personalized Numerology Report</div>
             <div className="flex items-center gap-1 mt-auto border-t border-white/10 pt-1.5">
               <ShieldCheck className="w-2.5 h-2.5 text-orange-400" />
-              <span className="text-[6px] text-slate-300 font-bold">PREUI V1.2</span>
+              <span className="text-[6px] text-slate-300 font-normal">PREUI V1.2</span>
             </div>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function AstroLoShuAnalysisSlide() {
           <div className="relative shrink-0 w-10 h-10 flex items-center justify-center bg-indigo-100/75 rounded-full border border-indigo-200">
             <Compass className="w-5 h-5 text-indigo-600 animate-spin" style={{ animationDuration: '40s' }} />
           </div>
-          <p className="text-indigo-950 font-bold text-xs leading-snug">
+          <p className="text-indigo-950 font-normal text-xs leading-snug">
             After discovering your insights, let's move forward to see how this month will be for you.
           </p>
         </div>

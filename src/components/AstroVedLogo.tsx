@@ -14,7 +14,7 @@ export default function AstroVedLogo({ showText = true, size = 'md', className =
   if (size === 'sm') {
     iconWidth = 24;
     iconHeight = 24;
-    textSizeClass = 'text-sm font-extrabold tracking-tight';
+    textSizeClass = 'text-sm font-normal tracking-tight';
   } else if (size === 'lg') {
     iconWidth = 48;
     iconHeight = 48;
@@ -22,7 +22,7 @@ export default function AstroVedLogo({ showText = true, size = 'md', className =
   } else if (size === 'xl') {
     iconWidth = 80;
     iconHeight = 80;
-    textSizeClass = 'text-4xl font-extrabold tracking-tight';
+    textSizeClass = 'text-4xl font-normal tracking-tight';
   }
 
   return (
@@ -59,7 +59,7 @@ export default function AstroVedLogo({ showText = true, size = 'md', className =
         />
       </svg>
       {showText && (
-        <span className={`font-sans tracking-tight font-extrabold text-[#5C5EFF] leading-none ${textSizeClass}`}>
+        <span className={`font-sans tracking-tight font-normal text-[#5C5EFF] leading-none ${textSizeClass}`}>
           Astro<span className="text-[#5C5EFF]">Ved</span>
         </span>
       )}

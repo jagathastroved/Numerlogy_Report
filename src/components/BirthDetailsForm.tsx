@@ -3,6 +3,7 @@ import { type PersonalDetails } from '../types';
 import { useNavigate } from 'react-router-dom';
 import { Country, City } from 'country-state-city';
 import { useReport } from '../context/ReportContext';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface BirthDetailsFormProps {
   data: PersonalDetails;
@@ -35,6 +36,7 @@ export default function BirthDetailsForm({
   const navigate = useNavigate();
   const { fetchReport } = useReport();
   const [activeTab, setActiveTab] = useState<'Numerology'>('Numerology');
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const availableCities = useMemo(() => {
     if (!data.birthCountry) return [];
@@ -67,7 +69,7 @@ export default function BirthDetailsForm({
 
         {/* Left Side Text */}
         <div className="text-white space-y-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-white drop-shadow-md font-serif">
+          <h1 className="text-4xl md:text-5xl font-normal leading-tight text-white drop-shadow-md font-serif">
             Get All Your Questions <br /> Answered — Right Here
           </h1>
         </div>
@@ -79,7 +81,7 @@ export default function BirthDetailsForm({
           <div className="flex w-full shrink-0">
             <button
               onClick={() => setActiveTab('Numerology')}
-              className={`flex-1 py-4 text-center font-bold text-sm transition-colors duration-200 ${activeTab === 'Numerology'
+              className={`flex-1 py-4 text-center font-normal text-sm transition-colors duration-200 ${activeTab === 'Numerology'
                 ? 'bg-[#F97316] text-white'
                 : 'bg-white text-gray-500 hover:bg-gray-50'
                 }`}
@@ -92,7 +94,7 @@ export default function BirthDetailsForm({
             {/* Header Title Grid */}
             <div className="flex justify-between items-start">
               <div>
-                <h2 className="font-serif text-2xl font-bold text-gray-800 tracking-tight leading-none">
+                <h2 className="font-serif text-2xl font-normal text-gray-800 tracking-tight leading-none">
                   Enter Your Birth Details
                 </h2>
                 <p className="text-gray-500 text-sm mt-2 font-medium">
@@ -102,7 +104,7 @@ export default function BirthDetailsForm({
 
               {/* Language Selection */}
               <div className="relative mt-1">
-                <label htmlFor="language-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-500 font-bold tracking-wide z-10">
+                <label htmlFor="language-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-500 font-normal tracking-wide z-10">
                   Language
                 </label>
                 <div className="relative">
@@ -110,7 +112,7 @@ export default function BirthDetailsForm({
                     id="language-select"
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
-                    className="pl-3 pr-8 py-2 text-sm font-semibold text-gray-700 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400 cursor-pointer appearance-none relative z-0"
+                    className="pl-3 pr-8 py-2 text-sm font-normal text-gray-700 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400 cursor-pointer appearance-none relative z-0"
                   >
                     <option value="English">English</option>
                     <option value="Hindi">Hindi</option>
@@ -140,7 +142,7 @@ export default function BirthDetailsForm({
                 </div>
 
                 <div className="relative">
-                  <label htmlFor="gender-select" className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-red-500 font-bold tracking-wide z-10">
+                  <label htmlFor="gender-select" className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-red-500 font-normal tracking-wide z-10">
                     Gender
                   </label>
                   <div className="relative">
@@ -167,7 +169,7 @@ export default function BirthDetailsForm({
               <div className="grid grid-cols-3 gap-3 pt-2">
                 {/* Day */}
                 <div className="relative">
-                  <label htmlFor="day-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-400 font-bold tracking-wide z-10">
+                  <label htmlFor="day-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-400 font-normal tracking-wide z-10">
                     Day
                   </label>
                   <div className="relative">
@@ -190,7 +192,7 @@ export default function BirthDetailsForm({
 
                 {/* Month */}
                 <div className="relative">
-                  <label htmlFor="month-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-400 font-bold tracking-wide z-10">
+                  <label htmlFor="month-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-400 font-normal tracking-wide z-10">
                     Month
                   </label>
                   <div className="relative">
@@ -213,7 +215,7 @@ export default function BirthDetailsForm({
 
                 {/* Year */}
                 <div className="relative">
-                  <label htmlFor="year-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-400 font-bold tracking-wide z-10">
+                  <label htmlFor="year-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-400 font-normal tracking-wide z-10">
                     Year
                   </label>
                   <div className="relative">
@@ -239,7 +241,7 @@ export default function BirthDetailsForm({
               <div className="grid grid-cols-2 gap-4 pt-2">
                 {/* Hour */}
                 <div className="relative">
-                  <label id="hour-label" htmlFor="hour-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-400 font-bold tracking-wide z-10">
+                  <label id="hour-label" htmlFor="hour-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-400 font-normal tracking-wide z-10">
                     Birth Hour
                   </label>
                   <div className="relative">
@@ -265,7 +267,7 @@ export default function BirthDetailsForm({
 
                 {/* Minute */}
                 <div className="relative">
-                  <label id="minute-label" htmlFor="minute-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-400 font-bold tracking-wide z-10">
+                  <label id="minute-label" htmlFor="minute-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-red-400 font-normal tracking-wide z-10">
                     Birth Minute
                   </label>
                   <div className="relative">
@@ -291,7 +293,7 @@ export default function BirthDetailsForm({
               {/* Row: Country and City */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div className="relative">
-                  <label htmlFor="country-select" className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-red-400 font-bold tracking-wide z-10">
+                  <label htmlFor="country-select" className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-red-400 font-normal tracking-wide z-10">
                     Country
                   </label>
                   <div className="relative">
@@ -314,27 +316,50 @@ export default function BirthDetailsForm({
                 </div>
 
                 <div className="relative">
-                  <label htmlFor="city-input" className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-red-400 font-bold tracking-wide z-10">
+                  <label htmlFor="city-input" className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-red-400 font-normal tracking-wide z-10">
                     City
                   </label>
                   <div className="relative">
                     <input
                       id="city-input"
-                      list="city-suggestions"
                       type="text"
                       required
                       value={data.birthCity}
-                      onChange={(e) => onChange({ birthCity: e.target.value })}
+                      onChange={(e) => {
+                        onChange({ birthCity: e.target.value });
+                        setShowSuggestions(true);
+                      }}
+                      onFocus={() => setShowSuggestions(true)}
+                      onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                       disabled={!data.birthCountry}
                       placeholder="Type your city"
                       className="w-full pl-4 pr-8 py-3 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400 cursor-text relative z-0 disabled:opacity-50"
                       autoComplete="off"
                     />
-                    <datalist id="city-suggestions">
-                      {filteredCities.map((city, idx) => (
-                        <option key={`${city.name}-${idx}`} value={city.name} />
-                      ))}
-                    </datalist>
+                    <AnimatePresence>
+                      {showSuggestions && filteredCities.length > 0 && (
+                        <motion.ul
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          className="absolute left-0 right-0 top-full z-50 mt-1 max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-xl py-1"
+                        >
+                          {filteredCities.map((city, idx) => (
+                            <li
+                              key={`${city.name}-${idx}`}
+                              onMouseDown={(e) => e.preventDefault()}
+                              onClick={() => {
+                                onChange({ birthCity: city.name });
+                                setShowSuggestions(false);
+                              }}
+                              className="px-4 py-2 text-sm text-gray-700 font-medium hover:bg-orange-50 hover:text-orange-600 cursor-pointer transition-colors"
+                            >
+                              {city.name}
+                            </li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
               </div>
@@ -343,7 +368,7 @@ export default function BirthDetailsForm({
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 bg-[#F97316] hover:bg-orange-600 active:scale-[0.98] text-white font-bold text-base rounded-xl shadow-lg transition-all duration-200 cursor-pointer text-center"
+                  className="w-full py-4 px-6 bg-[#F97316] hover:bg-orange-600 active:scale-[0.98] text-white font-normal text-base rounded-xl shadow-lg transition-all duration-200 cursor-pointer text-center"
                 >
                   Create Your Free Kundli Now
                 </button>

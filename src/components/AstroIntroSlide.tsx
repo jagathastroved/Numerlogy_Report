@@ -12,7 +12,7 @@ export default function AstroIntroSlide() {
 
       {/* Hello Greeting */}
       <div className="space-y-3">
-        <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight leading-none">
+        <h2 className="font-display text-2xl sm:text-3xl font-normal text-gray-950 tracking-tight leading-none">
           Hey {name || "Seeker"},
         </h2>
         <p className="text-gray-700 text-sm leading-relaxed">
@@ -25,7 +25,7 @@ export default function AstroIntroSlide() {
 
       {/* What We Cover */}
       <div className="space-y-3.5 bg-white/70 p-5 rounded-2xl border border-orange-100/50">
-        <p className="text-gray-900 font-bold text-sm">
+        <p className="text-gray-900 font-normal text-sm">
           We cover the following points in your numerology report:
         </p>
 
@@ -38,7 +38,7 @@ export default function AstroIntroSlide() {
             { text: "How is your current month and upcoming year?" }
           ].map((item, idx) => (
             <li key={idx} className="flex items-start gap-2 text-sm text-gray-800">
-              <span className="text-orange-500 font-semibold text-base leading-none">•</span>
+              <span className="text-orange-500 font-normal text-base leading-none">•</span>
               <span className="font-medium">{item.text}</span>
             </li>
           ))}
@@ -52,7 +52,7 @@ export default function AstroIntroSlide() {
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
         </div>
 
-        <p className="text-indigo-950 font-bold text-sm leading-snug">
+        <p className="text-indigo-950 font-normal text-sm leading-snug">
           Click NEXT to see your core numbers, which are the most important in numerology.
         </p>
       </div>

@@ -40,10 +40,10 @@ export default function AstroCheckoutSlide() {
                 Download Your Complete Personalized Numerology Report
               </h2>
               <div className="flex items-center gap-2 mt-1.5">
-                <span className="bg-purple-100 text-purple-700 font-bold px-2.5 py-1 rounded text-[10px] uppercase tracking-wide">
+                <span className="bg-purple-100 text-purple-700 font-normal px-2.5 py-1 rounded text-[10px] uppercase tracking-wide">
                   Premium Numerology Report
                 </span>
-                <span className="bg-amber-100 text-amber-700 font-bold px-2.5 py-1 rounded text-[10px] uppercase tracking-wide">
+                <span className="bg-amber-100 text-amber-700 font-normal px-2.5 py-1 rounded text-[10px] uppercase tracking-wide">
                   Instant Download
                 </span>
               </div>
@@ -54,20 +54,20 @@ export default function AstroCheckoutSlide() {
               <div className="col-span-2">
                 <div className="relative w-full h-36 bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-950 rounded-xl shadow-lg border border-white/20 p-3 flex flex-col justify-between text-white overflow-hidden select-none">
                   <div className="absolute inset-0 bg-orange-500/10 rounded-full blur-xl" />
-                  <div className="text-[8px] font-semibold text-orange-400 tracking-widest uppercase">ASTROVED</div>
+                  <div className="text-[8px] font-normal text-orange-400 tracking-widest uppercase">ASTROVED</div>
                   <div className="text-[11px] font-black leading-tight tracking-tight text-white mt-1">
                     Your Personalized Numerology Report
                   </div>
                   <div className="flex items-center gap-1.5 mt-auto border-t border-white/10 pt-2">
                     <ShieldCheck className="w-3.5 h-3.5 text-orange-400" />
-                    <span className="text-[7px] text-slate-300 font-bold">PREUI V1.2</span>
+                    <span className="text-[7px] text-slate-300 font-normal">PREUI V1.2</span>
                   </div>
                 </div>
               </div>
 
               <div className="col-span-3 space-y-1.5">
-                <h3 className="font-display font-bold text-sm text-gray-900 leading-tight">What’s Prepared For You:</h3>
-                <p className="text-[11px] text-gray-500 leading-relaxed font-semibold">
+                <h3 className="font-display font-normal text-sm text-gray-900 leading-tight">What’s Prepared For You:</h3>
+                <p className="text-[11px] text-gray-500 leading-relaxed font-normal">
                   We have successfully analyzed the date node grids of <strong>{fullName}</strong>. Your customized charts have been generated and packaged into a premium PDF.
                 </p>
               </div>
@@ -96,7 +96,7 @@ export default function AstroCheckoutSlide() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* Email */}
                 <div className="relative col-span-1">
-                  <label htmlFor="checkout-email" className="absolute -top-2 left-2.5 px-1 bg-white text-[10px] text-indigo-950 font-bold tracking-wide">
+                  <label htmlFor="checkout-email" className="absolute -top-2 left-2.5 px-1 bg-white text-[10px] text-indigo-950 font-normal tracking-wide">
                     Email Address
                   </label>
                   <input
@@ -112,7 +112,7 @@ export default function AstroCheckoutSlide() {
 
                 {/* Phone */}
                 <div className="relative col-span-1">
-                  <label htmlFor="checkout-phone" className="absolute -top-2 left-2.5 px-1 bg-white text-[10px] text-indigo-950 font-bold tracking-wide">
+                  <label htmlFor="checkout-phone" className="absolute -top-2 left-2.5 px-1 bg-white text-[10px] text-indigo-950 font-normal tracking-wide">
                     Mobile Number
                   </label>
                   <input
@@ -133,12 +133,12 @@ export default function AstroCheckoutSlide() {
                   <span className="text-[10px] font-black text-purple-700 tracking-wide uppercase block">Total Price:</span>
                   <div className="flex items-baseline gap-1.5">
                     <span className="text-2xl font-black text-gray-950">₹399</span>
-                    <span className="text-xs line-through text-gray-400 font-bold">₹999</span>
+                    <span className="text-xs line-through text-gray-400 font-normal">₹999</span>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <span className="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
+                  <span className="text-[9px] font-normal text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
                     SAVE 60% TODAY
                   </span>
                 </div>
@@ -148,7 +148,7 @@ export default function AstroCheckoutSlide() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-extrabold text-base rounded-2xl shadow-lg shadow-purple-500/20 active:scale-[0.98] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
+                className="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-normal text-base rounded-2xl shadow-lg shadow-purple-500/20 active:scale-[0.98] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>
@@ -186,7 +186,7 @@ export default function AstroCheckoutSlide() {
             </div>
 
             {/* Receipt details */}
-            <div className="w-full bg-slate-50 border border-slate-150 p-4 rounded-xl text-left text-xs font-semibold text-gray-650 space-y-2">
+            <div className="w-full bg-slate-50 border border-slate-150 p-4 rounded-xl text-left text-xs font-normal text-gray-650 space-y-2">
               <div className="flex justify-between border-b border-slate-100 pb-1.5">
                 <span className="text-gray-400">Payer Name:</span>
                 <span className="text-gray-900">{fullName}</span>
@@ -214,7 +214,7 @@ export default function AstroCheckoutSlide() {
                 // Simulate download call
                 alert("Your customized AstroVed Numerology PDF report has been downloaded successfully!");
               }}
-              className="w-full max-w-xs py-3.5 bg-emerald-500 hover:bg-emerald-600 active:scale-[0.98] text-white font-extrabold rounded-2xl shadow-lg shadow-emerald-500/20 transition-all duration-200 cursor-pointer text-sm"
+              className="w-full max-w-xs py-3.5 bg-emerald-500 hover:bg-emerald-600 active:scale-[0.98] text-white font-normal rounded-2xl shadow-lg shadow-emerald-500/20 transition-all duration-200 cursor-pointer text-sm"
             >
               Download PDF Report Now
             </button>

@@ -87,7 +87,7 @@ export default function AstroCalculatingSlide({ onComplete }: AstroCalculatingSl
             </div>
 
             {/* Subtitle text */}
-            <p className="text-gray-300 text-sm font-semibold tracking-wide text-center animate-pulse">
+            <p className="text-gray-300 text-sm font-normal tracking-wide text-center animate-pulse">
               Calculating your numbers....
             </p>
           </div>

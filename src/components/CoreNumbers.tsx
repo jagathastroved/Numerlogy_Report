@@ -30,7 +30,7 @@ export default function CoreNumbers() {
 
       {/* Header */}
       <div className="space-y-2">
-        <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight leading-none">
+        <h2 className="font-display text-2xl sm:text-3xl font-normal text-gray-950 tracking-tight leading-none">
           Your Core Numbers
         </h2>
         <p className="text-gray-700 text-sm leading-relaxed">
@@ -42,7 +42,7 @@ export default function CoreNumbers() {
       <div className="space-y-4">
         {/* Life Path Number */}
         <div className="flex items-center justify-between bg-amber-100 rounded-2xl pl-5 p-2 shadow-sm border border-amber-200/60">
-          <span className="font-bold text-amber-900 text-sm">Your Life Path Number</span>
+          <span className="font-normal text-amber-900 text-sm">Your Life Path Number</span>
           <div className="w-12 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {lifePath}
           </div>
@@ -50,7 +50,7 @@ export default function CoreNumbers() {
 
         {/* Destiny Number */}
         <div className="flex items-center justify-between bg-emerald-100 rounded-2xl pl-5 p-2 shadow-sm border border-emerald-200/60">
-          <span className="font-bold text-emerald-900 text-sm">Your Destiny Number</span>
+          <span className="font-normal text-emerald-900 text-sm">Your Destiny Number</span>
           <div className="w-12 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {destiny}
           </div>
@@ -58,7 +58,7 @@ export default function CoreNumbers() {
 
         {/* Personality Number */}
         <div className="flex items-center justify-between bg-indigo-200 rounded-2xl pl-5 p-2 shadow-sm border border-indigo-300/60">
-          <span className="font-bold text-indigo-900 text-sm">Your Personality Number</span>
+          <span className="font-normal text-indigo-900 text-sm">Your Personality Number</span>
           <div className="w-12 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {personality}
           </div>
@@ -66,7 +66,7 @@ export default function CoreNumbers() {
 
         {/* Expression Number */}
         <div className="flex items-center justify-between bg-lime-100 rounded-2xl pl-5 p-2 shadow-sm border border-lime-200/60">
-          <span className="font-bold text-lime-900 text-sm">Your Expression Number</span>
+          <span className="font-normal text-lime-900 text-sm">Your Expression Number</span>
           <div className="w-12 h-10 bg-lime-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {expression}
           </div>
@@ -74,7 +74,7 @@ export default function CoreNumbers() {
 
         {/* Soul Urge Number */}
         <div className="flex items-center justify-between bg-orange-200 rounded-2xl pl-5 p-2 shadow-sm border border-orange-300/60">
-          <span className="font-bold text-orange-900 text-sm">Your Soul Urge Number</span>
+          <span className="font-normal text-orange-900 text-sm">Your Soul Urge Number</span>
           <div className="w-12 h-10 bg-orange-700 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {soulUrge}
           </div>
@@ -82,7 +82,7 @@ export default function CoreNumbers() {
 
         {/* Subconscious Self Number */}
         <div className="flex items-center justify-between bg-slate-200 rounded-2xl pl-5 p-2 shadow-sm border border-slate-300/60">
-          <span className="font-bold text-slate-800 text-sm">Your Subconscious Self Number</span>
+          <span className="font-normal text-slate-800 text-sm">Your Subconscious Self Number</span>
           <div className="w-12 h-10 bg-slate-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {subconsciousSelf}
           </div>
@@ -90,7 +90,7 @@ export default function CoreNumbers() {
 
         {/* Challenge Numbers */}
         <div className="flex items-center justify-between bg-fuchsia-200 rounded-2xl pl-5 p-2 shadow-sm border border-fuchsia-300/60">
-          <span className="font-bold text-fuchsia-900 text-sm">Your Challenge<br />Numbers</span>
+          <span className="font-normal text-fuchsia-900 text-sm">Your Challenge<br />Numbers</span>
           <div className="flex gap-1.5 pr-1">
             {challengeNumbers?.map((num, i) => (
               <div key={i} className="w-9 h-10 bg-fuchsia-700 rounded-lg flex items-center justify-center text-white font-black text-lg shadow-inner">
@@ -113,7 +113,7 @@ export default function CoreNumbers() {
         </div>
         <div className="w-16 flex-shrink-0">
           <div className="w-16 h-24 bg-gradient-to-b from-purple-400 to-purple-600 rounded shadow-md border border-white/50 flex flex-col items-center justify-start p-1 relative overflow-hidden">
-            <div className="text-[6px] text-white font-bold text-center mt-1 w-full border-b border-white/20 pb-1 leading-tight">
+            <div className="text-[6px] text-white font-normal text-center mt-1 w-full border-b border-white/20 pb-1 leading-tight">
               Your Personalized<br />Numerology Report
             </div>
             <div className="text-[4px] text-white/80 mt-1 uppercase tracking-wider">In-depth</div>
