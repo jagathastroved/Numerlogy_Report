@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+
+  --color-astro-primary: #F5A540;
+  --color-astro-primary-dark: #E59A2F;
+  --color-astro-primary-light: #FFF5E6;
+  --color-astro-indigo: #6366F1;
+  --color-astro-indigo-dark: #4F46E5;
+  --color-astro-neutral-dark: #1F2937;
+  --color-astro-neutral-light: #F9FAFB;
+
+  --color-av-indigo: #6868F9;
+  --color-av-orange: #F4742E;
+}
+
+/* Custom Accessibility Focus State style */
+.astro-focus:focus-visible {
+  outline: 2px solid var(--color-astro-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(245, 165, 64, 0.2);
+}
+
+/* Smooth motion custom adjustments */
+body {
+  font-family: var(--font-sans);
+  background-color: #F8FAFC;
+  color: var(--color-astro-neutral-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    filter: blur(50px);
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    filter: blur(70px);
+    transform: scale(1.1);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 120s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 10px 40px -10px rgba(104, 104, 249, 0.15);
+}
