@@ -73,11 +73,11 @@ export default function AstroLifeDetailSlide() {
       </div>
 
       {/* Super Premium Promotional Banner Box */}
-      <div className="relative overflow-hidden rounded-xl shadow-lg bg-[#382b93] p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 group">
+      <div className="relative overflow-hidden rounded-xl shadow-lg bg-[#382b93] p-6 md:p-8 flex flex-col md:flex-row items-center md:items-stretch gap-6 group text-center md:text-left">
 
-        {/* Content */}
-        <div className="relative z-10 flex-1 space-y-4">
-          <div className="inline-flex px-3 py-1 bg-white/5 border border-white/10 rounded-full">
+        {/* Text Content */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center space-y-4 order-1 md:order-1">
+          <div className="inline-flex px-3 py-1 bg-white/5 border border-white/10 rounded-full mx-auto md:mx-0">
             <span className="text-[10px] font-bold text-white tracking-widest uppercase">Premium Insight</span>
           </div>
 
@@ -85,11 +85,12 @@ export default function AstroLifeDetailSlide() {
             Unlock Your Full <span className="text-[#facc15] font-bold">Numerology<br />Destiny</span>
           </h3>
 
-          <p className="text-sm text-indigo-100/90 leading-relaxed max-w-sm">
+          <p className="text-sm text-indigo-100/90 leading-relaxed max-w-sm mx-auto md:mx-0">
             You've only seen a glimpse of your life path. Discover your complete cosmic blueprint with our deeply personalized guide.
           </p>
 
-          <div className="pt-3 flex items-center gap-4">
+          {/* DESKTOP BUTTON (Hidden on mobile) */}
+          <div className="pt-3 hidden md:flex items-center gap-4">
             <button
               type="button"
               onClick={() => navigate('/premium-deliverables')}
@@ -101,14 +102,14 @@ export default function AstroLifeDetailSlide() {
 
             <div className="text-sm font-medium">
               <span className="text-indigo-200/70 line-through mr-2">₹999</span>
-              <br />
+              <br className="hidden md:block" />
               <span className="text-[#4ade80] font-bold">₹399 Only</span>
             </div>
           </div>
         </div>
 
         {/* Premium Book Mockup */}
-        <div className="relative z-10 shrink-0 group-hover:scale-105 transition-transform duration-500 ease-out ml-4 md:ml-0 md:mr-8">
+        <div className="relative z-10 shrink-0 group-hover:scale-105 transition-transform duration-500 ease-out order-2 md:order-2 flex justify-center w-full md:w-auto mt-2 md:mt-0 ml-0 md:ml-4 lg:ml-8">
           <div className="w-36 h-48 bg-gradient-to-br from-[#5b2488] to-[#3b1a66] rounded-r-lg rounded-l-sm shadow-[10px_10px_20px_rgba(0,0,0,0.3)] border-l-[3px] border-[#a855f7] border-t border-r border-b border-white/10 flex flex-col relative overflow-hidden">
             {/* Book Spine Highlight */}
             <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-white/20 to-transparent"></div>
@@ -127,13 +128,26 @@ export default function AstroLifeDetailSlide() {
                 <p className="text-[6px] text-indigo-200 uppercase tracking-widest mt-2">Personalized Blueprint</p>
               </div>
 
-              <div className="flex justify-between items-end pb-1 border-b border-white/10 mt-auto">
-                <div className="text-[7px] text-white/50 font-medium">Vol. 1</div>
-                <ShieldCheck className="w-3.5 h-3.5 text-[#facc15]" />
-              </div>
             </div>
           </div>
         </div>
+
+        {/* MOBILE BUTTON (Hidden on desktop) */}
+        <div className="relative z-10 flex flex-col items-center justify-center gap-3 order-3 md:hidden w-full mt-6">
+          <div className="text-sm font-medium text-center">
+            <span className="text-indigo-200/70 line-through mr-2">₹999</span>
+            <span className="text-[#4ade80] font-bold">₹399 Only</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => navigate('/premium-deliverables')}
+            className="w-full max-w-[280px] py-3.5 bg-[#f97316] hover:bg-[#ea580c] text-orange-950 text-sm font-bold rounded-lg shadow-md transition-all active:scale-95 flex items-center justify-center gap-2"
+          >
+            <span>Book Your Report Now</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+
       </div>
 
       {/* Callout box next-up */}

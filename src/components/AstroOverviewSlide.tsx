@@ -64,11 +64,10 @@ export default function AstroOverviewSlide() {
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-white/20 to-transparent"></div>
           <div className="text-[5px] font-medium text-white tracking-[0.2em] uppercase text-center mt-1">ASTROVED</div>
           <div className="flex-1 flex flex-col justify-center items-center text-center">
-            <h4 className="text-[10px] font-serif font-bold text-[#facc15] leading-tight">Numerology<br/>Report</h4>
+            <h4 className="text-[10px] font-serif font-bold text-[#facc15] leading-tight">Numerology<br />Report</h4>
             <p className="text-[4px] text-indigo-200 uppercase tracking-widest mt-1">Personalized Blueprint</p>
           </div>
           <div className="flex justify-between items-end pb-0.5 border-b border-white/10 mt-auto">
-            <div className="text-[5px] text-white/50 font-medium">Vol. 1</div>
             <ShieldCheck className="w-2.5 h-2.5 text-[#facc15]" />
           </div>
         </div>

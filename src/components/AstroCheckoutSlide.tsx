@@ -89,7 +89,6 @@ export default function AstroCheckoutSlide() {
               </div>
             </div>
             <div className="flex justify-between items-end pb-0.5 border-b border-white/10 mt-auto">
-              <div className="text-[6px] text-white/50 font-medium tracking-widest">VOL. 1</div>
             </div>
           </div>
 
