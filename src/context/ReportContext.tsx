@@ -12,7 +12,13 @@ interface ReportContextType {
 const ReportContext = createContext<ReportContextType | undefined>(undefined);
 
 export function ReportProvider({ children }: { children: ReactNode }) {
-  const [reportData, setReportData] = useState<NumerologyReportData | null>(null);
+  const [reportData, setReportData] = useState<NumerologyReportData | null>(() => {
+    const saved = sessionStorage.getItem('numerologyReportData');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) {}
+    }
+    return null;
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchReport = async (details: PersonalDetails) => {
@@ -25,16 +31,51 @@ export function ReportProvider({ children }: { children: ReactNode }) {
       // Simulating API delay
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Temporary logic to ensure Life Path and Destiny match user input so UI behaves as expected:
+      // Dynamic calculations based on user input:
       const day = parseInt(details.birthDay) || 1;
       const month = parseInt(details.birthMonth) || 1;
       const year = parseInt(details.birthYear) || 2000;
-      const lifePath = reduceToNumerologyDigit(reduceToNumerologyDigit(day) + reduceToNumerologyDigit(month) + reduceToNumerologyDigit(year));
+      
+      const { generateNumerologyReport } = await import('../utils/numerology');
+      const { LIFE_PATH_INTERPRETATIONS } = await import('../types');
+      
+      const dynamicInsights = generateNumerologyReport(
+        details.fullName || 'User',
+        details.birthDay,
+        details.birthMonth,
+        details.birthYear
+      );
 
-      const mockData = { ...fallbackReport, personalDetails: details };
-      mockData.coreNumbers.lifePath = lifePath;
+      // Deep copy to prevent modifying the fallbackReport reference
+      const mockData = JSON.parse(JSON.stringify(fallbackReport));
+      mockData.personalDetails = details;
+      
+      // Update Core Numbers
+      mockData.coreNumbers.lifePath = dynamicInsights.lifePathNumber;
+      mockData.coreNumbers.destiny = dynamicInsights.destinyNumber;
+      mockData.coreNumbers.challengeNumbers = dynamicInsights.enemyNumbers.slice(0, 4); // Dummy mapping for UI
+
+      // Update Interpretations
+      const realSubtitle = LIFE_PATH_INTERPRETATIONS[dynamicInsights.lifePathNumber]?.subtitle || "A journey of discovery";
+      
+      mockData.interpretations.lifePath = {
+        title: dynamicInsights.lifePathTitle,
+        subtitle: realSubtitle,
+        description: dynamicInsights.lifePathDescription,
+        traits: dynamicInsights.personalityTraits,
+        strengths: dynamicInsights.strengths,
+        challenges: dynamicInsights.challenges,
+        careers: dynamicInsights.careerRecommendations,
+        compatibility: dynamicInsights.relationshipCompatibility
+      };
+      
+      mockData.interpretations.destiny = {
+        title: dynamicInsights.destinyTitle,
+        desc: dynamicInsights.destinyDescription
+      };
       
       setReportData(mockData);
+      sessionStorage.setItem('numerologyReportData', JSON.stringify(mockData));
     } catch (error) {
       console.error('Failed to fetch report:', error);
     } finally {

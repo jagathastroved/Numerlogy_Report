@@ -1,8 +1,11 @@
 import React from 'react';
 import { useReport } from '../context/ReportContext';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight, Compass } from 'lucide-react';
 
 export default function CoreNumbers() {
   const { reportData } = useReport();
+  const navigate = useNavigate();
 
   // Safe defaults if the coreNumbers are not yet fully populated
   const coreNumbers = reportData?.coreNumbers || {
@@ -41,7 +44,7 @@ export default function CoreNumbers() {
       {/* Core Numbers List */}
       <div className="space-y-4">
         {/* Life Path Number */}
-        <div className="flex items-center justify-between bg-amber-100 rounded-2xl pl-5 p-2 shadow-sm border border-amber-200/60">
+        <div className="flex items-center justify-between bg-amber-100 rounded-2xl pl-5 p-2 shadow-sm border border-amber-200/60 transition-all duration-300 hover:scale-105 hover:shadow-md cursor-pointer">
           <span className="font-normal text-amber-900 text-sm">Your Life Path Number</span>
           <div className="w-12 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {lifePath}
@@ -49,7 +52,7 @@ export default function CoreNumbers() {
         </div>
 
         {/* Destiny Number */}
-        <div className="flex items-center justify-between bg-emerald-100 rounded-2xl pl-5 p-2 shadow-sm border border-emerald-200/60">
+        <div className="flex items-center justify-between bg-emerald-100 rounded-2xl pl-5 p-2 shadow-sm border border-emerald-200/60 transition-all duration-300 hover:scale-105 hover:shadow-md cursor-pointer">
           <span className="font-normal text-emerald-900 text-sm">Your Destiny Number</span>
           <div className="w-12 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {destiny}
@@ -57,7 +60,7 @@ export default function CoreNumbers() {
         </div>
 
         {/* Personality Number */}
-        <div className="flex items-center justify-between bg-indigo-200 rounded-2xl pl-5 p-2 shadow-sm border border-indigo-300/60">
+        <div className="flex items-center justify-between bg-indigo-200 rounded-2xl pl-5 p-2 shadow-sm border border-indigo-300/60 transition-all duration-300 hover:scale-105 hover:shadow-md cursor-pointer">
           <span className="font-normal text-indigo-900 text-sm">Your Personality Number</span>
           <div className="w-12 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {personality}
@@ -65,7 +68,7 @@ export default function CoreNumbers() {
         </div>
 
         {/* Expression Number */}
-        <div className="flex items-center justify-between bg-lime-100 rounded-2xl pl-5 p-2 shadow-sm border border-lime-200/60">
+        <div className="flex items-center justify-between bg-lime-100 rounded-2xl pl-5 p-2 shadow-sm border border-lime-200/60 transition-all duration-300 hover:scale-105 hover:shadow-md cursor-pointer">
           <span className="font-normal text-lime-900 text-sm">Your Expression Number</span>
           <div className="w-12 h-10 bg-lime-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {expression}
@@ -73,7 +76,7 @@ export default function CoreNumbers() {
         </div>
 
         {/* Soul Urge Number */}
-        <div className="flex items-center justify-between bg-orange-200 rounded-2xl pl-5 p-2 shadow-sm border border-orange-300/60">
+        <div className="flex items-center justify-between bg-orange-200 rounded-2xl pl-5 p-2 shadow-sm border border-orange-300/60 transition-all duration-300 hover:scale-105 hover:shadow-md cursor-pointer">
           <span className="font-normal text-orange-900 text-sm">Your Soul Urge Number</span>
           <div className="w-12 h-10 bg-orange-700 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {soulUrge}
@@ -81,7 +84,7 @@ export default function CoreNumbers() {
         </div>
 
         {/* Subconscious Self Number */}
-        <div className="flex items-center justify-between bg-slate-200 rounded-2xl pl-5 p-2 shadow-sm border border-slate-300/60">
+        <div className="flex items-center justify-between bg-slate-200 rounded-2xl pl-5 p-2 shadow-sm border border-slate-300/60 transition-all duration-300 hover:scale-105 hover:shadow-md cursor-pointer">
           <span className="font-normal text-slate-800 text-sm">Your Subconscious Self Number</span>
           <div className="w-12 h-10 bg-slate-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner">
             {subconsciousSelf}
@@ -89,7 +92,7 @@ export default function CoreNumbers() {
         </div>
 
         {/* Challenge Numbers */}
-        <div className="flex items-center justify-between bg-fuchsia-200 rounded-2xl pl-5 p-2 shadow-sm border border-fuchsia-300/60">
+        <div className="flex items-center justify-between bg-fuchsia-200 rounded-2xl pl-5 p-2 shadow-sm border border-fuchsia-300/60 transition-all duration-300 hover:scale-105 hover:shadow-md cursor-pointer">
           <span className="font-normal text-fuchsia-900 text-sm">Your Challenge<br />Numbers</span>
           <div className="flex gap-1.5 pr-1">
             {challengeNumbers?.map((num, i) => (
@@ -101,30 +104,16 @@ export default function CoreNumbers() {
         </div>
       </div>
 
-      {/* Promotional Banner */}
-      <div className="mt-6 bg-purple-50 rounded-2xl p-5 border border-purple-100 flex gap-4 items-center shadow-sm">
-        <div className="flex-1">
-          <p className="text-sm text-purple-950 leading-relaxed">
-            Get Your <strong>Complete Numerology Report</strong> for Just <span className="line-through opacity-70">₹999</span> <strong className="text-purple-700">₹399!</strong>
-          </p>
-          <p className="text-xs text-purple-800 mt-2 leading-relaxed">
-            Your <strong>detailed Numerology report</strong> with personal insights is ready. It is 90+ pages long, with an in-depth analysis of <strong>core numbers, life path guidance,</strong> and <strong>predictions</strong> based on your birth numbers.
-          </p>
+      {/* Callout box for Next */}
+      <div className="mt-8 flex items-center gap-4 p-4 border border-indigo-200 bg-indigo-50/50 rounded-2xl shadow-sm transition-all hover:shadow-md hover:bg-indigo-50/80 cursor-pointer">
+        <div className="relative shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full border border-indigo-100 shadow-sm">
+          <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
         </div>
-        <div className="w-16 flex-shrink-0">
-          <div className="w-16 h-24 bg-gradient-to-b from-purple-400 to-purple-600 rounded shadow-md border border-white/50 flex flex-col items-center justify-start p-1 relative overflow-hidden">
-            <div className="text-[6px] text-white font-normal text-center mt-1 w-full border-b border-white/20 pb-1 leading-tight">
-              Your Personalized<br />Numerology Report
-            </div>
-            <div className="text-[4px] text-white/80 mt-1 uppercase tracking-wider">In-depth</div>
-            <div className="flex gap-[1px] mt-2">
-              <div className="w-2 h-2 rounded-full border border-white/40 flex items-center justify-center"><div className="w-[1px] h-[1px] bg-white rounded-full"></div></div>
-              <div className="w-2 h-2 rounded-full border border-white/40 flex items-center justify-center"><div className="w-[1px] h-[1px] bg-white rounded-full"></div></div>
-              <div className="w-2 h-2 rounded-full border border-white/40 flex items-center justify-center"><div className="w-[1px] h-[1px] bg-white rounded-full"></div></div>
-            </div>
-          </div>
-        </div>
+        <p className="text-indigo-950 font-medium text-sm leading-snug">
+          Let's check out your life path number. Click NEXT to see it.
+        </p>
       </div>
+
     </div>
   );
 }

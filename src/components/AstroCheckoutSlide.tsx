@@ -1,227 +1,168 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Sparkles, Loader2, CreditCard } from 'lucide-react';
+import { motion } from 'motion/react';
+import { ShieldCheck, CheckCircle2, CreditCard, Loader2 } from 'lucide-react';
 import { useReport } from '../context/ReportContext';
 
 export default function AstroCheckoutSlide() {
   const { reportData } = useReport();
   const fullName = reportData?.personalDetails?.fullName || "Seeker";
   const [loading, setLoading] = useState(false);
-  const [purchased, setPurchased] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
+
+  const specialFeatures = [
+    {
+      title: "Analysis of Your Core Numbers",
+      desc: "Explore the deep significance of your Destiny, Soul Urge, and Expression numbers."
+    },
+    {
+      title: "Your Life Path Number",
+      desc: "Discover your primary purpose, strengths, and the path you are destined to walk."
+    },
+    {
+      title: "Business Name Number",
+      desc: "Find out the most prosperous and lucky numerological vibration for your business or brand."
+    },
+    {
+      title: "Suitable Business Fields",
+      desc: "Identify the specific industries and career paths most aligned with your cosmic energy."
+    },
+    {
+      title: "Mobile Number Selection Guide",
+      desc: "Learn how to choose a lucky phone number that attracts success, wealth, and positive connections."
+    },
+    {
+      title: "Vehicle Number Selection",
+      desc: "Ensure safe, smooth, and fortunate travels by choosing the right vehicle registration number."
+    },
+    {
+      title: "Your Future Predictions",
+      desc: "Get personalized forecasts and guidance for the coming months and years ahead."
+    },
+    {
+      title: "Favorable Calendar Dates",
+      desc: "Discover your most lucky and auspicious dates for making important life decisions."
+    },
+    {
+      title: "Temples to Visit",
+      desc: "Spiritual remedies and specific temples recommended to enhance your cosmic alignment."
+    }
+  ];
 
   const handleCheckout = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate interactive seamless payments logic
+    // Simulate clicking the button, but do not navigate or redirect to a success page.
     setTimeout(() => {
       setLoading(false);
-      setPurchased(true);
-    }, 2400);
+    }, 1500);
   };
 
   return (
     <div className="space-y-6 pt-2">
+      <motion.div
+        key="checkout-form"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="space-y-6"
+      >
+        {/* Main Headline banner */}
+        <div className="space-y-2 pb-5 border-b border-indigo-100/50">
+          <h2 className="font-display text-2xl sm:text-3xl font-black text-indigo-950 tracking-tight leading-tight">
+            Unlock Your Complete Personalized Numerology Report
+          </h2>
+          <p className="text-sm text-indigo-900/60 font-bold tracking-widest uppercase">
+            Your cosmic blueprint is ready, {fullName}
+          </p>
+        </div>
 
-      <AnimatePresence mode="wait">
-        {!purchased ? (
-          <motion.div
-            key="checkout-form"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="space-y-6"
+        {/* Cover logo illustration and brief */}
+        <div className="flex flex-col sm:flex-row gap-5 items-center bg-gradient-to-br from-indigo-50/60 to-purple-50/60 p-5 rounded-3xl border border-indigo-100 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-200/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+
+          {/* Cover book mockup */}
+          <div className="relative w-32 h-44 shrink-0 bg-gradient-to-br from-[#5b2488] to-[#3b1a66] rounded-r-xl rounded-l-sm shadow-xl border-l-[4px] border-[#a855f7] border-t border-r border-b border-white/20 p-3 flex flex-col justify-between text-white overflow-hidden select-none z-10">
+            <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-white/20 to-transparent"></div>
+            <div className="text-[7px] font-medium text-white tracking-[0.2em] uppercase text-center mt-1">ASTROVED</div>
+            <div className="flex-1 flex flex-col justify-center items-center text-center">
+              <div className="text-[12px] font-black leading-tight tracking-tight text-[#facc15] font-serif mt-1 drop-shadow-md">
+                Numerology<br />Report
+              </div>
+            </div>
+            <div className="flex justify-between items-end pb-0.5 border-b border-white/10 mt-auto">
+              <div className="text-[6px] text-white/50 font-medium tracking-widest">VOL. 1</div>
+            </div>
+          </div>
+
+          <div className="space-y-3 text-center sm:text-left flex-1 z-10">
+            <span className="bg-gradient-to-r from-amber-200 to-amber-100 text-amber-800 font-black px-3 py-1.5 rounded-full text-[10px] uppercase tracking-wider inline-block shadow-sm border border-amber-200">
+              Premium Report Prepared
+            </span>
+            <h3 className="font-display font-black text-xl text-indigo-950 leading-snug">Numerology Report For {fullName}</h3>
+            <p className="text-xs text-indigo-950/70 leading-relaxed font-medium">
+              We have successfully analyzed your birth data and computed your numbers. Everything you need to understand your life's purpose and make lucky choices is waiting for you.
+            </p>
+          </div>
+        </div>
+
+        {/* Special Feature Points */}
+        <div className="space-y-4 pt-2">
+          <h3 className="font-bold text-indigo-900 text-sm tracking-widest uppercase border-l-4 border-amber-500 pl-3">
+            What's Included In Your Report
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {specialFeatures.map((feat, idx) => (
+              <div key={idx} className="flex items-start gap-4 p-4 bg-gradient-to-br from-white to-indigo-50/30 hover:from-indigo-50 hover:to-white border border-indigo-100/50 hover:border-indigo-300 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 group">
+                <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center shrink-0 group-hover:bg-amber-500 transition-colors duration-300 mt-0.5">
+                  <CheckCircle2 className="w-4 h-4 text-indigo-600 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-sm font-bold text-indigo-950 tracking-tight group-hover:text-indigo-700 transition-colors">{feat.title}</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">{feat.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Interactive checkout section */}
+        <form onSubmit={handleCheckout} className="space-y-5 pt-6">
+
+          {/* Pricing Box layout */}
+          <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 p-5 rounded-2xl flex items-center justify-between shadow-sm relative overflow-hidden">
+            <div className="absolute right-0 top-0 w-32 h-32 bg-emerald-200/30 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3"></div>
+            <div className="relative z-10">
+              <span className="text-[11px] font-black text-emerald-800 tracking-wider uppercase block mb-1">Total Order Price</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-black text-emerald-950 tracking-tight">₹399</span>
+                <span className="text-sm line-through text-emerald-600/50 font-bold">₹999</span>
+              </div>
+            </div>
+
+            <div className="relative z-10 text-right flex flex-col items-end gap-2">
+              <span className="text-[11px] font-black text-white bg-emerald-500 px-4 py-2 rounded-full shadow-md drop-shadow-sm animate-pulse">
+                SAVE 60% TODAY
+              </span>
+            </div>
+          </div>
+
+          {/* CTA action button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-4 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-lg rounded-2xl shadow-xl shadow-orange-500/20 active:scale-[0.98] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
           >
-            {/* Main Headline banner */}
-            <div className="space-y-1 pb-4 border-b border-orange-100">
-              <h2 className="font-display text-xl sm:text-2xl font-black text-gray-950 tracking-tight leading-snug">
-                Download Your Complete Personalized Numerology Report
-              </h2>
-              <div className="flex items-center gap-2 mt-1.5">
-                <span className="bg-purple-100 text-purple-700 font-normal px-2.5 py-1 rounded text-[10px] uppercase tracking-wide">
-                  Premium Numerology Report
-                </span>
-                <span className="bg-amber-100 text-amber-700 font-normal px-2.5 py-1 rounded text-[10px] uppercase tracking-wide">
-                  Instant Download
-                </span>
-              </div>
-            </div>
-
-            {/* Cover logo illustration and brief */}
-            <div className="grid grid-cols-5 gap-4 items-center bg-amber-50/20 p-4 rounded-2xl border border-orange-100/30">
-              <div className="col-span-2">
-                <div className="relative w-full h-36 bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-950 rounded-xl shadow-lg border border-white/20 p-3 flex flex-col justify-between text-white overflow-hidden select-none">
-                  <div className="absolute inset-0 bg-orange-500/10 rounded-full blur-xl" />
-                  <div className="text-[8px] font-normal text-orange-400 tracking-widest uppercase">ASTROVED</div>
-                  <div className="text-[11px] font-black leading-tight tracking-tight text-white mt-1">
-                    Your Personalized Numerology Report
-                  </div>
-                  <div className="flex items-center gap-1.5 mt-auto border-t border-white/10 pt-2">
-                    <ShieldCheck className="w-3.5 h-3.5 text-orange-400" />
-                    <span className="text-[7px] text-slate-300 font-normal">PREUI V1.2</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-span-3 space-y-1.5">
-                <h3 className="font-display font-normal text-sm text-gray-900 leading-tight">What’s Prepared For You:</h3>
-                <p className="text-[11px] text-gray-500 leading-relaxed font-normal">
-                  We have successfully analyzed the date node grids of <strong>{fullName}</strong>. Your customized charts have been generated and packaged into a premium PDF.
-                </p>
-              </div>
-            </div>
-
-            {/* Feature Points */}
-            <div className="space-y-3">
-              {[
-                { title: "Your Complete Core Numbers", desc: "In-depth calculation of Life Path, Destiny, Soul Urge, Secret Fears, and Subconscious archetypes." },
-                { title: "Chinese Lo Shu Grid Analysis", desc: "Details of present grids, Arrows of Strength, and customized plans for active Arrows of Weakness." },
-                { title: "Forecasts and Predictions", desc: "Get predictions and advice month-by-month for the upcoming cycles and years." },
-                { title: "Planetary Remedies", desc: "Scientific gemstone advice, sound syllables, and rituals to balance missing numbers." }
-              ].map((feat, idx) => (
-                <div key={idx} className="flex gap-2.5 items-start">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-emerald-500 shrink-0 mt-0.5" />
-                  <div className="text-xs leading-none">
-                    <strong className="text-gray-950 block mb-0.5">{feat.title}</strong>
-                    <span className="text-gray-500 leading-tight block">{feat.desc}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Interactive payment formulation form */}
-            <form onSubmit={handleCheckout} className="space-y-4 pt-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {/* Email */}
-                <div className="relative col-span-1">
-                  <label htmlFor="checkout-email" className="absolute -top-2 left-2.5 px-1 bg-white text-[10px] text-indigo-950 font-normal tracking-wide">
-                    Email Address
-                  </label>
-                  <input
-                    id="checkout-email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="e.g. name@domain.com"
-                    className="w-full px-3 py-2.5 text-xs text-gray-800 font-medium placeholder-gray-300 border border-gray-200 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400"
-                  />
-                </div>
-
-                {/* Phone */}
-                <div className="relative col-span-1">
-                  <label htmlFor="checkout-phone" className="absolute -top-2 left-2.5 px-1 bg-white text-[10px] text-indigo-950 font-normal tracking-wide">
-                    Mobile Number
-                  </label>
-                  <input
-                    id="checkout-phone"
-                    type="tel"
-                    required
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    placeholder="e.g. +91 9876543210"
-                    className="w-full px-3 py-2.5 text-xs text-gray-800 font-medium placeholder-gray-300 border border-gray-200 rounded-xl focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400"
-                  />
-                </div>
-              </div>
-
-              {/* Pricing Box layout */}
-              <div className="bg-purple-50 border border-purple-100 p-4 rounded-2xl flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-black text-purple-700 tracking-wide uppercase block">Total Price:</span>
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="text-2xl font-black text-gray-950">₹399</span>
-                    <span className="text-xs line-through text-gray-400 font-normal">₹999</span>
-                  </div>
-                </div>
-
-                <div className="text-right">
-                  <span className="text-[9px] font-normal text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
-                    SAVE 60% TODAY
-                  </span>
-                </div>
-              </div>
-
-              {/* Google Pay CTA action button */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-normal text-base rounded-2xl shadow-lg shadow-purple-500/20 active:scale-[0.98] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin text-white" />
-                    <span>Processing Payment...</span>
-                  </>
-                ) : (
-                  <>
-                    <CreditCard className="w-5 h-5" />
-                    <span>Proceed to Pay ₹399</span>
-                  </>
-                )}
-              </button>
-            </form>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="payment-success"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            className="text-center py-8 space-y-6 flex flex-col items-center"
-          >
-            {/* Confetti or animated success stars */}
-            <div className="relative w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center border-4 border-emerald-200">
-              <CheckCircle2 className="w-10 h-10 text-emerald-500" />
-              <Sparkles className="w-5 h-5 text-amber-500 absolute -top-1 -right-1 animate-pulse" />
-            </div>
-
-            <div className="space-y-1.5">
-              <h3 className="font-display text-2xl font-black text-gray-950 tracking-tight">Payment Successful!</h3>
-              <p className="text-sm text-gray-505 font-medium px-4">
-                Awesome! Your payment of <strong>₹399</strong> has been verified successfully. Your personalized PDF is ready.
-              </p>
-            </div>
-
-            {/* Receipt details */}
-            <div className="w-full bg-slate-50 border border-slate-150 p-4 rounded-xl text-left text-xs font-normal text-gray-650 space-y-2">
-              <div className="flex justify-between border-b border-slate-100 pb-1.5">
-                <span className="text-gray-400">Payer Name:</span>
-                <span className="text-gray-900">{fullName}</span>
-              </div>
-              <div className="flex justify-between border-b border-slate-100 pb-1.5">
-                <span className="text-gray-400">Order ID:</span>
-                <span className="text-gray-900">VR-30294-82</span>
-              </div>
-              {email && (
-                <div className="flex justify-between border-b border-slate-100 pb-1.5">
-                  <span className="text-gray-400">Delivery Email:</span>
-                  <span className="text-gray-900">{email}</span>
-                </div>
-              )}
-              <div className="flex justify-between">
-                <span className="text-gray-400">Status:</span>
-                <span className="text-emerald-600 uppercase font-black">Delivered</span>
-              </div>
-            </div>
-
-            {/* Direct Download Button */}
-            <button
-              type="button"
-              onClick={() => {
-                // Simulate download call
-                alert("Your customized AstroVed Numerology PDF report has been downloaded successfully!");
-              }}
-              className="w-full max-w-xs py-3.5 bg-emerald-500 hover:bg-emerald-600 active:scale-[0.98] text-white font-normal rounded-2xl shadow-lg shadow-emerald-500/20 transition-all duration-200 cursor-pointer text-sm"
-            >
-              Download PDF Report Now
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+            {loading ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin text-white" />
+                <span>Processing Payment...</span>
+              </>
+            ) : (
+              <span>Proceed to Pay ₹399</span>
+            )}
+          </button>
+        </form>
+      </motion.div>
     </div>
   );
 }

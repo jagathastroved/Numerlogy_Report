@@ -7,12 +7,14 @@ export type Gender = 'Male' | 'Female' | 'Prefer not to say';
 
 export interface PersonalDetails {
   fullName: string;
+  email: string;
   gender: Gender | '';
   birthDay: string;
   birthMonth: string;
   birthYear: string;
   birthHour: string;
   birthMinute: string;
+  birthAmPm: 'AM' | 'PM';
   birthSecond: string;
   birthCountry: string;
   birthCity: string;

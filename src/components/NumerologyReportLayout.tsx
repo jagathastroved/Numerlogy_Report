@@ -8,16 +8,13 @@ import { useNavigate, Navigate, useLocation, Outlet } from 'react-router-dom';
 import CelestialBackground from './CelestialBackground';
 
 export const REPORT_PAGES = [
-  { path: '/welcome', title: 'Namaste Welcome' },
+  { path: '/welcome', title: 'Welcome' },
   { path: '/core-numbers', title: 'Your Core Numbers' },
   { path: '/life-path-math', title: 'Life Path Math' },
   { path: '/life-path-detail', title: 'Your Life Path Detail' },
   { path: '/name-destiny-math', title: 'Name/Destiny Math' },
   { path: '/numerology-overview', title: 'Numerology Overview' },
-  { path: '/lo-shu-story', title: 'Lo Shu Story' },
-  { path: '/lo-shu-grid', title: 'Your Lo Shu Grid' },
-  { path: '/lo-shu-significance', title: 'Lo Shu Significance' },
-  { path: '/lo-shu-analysis', title: 'Lo Shu Analysis' },
+  { path: '/lucky-numbers', title: 'Lucky & Unlucky Numbers' },
   { path: '/month-forecast', title: 'Month Forecast' },
   { path: '/premium-deliverables', title: 'Your Premium Deliverables' }
 ];
@@ -53,6 +50,10 @@ export default function NumerologyReportLayout() {
     const el = document.getElementById('report-page-scroller');
     if (el) el.scrollTop = 0;
   };
+
+  useEffect(() => {
+    handleScrollToTop();
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row overflow-hidden relative">
@@ -225,17 +226,18 @@ export default function NumerologyReportLayout() {
                 <ArrowLeft size={16} className="text-slate-700" />
               </button>
 
-              <button
-                onClick={() => {
-                  nextPage();
-                  handleScrollToTop();
-                }}
-                disabled={activeIndex === REPORT_PAGES.length - 1}
-                className="flex items-center px-6 py-3 rounded-2xl bg-gradient-to-r from-[var(--color-av-orange)] to-[#d96222] hover:opacity-90 text-white disabled:opacity-30 disabled:cursor-not-allowed text-xs font-black shadow-lg shadow-[var(--color-av-orange)]/30 tracking-wider transition cursor-pointer"
-              >
-                <span>Next</span>
-                <ArrowRight size={14} className="ml-1.5" />
-              </button>
+              {activeIndex < REPORT_PAGES.length - 1 && (
+                <button
+                  onClick={() => {
+                    nextPage();
+                    handleScrollToTop();
+                  }}
+                  className="flex items-center px-6 py-3 rounded-2xl bg-gradient-to-r from-[var(--color-av-orange)] to-[#d96222] hover:opacity-90 text-white text-xs font-black shadow-lg shadow-[var(--color-av-orange)]/30 tracking-wider transition cursor-pointer"
+                >
+                  <span>Next</span>
+                  <ArrowRight size={14} className="ml-1.5" />
+                </button>
+              )}
             </footer>
 
           </div>

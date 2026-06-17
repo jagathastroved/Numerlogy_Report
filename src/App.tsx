@@ -12,11 +12,8 @@ import AstroLifeMathSlide from './components/AstroLifeMathSlide';
 import AstroLifeDetailSlide from './components/AstroLifeDetailSlide';
 import AstroNameMathSlide from './components/AstroNameMathSlide';
 import AstroOverviewSlide from './components/AstroOverviewSlide';
-import AstroLoShuStorySlide from './components/AstroLoShuStorySlide';
-import AstroLoShuGridSlide from './components/AstroLoShuGridSlide';
-import AstroLoShuSignificanceSlide from './components/AstroLoShuSignificanceSlide';
-import AstroLoShuAnalysisSlide from './components/AstroLoShuAnalysisSlide';
 import AstroMonthSlide from './components/AstroMonthSlide';
+import AstroLuckyNumbersSlide from './components/AstroLuckyNumbersSlide';
 import AstroCheckoutSlide from './components/AstroCheckoutSlide';
 
 export default function App() {
@@ -26,17 +23,20 @@ export default function App() {
 
   // Pre-populated defaults to Nivash, 10 Oct 2002, 10:30:00, Chennai, India
   const [personalDetails, setPersonalDetails] = useState<PersonalDetails>({
-    fullName: 'Jagath',
+    fullName: '',
+    email: '',
     gender: '',
     birthDay: '',
     birthMonth: '',
     birthYear: '',
-    birthHour: '',
-    birthSecond: '',
+    birthHour: '12',
+    birthMinute: '00',
+    birthAmPm: 'AM',
+    birthSecond: '00',
     birthCountry: 'IN',
     birthCity: ''
   });
-  
+
   const handleUpdateDetails = (updates: Partial<PersonalDetails>) => {
     setPersonalDetails((prev) => ({ ...prev, ...updates }));
   };
@@ -52,7 +52,7 @@ export default function App() {
         />
       } />
       <Route path="/calculating" element={<AstroCalculatingSlide onComplete={() => navigate('/welcome')} />} />
-      
+
       {/* Nested Layout for the Report Pages */}
       <Route element={<NumerologyReportLayout />}>
         <Route path="/welcome" element={<AstroIntroSlide />} />
@@ -61,10 +61,7 @@ export default function App() {
         <Route path="/life-path-detail" element={<AstroLifeDetailSlide />} />
         <Route path="/name-destiny-math" element={<AstroNameMathSlide />} />
         <Route path="/numerology-overview" element={<AstroOverviewSlide />} />
-        <Route path="/lo-shu-story" element={<AstroLoShuStorySlide />} />
-        <Route path="/lo-shu-grid" element={<AstroLoShuGridSlide />} />
-        <Route path="/lo-shu-significance" element={<AstroLoShuSignificanceSlide />} />
-        <Route path="/lo-shu-analysis" element={<AstroLoShuAnalysisSlide />} />
+        <Route path="/lucky-numbers" element={<AstroLuckyNumbersSlide />} />
         <Route path="/month-forecast" element={<AstroMonthSlide />} />
         <Route path="/premium-deliverables" element={<AstroCheckoutSlide />} />
       </Route>

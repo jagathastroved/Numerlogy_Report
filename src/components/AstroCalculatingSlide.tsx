@@ -1,96 +1,150 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
-import { Sparkles, Star } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface AstroCalculatingSlideProps {
   onComplete: () => void;
 }
 
+const loadingTexts = [
+  'Analyzing Core Numbers...',
+  'Calculating Life Path...',
+  'Aligning Name Destiny...',
+  'Mapping Birth Chart...',
+  'Generating Final Report...'
+];
+
 export default function AstroCalculatingSlide({ onComplete }: AstroCalculatingSlideProps) {
   const [progress, setProgress] = useState(0);
+  const [textIndex, setTextIndex] = useState(0);
 
   useEffect(() => {
     let current = 0;
     const interval = setInterval(() => {
-      current += 4;
+      current += 2;
       if (current >= 100) {
         current = 100;
         clearInterval(interval);
-        setTimeout(onComplete, 300);
+        setTimeout(onComplete, 500);
       }
       setProgress(current);
-    }, 80);
+
+      // Update text index based on progress
+      const newIndex = Math.min(Math.floor(current / 20), loadingTexts.length - 1);
+      setTextIndex(newIndex);
+    }, 60);
 
     return () => clearInterval(interval);
   }, [onComplete]);
 
+  // Numbers 1-9 for the mandala ring
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   return (
-    <div 
-      className="min-h-screen w-full bg-gradient-to-b from-[#0A0D1A] via-[#12162E] to-[#0A0D1A] flex flex-col justify-center items-center relative overflow-hidden"
-      id="astro-cal-slide"
+    <div
+      className="min-h-screen w-full bg-[#05060A] flex flex-col justify-center items-center relative overflow-hidden"
     >
+      {/* Background mystical glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-orange-500/10 rounded-full blur-[80px] pointer-events-none" />
 
-          {/* Particle/Star Glow Elements */}
-          <div className="absolute top-12 left-12 w-2 h-2 bg-yellow-300 rounded-full animate-ping opacity-60" style={{ animationDuration: '3s' }} />
-          <div className="absolute bottom-20 right-16 w-3 h-3 bg-indigo-400 rounded-full animate-pulse opacity-40" />
-          <div className="absolute top-1/4 right-1/4 w-1 h-1 bg-white rounded-full' opacity-80" />
-          <div className="absolute bottom-1/3 left-16 w-2 h-2 bg-pink-400 rounded-full animate-bounce opacity-30" style={{ animationDuration: '4s' }} />
+      <div className="relative flex flex-col items-center z-10">
 
-          {/* Central Rotating Icon Grid (The 20-sided geometric golden polyhedral numerals die) */}
-          <div className="relative w-44 h-44 flex items-center justify-center mb-10">
+        {/* Sacred Geometry Mandala Animation */}
+        <div className="relative w-64 h-64 flex items-center justify-center mb-12">
 
-            {/* Subtle Outer Rotating Halo */}
-            <div className="absolute inset-0 border border-amber-500/20 rounded-full animate-spin" style={{ animationDuration: '15s' }} />
-            <div className="absolute inset-2 border border-indigo-400/10 border-dashed rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
+          {/* Outer Dashed Ring (Gold) */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
+            className="absolute inset-0 rounded-full border border-orange-400/30 border-dashed"
+            style={{ borderWidth: '2px' }}
+          />
 
-            {/* Golden polyhedral numbered 3D-like geometric shape (using styled SVG paths for precise visual likeness to screenshot) */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-              className="w-28 h-28 text-amber-500 flex items-center justify-center relative drop-shadow-[0_0_15px_rgba(245,165,64,0.4)]"
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-amber-450">
-                {/* Central Icosahedron/Polyhedron Facets */}
-                <polygon points="50,10 82,30 50,55" fill="#FFEAA7" opacity="0.9" stroke="#E59A2F" strokeWidth="1" />
-                <polygon points="50,10 18,30 50,55" fill="#F9D77E" opacity="0.95" stroke="#E59A2F" strokeWidth="1" />
-                <polygon points="18,30 50,55 25,80" fill="#E59A2F" opacity="0.8" stroke="#D3841C" strokeWidth="1" />
-                <polygon points="82,30 50,55 75,80" fill="#F4B043" opacity="0.85" stroke="#D3841C" strokeWidth="1" />
-                <polygon points="50,55 25,80 75,80" fill="#FFEAA7" opacity="0.9" stroke="#E59A2F" strokeWidth="1" />
-                <polygon points="50,10 82,30 85,15" fill="#F7C06D" opacity="0.7" stroke="#D3841C" strokeWidth="1" />
-                <polygon points="50,10 18,30 15,15" fill="#E59A2F" opacity="0.75" stroke="#D3841C" strokeWidth="1" />
+          {/* Middle Ring with Numbers */}
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{ repeat: Infinity, duration: 25, ease: 'linear' }}
+            className="absolute inset-4 rounded-full border border-indigo-500/20 flex items-center justify-center"
+          >
+            {numbers.map((num, i) => {
+              const angle = (i * 360) / 9;
+              const radius = 108; // Distance from center
+              const x = Math.cos((angle * Math.PI) / 180) * radius;
+              const y = Math.sin((angle * Math.PI) / 180) * radius;
+              return (
+                <div
+                  key={num}
+                  className="absolute text-indigo-300/60 font-serif text-sm font-bold"
+                  style={{ transform: `translate(${x}px, ${y}px) rotate(${angle + 90}deg)` }}
+                >
+                  {num}
+                </div>
+              );
+            })}
+          </motion.div>
 
-                {/* Precise positioning of traditional single-digit Numerology numbers inside facets */}
-                <text x="48" y="36" fill="#6B2901" fontSize="11" fontWeight="bold" fontFamily="monospace">6</text>
-                <text x="32" y="44" fill="#6B2901" fontSize="10" fontWeight="bold" fontFamily="monospace">4</text>
-                <text x="63" y="44" fill="#6B2901" fontSize="10" fontWeight="bold" fontFamily="monospace">3</text>
-                <text x="38" y="70" fill="#6B2901" fontSize="10" fontWeight="bold" fontFamily="monospace">9</text>
-                <text x="56" y="70" fill="#6B2901" fontSize="10" fontWeight="bold" fontFamily="monospace">8</text>
-                <text x="48" y="24" fill="#6B2901" fontSize="9" fontWeight="bold" fontFamily="monospace">2</text>
-                <text x="32" y="26" fill="#6B2901" fontSize="9" fontWeight="bold" fontFamily="monospace">7</text>
-                <text x="64" y="26" fill="#6B2901" fontSize="9" fontWeight="bold" fontFamily="monospace">1</text>
-                <text x="48" y="52" fill="#6B2901" fontSize="11" fontWeight="bold" fontFamily="monospace">5</text>
-              </svg>
+          {/* Inner Glowing Ring (Indigo) */}
+          <motion.div
+            animate={{ rotate: 360, scale: [1, 1.05, 1] }}
+            transition={{
+              rotate: { repeat: Infinity, duration: 15, ease: 'linear' },
+              scale: { repeat: Infinity, duration: 3, ease: 'easeInOut' }
+            }}
+            className="absolute inset-12 rounded-full border-2 border-indigo-500/50 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
+          />
 
-              {/* Sparkle highlights on corners of die */}
-              <Sparkles className="w-5 h-5 text-white absolute top-2 right-4 animate-pulse" />
-              <div className="absolute top-1/2 left-3 w-4 h-4 text-amber-200 fill-white"><Star className="w-full h-full fill-white" /></div>
-            </motion.div>
-          </div>
-
-          {/* Purple/Indigo loading progress bar */}
-          <div className="w-full max-w-xs space-y-4">
-            <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden border border-slate-700/50">
-              <div
-                className="h-full bg-purple-500 rounded-full transition-all duration-100 ease-out shadow-[0_0_8px_rgba(168,85,247,0.5)]"
-                style={{ width: `${progress}%` }}
-              />
+          {/* Center Pulsing Core */}
+          <motion.div
+            animate={{ scale: [1, 1.1, 1], opacity: [0.7, 1, 0.7] }}
+            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+            className="relative w-16 h-16 rounded-full bg-gradient-to-tr from-orange-400 to-indigo-500 shadow-[0_0_30px_rgba(249,115,22,0.5)] flex items-center justify-center"
+          >
+            <div className="w-12 h-12 rounded-full bg-[#05060A] flex items-center justify-center">
+              <span className="text-orange-400 font-serif text-2xl">
+                {Math.floor((progress % 9) + 1)}
+              </span>
             </div>
+          </motion.div>
 
-            {/* Subtitle text */}
-            <p className="text-gray-300 text-sm font-normal tracking-wide text-center animate-pulse">
-              Calculating your numbers....
-            </p>
+          {/* Connecting lines */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+            <div className="w-full h-[1px] bg-indigo-400 rotate-45" />
+            <div className="w-full h-[1px] bg-indigo-400 -rotate-45" />
           </div>
+        </div>
+
+        {/* Dynamic Loading Text */}
+        <div className="h-8 mb-6 flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={textIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="text-orange-300/90 font-serif text-lg tracking-wide"
+            >
+              {loadingTexts[textIndex]}
+            </motion.p>
+          </AnimatePresence>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="w-64 h-1.5 bg-slate-800/80 rounded-full overflow-hidden backdrop-blur-sm border border-white/5">
+          <motion.div
+            className="h-full bg-gradient-to-r from-indigo-500 to-orange-400 rounded-full shadow-[0_0_10px_rgba(249,115,22,0.5)]"
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            transition={{ ease: 'linear', duration: 0.1 }}
+          />
+        </div>
+
+        {/* Progress percentage */}
+        <div className="mt-3 text-indigo-400/60 font-mono text-xs tracking-widest">
+          {progress}%
+        </div>
+
+      </div>
     </div>
   );
 }
