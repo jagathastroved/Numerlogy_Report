@@ -1,7 +1,7 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Compass, CheckCircle2 } from 'lucide-react';
-import { useReport } from '../context/ReportContext';
+import { useReport } from '../../context/ReportContext';
+import { staticContent } from '../../data/numerologyData';
 
 export default function AstroIntroSlide() {
   const { reportData } = useReport();
@@ -18,30 +18,23 @@ export default function AstroIntroSlide() {
       {/* Hello Greeting */}
       <div className="space-y-3">
         <h2 className="font-display text-2xl sm:text-3xl font-normal text-gray-950 tracking-tight leading-none">
-          Hey {name || "Seeker"},
+          {staticContent?.introSlide?.greeting} {name || "Seeker"},
         </h2>
-        <p className="text-gray-700 text-sm leading-relaxed">
-          Welcome to your personalized numerology report! Here, we’ll look at the special meanings behind your numbers. Numerology can give you helpful info about your personality, strong points, weak points, and life path.
-        </p>
-        <p className="text-gray-700 text-sm leading-relaxed">
-          Numerology is best used as a guide to help you in life, along with your intuition, good choices, and common sense. It should be a tool to help you live your life better, not the only thing you depend on.
-        </p>
+        {staticContent?.introSlide?.paragraphs?.map((p, idx) => (
+          <p key={idx} className="text-gray-700 text-sm leading-relaxed">
+            {p}
+          </p>
+        ))}
       </div>
 
       {/* What We Cover */}
       <div className="space-y-4 bg-white shadow-sm p-6 rounded-2xl border border-slate-100">
         <p className="text-gray-900 font-medium text-sm">
-          We cover the following points in your numerology report:
+          {staticContent?.introSlide?.whatWeCoverTitle}
         </p>
 
         <ul className="space-y-3">
-          {[
-            { text: "Your core numbers (life path, destiny, name, and more)" },
-            { text: "Your personality, strengths and weaknesses" },
-            { text: "Detailed Birth Number calculation and personality analysis" },
-            { text: "Unlock your Name Destiny and numerology insights" },
-            { text: "Get personalized Monthly Forecast and future guidance" }
-          ].map((item, idx) => (
+          {staticContent?.introSlide?.whatWeCoverItems?.map((item, idx) => (
             <motion.li
               key={idx}
               initial={{ opacity: 0, x: -5 }}
@@ -50,7 +43,7 @@ export default function AstroIntroSlide() {
               className="flex items-start gap-2.5 text-sm text-gray-800"
             >
               <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
-              <span className="font-medium text-gray-700">{item.text}</span>
+              <span className="font-medium text-gray-700">{item}</span>
             </motion.li>
           ))}
         </ul>
@@ -64,7 +57,7 @@ export default function AstroIntroSlide() {
         </div>
 
         <p className="text-indigo-950 font-medium text-sm leading-snug">
-          Click NEXT to see your core numbers, which are the most important in numerology.
+          {staticContent?.introSlide?.calloutText}
         </p>
       </div>
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import Particles from './Particles';
 
 export default function CelestialBackground() {
@@ -20,7 +19,7 @@ export default function CelestialBackground() {
 
       {/* Floating Numerology Numbers */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-        {NUMBERS.map((num, i) => {
+        {NUMBERS?.map((num, i) => {
           const left = Math.random() * 90 + 5;
           const top = Math.random() * 90 + 5;
           const delay = Math.random() * 8;

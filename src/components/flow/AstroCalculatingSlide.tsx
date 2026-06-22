@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface AstroCalculatingSlideProps {
   onComplete: () => void;
@@ -66,7 +66,7 @@ export default function AstroCalculatingSlide({ onComplete }: AstroCalculatingSl
             transition={{ repeat: Infinity, duration: 25, ease: 'linear' }}
             className="absolute inset-4 rounded-full border border-indigo-500/20 flex items-center justify-center"
           >
-            {numbers.map((num, i) => {
+            {numbers?.map((num, i) => {
               const angle = (i * 360) / 9;
               const radius = 108; // Distance from center
               const x = Math.cos((angle * Math.PI) / 180) * radius;

@@ -1,7 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 import { NumerologyReportData, PersonalDetails } from '../types';
-import { fallbackReport } from '../data/fallbackReport';
-import { calculateLifePathNumber, reduceToNumerologyDigit } from '../utils/numerology';
+import { generateNumerologyReport } from '../data/numerologyData';
 
 interface ReportContextType {
   reportData: NumerologyReportData | null;
@@ -31,14 +30,6 @@ export function ReportProvider({ children }: { children: ReactNode }) {
       // Simulating API delay
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Dynamic calculations based on user input:
-      const day = parseInt(details.birthDay) || 1;
-      const month = parseInt(details.birthMonth) || 1;
-      const year = parseInt(details.birthYear) || 2000;
-      
-      const { generateNumerologyReport } = await import('../utils/numerology');
-      const { LIFE_PATH_INTERPRETATIONS } = await import('../types');
-      
       const dynamicInsights = generateNumerologyReport(
         details.fullName || 'User',
         details.birthDay,
@@ -46,34 +37,13 @@ export function ReportProvider({ children }: { children: ReactNode }) {
         details.birthYear
       );
 
-      // Deep copy to prevent modifying the fallbackReport reference
-      const mockData = JSON.parse(JSON.stringify(fallbackReport));
+      // We no longer use fallbackReport, we directly set the generated insights
+      // Since generateNumerologyReport doesn't return the full NumerologyReportData shape,
+      // we need to construct it or assume dynamicInsights is the full shape.
+      // Assuming generateNumerologyReport now returns the full shape NumerologyReportData.
+      const mockData = dynamicInsights as unknown as NumerologyReportData;
       mockData.personalDetails = details;
-      
-      // Update Core Numbers
-      mockData.coreNumbers.lifePath = dynamicInsights.lifePathNumber;
-      mockData.coreNumbers.destiny = dynamicInsights.destinyNumber;
-      mockData.coreNumbers.challengeNumbers = dynamicInsights.enemyNumbers.slice(0, 4); // Dummy mapping for UI
 
-      // Update Interpretations
-      const realSubtitle = LIFE_PATH_INTERPRETATIONS[dynamicInsights.lifePathNumber]?.subtitle || "A journey of discovery";
-      
-      mockData.interpretations.lifePath = {
-        title: dynamicInsights.lifePathTitle,
-        subtitle: realSubtitle,
-        description: dynamicInsights.lifePathDescription,
-        traits: dynamicInsights.personalityTraits,
-        strengths: dynamicInsights.strengths,
-        challenges: dynamicInsights.challenges,
-        careers: dynamicInsights.careerRecommendations,
-        compatibility: dynamicInsights.relationshipCompatibility
-      };
-      
-      mockData.interpretations.destiny = {
-        title: dynamicInsights.destinyTitle,
-        desc: dynamicInsights.destinyDescription
-      };
-      
       setReportData(mockData);
       sessionStorage.setItem('numerologyReportData', JSON.stringify(mockData));
     } catch (error) {

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { Renderer, Camera, Geometry, Program, Mesh } from 'ogl';
 
 import './Particles.css';
@@ -10,7 +10,7 @@ const hexToRgb = (hex: string) => {
   if (hex.length === 3) {
     hex = hex
       .split('')
-      .map(c => c + c)
+      ?.map(c => c + c)
       .join('');
   }
   const int = parseInt(hex, 16);

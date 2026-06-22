@@ -1,8 +1,8 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Compass } from 'lucide-react';
-import { reduceToNumerologyDigit } from '../utils/numerology';
-import { useReport } from '../context/ReportContext';
+import { reduceToNumerologyDigit } from '../../data/numerologyData';
+import { useReport } from '../../context/ReportContext';
+import { staticContent } from '../../data/numerologyData';
 
 // Helper to generate the string of math steps for a given number
 function getReductionSteps(num: number): string[] {
@@ -14,7 +14,7 @@ function getReductionSteps(num: number): string[] {
   let current = num;
   
   while (current > 9) {
-    const digits = current.toString().split('').map(Number);
+    const digits = current.toString().split('')?.map(Number);
     const sum = digits.reduce((a, b) => a + b, 0);
     steps.push(`${digits.join(' + ')} = ${sum}`);
     current = sum;
@@ -71,30 +71,30 @@ export default function AstroLifeMathSlide() {
       {/* Header Title */}
       <motion.div variants={itemVariants} className="space-y-2">
         <h2 className="font-serif text-2xl font-normal text-slate-900 tracking-tight">
-          Calculating Your Life Path
+          {staticContent?.lifeMathSlide?.title}
         </h2>
         <p className="text-slate-600 text-sm leading-relaxed">
-          Your Life Path Number reveals the most about your personality and the kind of life you might lead. We calculate it by continually adding the digits of your birth date until we reach a single number (or a Master Number).
+          {staticContent?.lifeMathSlide?.description}
         </p>
       </motion.div>
 
       {/* Input Pills Block */}
       <motion.div variants={itemVariants} className="space-y-4 bg-slate-50 border border-slate-100 p-5 rounded-2xl shadow-sm">
         <p className="text-slate-800 font-medium text-xs text-center uppercase tracking-wider">
-          Your Exact Birth Date
+          {staticContent?.lifeMathSlide?.exactDateLabel}
         </p>
 
         <div className="flex justify-center gap-4">
           <div className="flex flex-col items-center gap-1.5">
-            <span className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">Day</span>
+            <span className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">{staticContent?.lifeMathSlide?.day}</span>
             <span className="bg-white border border-emerald-200 text-emerald-800 shadow-sm font-semibold px-4 py-2 rounded-xl text-lg">{dayVal}</span>
           </div>
           <div className="flex flex-col items-center gap-1.5">
-            <span className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">Month</span>
+            <span className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">{staticContent?.lifeMathSlide?.month}</span>
             <span className="bg-white border border-emerald-200 text-emerald-800 shadow-sm font-semibold px-4 py-2 rounded-xl text-lg">{monthVal}</span>
           </div>
           <div className="flex flex-col items-center gap-1.5">
-            <span className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">Year</span>
+            <span className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">{staticContent?.lifeMathSlide?.year}</span>
             <span className="bg-white border border-emerald-200 text-emerald-800 shadow-sm font-semibold px-4 py-2 rounded-xl text-lg">{yearVal}</span>
           </div>
         </div>
@@ -106,20 +106,20 @@ export default function AstroLifeMathSlide() {
         {/* Step 1 */}
         <div className="space-y-3 bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
           <p className="text-sm text-slate-600 border-b border-slate-50 pb-2">
-            <strong className="text-indigo-600 font-semibold mr-1">Step 1:</strong> Reduce day, month, and year individually.
+            <strong className="text-indigo-600 font-semibold mr-1">{staticContent?.lifeMathSlide?.step1}</strong> {staticContent?.lifeMathSlide?.step1Desc}
           </p>
           <div className="space-y-2 text-sm text-slate-700 font-mono bg-slate-50 p-3 rounded-xl border border-slate-100">
             <div className="flex items-center gap-2">
-              <span className="w-12 text-slate-400 font-sans text-xs uppercase">Day:</span>
-              <span>{dayVal > 9 ? daySteps.map((step, idx) => <span key={idx}>{idx > 0 && ' → '}{step}</span>) : dayVal}</span>
+              <span className="w-12 text-slate-400 font-sans text-xs uppercase">{staticContent?.lifeMathSlide?.day}:</span>
+              <span>{dayVal > 9 ? daySteps?.map((step, idx) => <span key={idx}>{idx > 0 && ' → '}{step}</span>) : dayVal}</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-12 text-slate-400 font-sans text-xs uppercase">Month:</span>
-              <span>{monthVal > 9 ? monthSteps.map((step, idx) => <span key={idx}>{idx > 0 && ' → '}{step}</span>) : monthVal}</span>
+              <span className="w-12 text-slate-400 font-sans text-xs uppercase">{staticContent?.lifeMathSlide?.month}:</span>
+              <span>{monthVal > 9 ? monthSteps?.map((step, idx) => <span key={idx}>{idx > 0 && ' → '}{step}</span>) : monthVal}</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-12 text-slate-400 font-sans text-xs uppercase">Year:</span>
-              <span>{yearVal > 9 ? yearSteps.map((step, idx) => <span key={idx}>{idx > 0 && ' → '}{step}</span>) : yearVal}</span>
+              <span className="w-12 text-slate-400 font-sans text-xs uppercase">{staticContent?.lifeMathSlide?.year}:</span>
+              <span>{yearVal > 9 ? yearSteps?.map((step, idx) => <span key={idx}>{idx > 0 && ' → '}{step}</span>) : yearVal}</span>
             </div>
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function AstroLifeMathSlide() {
         {/* Step 2 */}
         <div className="space-y-3 bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
           <p className="text-sm text-slate-600 border-b border-slate-50 pb-2">
-            <strong className="text-indigo-600 font-semibold mr-1">Step 2:</strong> Add the reduced results together.
+            <strong className="text-indigo-600 font-semibold mr-1">{staticContent?.lifeMathSlide?.step2}</strong> {staticContent?.lifeMathSlide?.step2Desc}
           </p>
           <div className="flex justify-center items-center gap-3 font-mono text-lg text-slate-800 bg-slate-50 p-3 rounded-xl border border-slate-100">
             <span className="bg-white px-3 py-1 rounded-lg border border-slate-200">{dayReduced}</span>
@@ -143,12 +143,12 @@ export default function AstroLifeMathSlide() {
         {/* Step 3 */}
         <div className="space-y-4 pt-2 text-center flex flex-col items-center">
           <p className="text-sm text-slate-600">
-            <strong className="text-indigo-600 font-semibold mr-1">Step 3:</strong> Reduce the final sum to a single digit.
+            <strong className="text-indigo-600 font-semibold mr-1">{staticContent?.lifeMathSlide?.step3}</strong> {staticContent?.lifeMathSlide?.step3Desc}
           </p>
 
           {rawSum > 9 && rawSum !== 11 && rawSum !== 22 && rawSum !== 33 && (
             <div className="text-sm text-slate-700 font-mono bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm">
-              {finalSteps.map((step, idx) => <span key={idx}>{idx > 0 && ' → '}{step}</span>)}
+              {finalSteps?.map((step, idx) => <span key={idx}>{idx > 0 && ' → '}{step}</span>)}
             </div>
           )}
 
@@ -161,7 +161,7 @@ export default function AstroLifeMathSlide() {
           </motion.div>
           
           <p className="text-sm font-semibold text-indigo-900 tracking-widest uppercase mt-2">
-            Your Life Path Number
+            {staticContent?.lifeMathSlide?.lifePathLabel}
           </p>
         </div>
       </motion.div>
@@ -173,7 +173,7 @@ export default function AstroLifeMathSlide() {
             <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
           </div>
           <p className="text-indigo-950 font-medium text-sm leading-snug">
-            Let’s keep going! Click NEXT to see what your Life Path number says about your personality, strengths, and weaknesses.
+            {staticContent?.lifeMathSlide?.calloutText}
           </p>
         </div>
       </motion.div>

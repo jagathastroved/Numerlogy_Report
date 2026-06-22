@@ -1,23 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useReport } from '../context/ReportContext';
+import { useState, useEffect } from 'react';
+import { useReport } from '../../context/ReportContext';
 import {
   ArrowLeft, ArrowRight, BookOpen, Compass, RefreshCw, PanelLeftClose
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, Navigate, useLocation, Outlet } from 'react-router-dom';
-import CelestialBackground from './CelestialBackground';
-
-export const REPORT_PAGES = [
-  { path: '/welcome', title: 'Welcome' },
-  { path: '/core-numbers', title: 'Your Core Numbers' },
-  { path: '/life-path-math', title: 'Life Path Math' },
-  { path: '/life-path-detail', title: 'Your Life Path Detail' },
-  { path: '/name-destiny-math', title: 'Name/Destiny Math' },
-  { path: '/numerology-overview', title: 'Numerology Overview' },
-  { path: '/lucky-numbers', title: 'Lucky & Unlucky Numbers' },
-  { path: '/month-forecast', title: 'Month Forecast' },
-  { path: '/premium-deliverables', title: 'Your Premium Deliverables' }
-];
+import CelestialBackground from '../animations/CelestialBackground';
+import { REPORT_PAGES, staticContent } from '../../data/numerologyData';
 
 export default function NumerologyReportLayout() {
   const { reportData } = useReport();
@@ -47,12 +36,19 @@ export default function NumerologyReportLayout() {
   if (!reportData) return <Navigate to="/" replace />;
 
   const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     const el = document.getElementById('report-page-scroller');
-    if (el) el.scrollTop = 0;
+    if (el) {
+      el.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
-    handleScrollToTop();
+    // Timeout to ensure content has rendered and animation started
+    const timer = setTimeout(() => {
+      handleScrollToTop();
+    }, 50);
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   return (
@@ -77,7 +73,7 @@ export default function NumerologyReportLayout() {
           <div className="flex items-center space-x-2">
             <BookOpen className="text-[var(--color-av-indigo)]" size={20} />
             <span className="font-normal text-sm uppercase tracking-wider text-slate-800">
-              Report Index
+              {staticContent?.layout?.reportIndex}
             </span>
           </div>
           <button
@@ -91,7 +87,7 @@ export default function NumerologyReportLayout() {
 
         {/* Scrollable checklist items */}
         <div className="flex-1 overflow-y-auto px-3 py-4 space-y-1 custom-scrollbar">
-          {REPORT_PAGES.map((page, idx) => {
+          {REPORT_PAGES?.map((page, idx) => {
             const isActive = idx === activeIndex;
             const isCompleted = idx < activeIndex;
             return (
@@ -134,7 +130,7 @@ export default function NumerologyReportLayout() {
             className="text-xs font-normal text-slate-600 hover:text-[var(--color-av-orange)] flex items-center space-x-1.5 transition-colors focus:outline-none"
           >
             <RefreshCw size={12} />
-            <span>Enter Different Details</span>
+            <span>{staticContent?.layout?.enterDifferentDetails}</span>
           </button>
         </div>
       </aside>
@@ -148,7 +144,7 @@ export default function NumerologyReportLayout() {
             className="absolute top-4 left-4 z-30 p-2 px-3 bg-[var(--color-av-indigo)] hover:bg-[#5c5ce0] text-white text-xs font-normal rounded-lg transition-colors flex items-center shadow-lg shadow-[var(--color-av-indigo)]/30"
           >
             <BookOpen size={13} className="mr-1.5" />
-            <span>Show Index</span>
+            <span>{staticContent?.layout?.showIndex}</span>
           </button>
         )}
 
@@ -178,7 +174,11 @@ export default function NumerologyReportLayout() {
                   <img
                     src="https://cdn.astroved.com/images/images-av/AstroVed-Logo.svg"
                     alt="Astroved-logo"
-                    className="h-6 sm:h-8 w-auto object-contain"
+                    className="h-6 sm:h-8 w-auto object-contain cursor-pointer hover:opacity-80 transition-opacity"
+                    onClick={() => {
+                      navigate('/welcome');
+                      handleScrollToTop();
+                    }}
                   />
                 </div>
 
@@ -234,7 +234,7 @@ export default function NumerologyReportLayout() {
                   }}
                   className="flex items-center px-6 py-3 rounded-2xl bg-gradient-to-r from-[var(--color-av-orange)] to-[#d96222] hover:opacity-90 text-white text-xs font-black shadow-lg shadow-[var(--color-av-orange)]/30 tracking-wider transition cursor-pointer"
                 >
-                  <span>Next</span>
+                  <span>{staticContent?.layout?.next}</span>
                   <ArrowRight size={14} className="ml-1.5" />
                 </button>
               )}

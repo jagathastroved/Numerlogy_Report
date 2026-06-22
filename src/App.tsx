@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import BirthDetailsForm from './components/BirthDetailsForm';
-import AstroCalculatingSlide from './components/AstroCalculatingSlide';
-import NumerologyReportLayout from './components/NumerologyReportLayout';
+import { useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import BirthDetailsForm from './components/flow/BirthDetailsForm';
+import AstroCalculatingSlide from './components/flow/AstroCalculatingSlide';
+import NumerologyReportLayout from './components/layout/NumerologyReportLayout';
 import { type PersonalDetails } from './types';
 
 // Import our Numerology slide components
-import AstroIntroSlide from './components/AstroIntroSlide';
-import CoreNumbers from './components/CoreNumbers';
-import AstroLifeMathSlide from './components/AstroLifeMathSlide';
-import AstroLifeDetailSlide from './components/AstroLifeDetailSlide';
-import AstroNameMathSlide from './components/AstroNameMathSlide';
-import AstroOverviewSlide from './components/AstroOverviewSlide';
-import AstroMonthSlide from './components/AstroMonthSlide';
-import AstroLuckyNumbersSlide from './components/AstroLuckyNumbersSlide';
-import AstroCheckoutSlide from './components/AstroCheckoutSlide';
+import AstroIntroSlide from './components/slides/AstroIntroSlide';
+import CoreNumbers from './components/slides/CoreNumbers';
+import AstroLifeMathSlide from './components/slides/AstroLifeMathSlide';
+import AstroLifeDetailSlide from './components/slides/AstroLifeDetailSlide';
+import AstroNameMathSlide from './components/slides/AstroNameMathSlide';
+import AstroOverviewSlide from './components/slides/AstroOverviewSlide';
+import AstroMonthSlide from './components/slides/AstroMonthSlide';
+import AstroLuckyNumbersSlide from './components/slides/AstroLuckyNumbersSlide';
+import AstroCheckoutSlide from './components/slides/AstroCheckoutSlide';
 
 export default function App() {
   const navigate = useNavigate();
-  const location = useLocation();
   const [language, setLanguage] = useState<string>('English');
 
   // Pre-populated defaults to Nivash, 10 Oct 2002, 10:30:00, Chennai, India

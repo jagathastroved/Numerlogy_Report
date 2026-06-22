@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from 'react';
-import { type PersonalDetails } from '../types';
+import { useState, useMemo } from 'react';
+import { PersonalDetails } from '../../types';
+import { ChevronRight, Calendar, User, Mail, Sparkles, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { Country, City } from 'country-state-city';
-import { useReport } from '../context/ReportContext';
+import { Country, City, ICountry, ICity } from 'country-state-city';
+import { useReport } from '../../context/ReportContext';
 import { motion, AnimatePresence } from 'motion/react';
-import CelestialBackground from './CelestialBackground';
+import CelestialBackground from '../animations/CelestialBackground';
 
 interface BirthDetailsFormProps {
   data: PersonalDetails;
@@ -48,7 +49,7 @@ export default function BirthDetailsForm({
     if (!data.birthCountry) return [];
     if (!data.birthCity || data.birthCity.length < 3) return [];
     const lower = data.birthCity.toLowerCase();
-    return availableCities.filter(c => c.name.toLowerCase().includes(lower)).slice(0, 100);
+    return availableCities.filter((c: ICity) => c.name.toLowerCase().includes(lower)).slice(0, 100);
   }, [data.birthCity, availableCities, data.birthCountry]);
 
   const days = Array.from({ length: 31 }, (_, i) => String(i + 1));
@@ -59,7 +60,7 @@ export default function BirthDetailsForm({
     e.preventDefault();
     if (data.birthCountry) {
       const cityIsValid = availableCities.some(
-        c => c.name.toLowerCase() === data.birthCity.toLowerCase()
+        (c: ICity) => c.name.toLowerCase() === data.birthCity.toLowerCase()
       );
       if (!cityIsValid) {
         alert("Please submit valid city name as per suggestion");
@@ -257,7 +258,7 @@ export default function BirthDetailsForm({
                         className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                       >
                         <option value="" disabled>Day</option>
-                        {days.map((d) => (
+                        {days?.map((d) => (
                           <option key={d} value={d}>{d}</option>
                         ))}
                       </select>
@@ -281,7 +282,7 @@ export default function BirthDetailsForm({
                         className="w-full pl-2 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                       >
                         <option value="" disabled>Month</option>
-                        {MONTHS.map((m) => (
+                        {MONTHS?.map((m) => (
                           <option key={m.val} value={m.val}>{m.name}</option>
                         ))}
                       </select>
@@ -305,7 +306,7 @@ export default function BirthDetailsForm({
                         className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                       >
                         <option value="" disabled>Year</option>
-                        {years.map((y) => (
+                        {years?.map((y) => (
                           <option key={y} value={y}>{y}</option>
                         ))}
                       </select>
@@ -359,7 +360,7 @@ export default function BirthDetailsForm({
                       className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                     >
                       <option value="">Minute</option>
-                      {Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0')).map((min) => (
+                      {Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0'))?.map((min) => (
                         <option key={min} value={min}>{min}</option>
                       ))}
                     </select>
@@ -408,7 +409,7 @@ export default function BirthDetailsForm({
                       className="w-full pl-4 pr-8 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                     >
                       <option value="">Select Country</option>
-                      {Country.getAllCountries().map((c) => (
+                      {Country.getAllCountries()?.map((c: ICountry) => (
                         <option key={c.isoCode} value={c.isoCode}>{c.name}</option>
                       ))}
                     </select>
@@ -447,7 +448,7 @@ export default function BirthDetailsForm({
                           exit={{ opacity: 0, y: -5 }}
                           className="absolute left-0 right-0 top-full z-50 mt-1 max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-xl py-1"
                         >
-                          {filteredCities.map((city, idx) => (
+                          {filteredCities.map((city: ICity, idx: number) => (
                             <li
                               key={`${city.name}-${idx}`}
                               onMouseDown={(e) => e.preventDefault()}
