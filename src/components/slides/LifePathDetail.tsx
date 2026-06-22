@@ -1,0 +1,218 @@
+import { useReport } from '../../context/ReportContext';
+import { useNavigate } from 'react-router-dom';
+import { Compass, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { staticContent, fallbackReport } from '../../data/numerologyData';
+
+export default function LifePathDetail() {
+  const { reportData } = useReport();
+  const navigate = useNavigate();
+
+  // Dynamic lookup with fallback to prevent blank page on outdated cache
+  const details = reportData?.interpretations?.lifePath || fallbackReport.interpretations.lifePath;
+  const lifePathNumber = reportData?.coreNumbers?.lifePath || 6;
+
+  // Specific strengths/challenges default arrays if not found
+  const strengths = details.strengths?.slice(0, 5) || [];
+  const challenges = details.challenges?.slice(0, 5) || [];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
+  return (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8 pt-2 pb-12"
+    >
+
+      {/* Header */}
+      <motion.div variants={itemVariants} className="relative">
+        <div className="absolute -top-10 -left-10 w-40 h-40 bg-purple-300/30 blur-3xl rounded-full pointer-events-none"></div>
+
+        <div className="space-y-4 relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-full shadow-sm">
+            <Sparkles className="w-4 h-4 text-purple-600" />
+            <span className="text-[11px] font-bold tracking-widest uppercase text-purple-700">The Reveal</span>
+          </div>
+
+          <div className="flex items-center justify-between gap-4">
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
+              {staticContent?.lifeDetailSlide?.title}
+            </h2>
+
+            {/* Glowing Circular Badge */}
+            <div className="w-16 h-16 shrink-0 rounded-full bg-gradient-to-br from-violet-600 via-fuchsia-600 to-orange-500 text-white font-display font-black text-3xl flex items-center justify-center shadow-[0_8px_20px_-5px_rgba(249,115,22,0.6)] relative overflow-hidden">
+              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay"></div>
+              <span className="relative z-10">{lifePathNumber}</span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Detailed Descriptions */}
+      <motion.div variants={itemVariants} className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)] relative overflow-hidden space-y-4 hover:shadow-[0_8px_30px_-10px_rgba(139,92,246,0.15)] transition-shadow" id="life-path-description">
+        <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-100/50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+
+        <p className="font-bold text-indigo-950 text-lg leading-snug">{details.subtitle}</p>
+        <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed font-medium">
+          <p>{details.description}</p>
+          <p>You find your deepest motivation when you align with your cosmic archetype of <strong className="text-violet-600 font-bold">{details.title}</strong>, seeking harmony in everything you build.</p>
+        </div>
+      </motion.div>
+
+      {/* Strengths & Challenges Dual Columns */}
+      <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
+        
+        {/* Strengths Column */}
+        <div className="space-y-4 bg-white p-6 rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-10px_rgba(16,185,129,0.15)] transition-all">
+          <h3 className="text-emerald-700 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+            <span className="w-6 h-1 bg-emerald-400 rounded-full"></span>
+            {staticContent?.lifeDetailSlide?.topStrengths}
+          </h3>
+          <div className="flex flex-wrap gap-2.5">
+            {strengths?.map((str, idx) => (
+              <span
+                key={idx}
+                className="px-4 py-2 bg-gradient-to-r from-emerald-400 to-teal-500 text-white text-[13px] font-bold rounded-xl shadow-[0_4px_15px_-5px_rgba(16,185,129,0.4)] transition-transform hover:-translate-y-0.5"
+              >
+                {str}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Challenges */}
+        <div className="space-y-4 bg-white p-6 rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-10px_rgba(244,63,94,0.15)] transition-all">
+          <h3 className="text-rose-700 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+            <span className="w-6 h-1 bg-rose-400 rounded-full"></span>
+            {staticContent?.lifeDetailSlide?.topChallenges}
+          </h3>
+          <div className="flex flex-wrap gap-2.5">
+            {challenges?.map((ch, idx) => (
+              <span
+                key={idx}
+                className="px-4 py-2 bg-gradient-to-r from-orange-400 to-rose-500 text-white text-[13px] font-bold rounded-xl shadow-[0_4px_15px_-5px_rgba(244,63,94,0.4)] transition-transform hover:-translate-y-0.5"
+              >
+                {ch}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Super Premium Promotional Banner Box */}
+      <motion.div variants={itemVariants} className="relative overflow-hidden rounded-[2rem] shadow-2xl bg-gradient-to-br from-[#411b40] via-[#2d1b54] to-[#1a0b2e] p-6 lg:p-8 flex flex-col xl:flex-row flex-wrap items-center gap-6 lg:gap-8 group mt-6 border border-white/5">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-fuchsia-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-fuchsia-500/20 transition-colors duration-1000"></div>
+
+        {/* Background Decorative Stars */}
+        <div className="absolute top-4 left-1/3 text-yellow-500/30">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg>
+        </div>
+        <div className="absolute top-8 right-8 text-pink-400/30">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg>
+        </div>
+
+        {/* Premium Book Mockup (Left Side on Desktop, Middle on Mobile) */}
+        <div className="relative z-10 shrink-0 w-36 h-52 lg:order-1 order-2 mx-auto transform transition-transform duration-500 hover:scale-105">
+          {/* Thick book pages effect on the right */}
+          <div className="absolute right-[-10px] top-2 bottom-2 w-5 bg-[#f0f0f0] rounded-r-xl border-y border-r border-[#d0d0d0] shadow-[inset_-2px_0_4px_rgba(0,0,0,0.15)] flex flex-col justify-evenly py-1.5">
+            <div className="h-px bg-gray-300/50 w-full"></div>
+            <div className="h-px bg-gray-300/50 w-full"></div>
+            <div className="h-px bg-gray-300/50 w-full"></div>
+            <div className="h-px bg-gray-300/50 w-full"></div>
+            <div className="h-px bg-gray-300/50 w-full"></div>
+          </div>
+
+          {/* Main Book Cover */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#7c2877] via-[#521c7a] to-[#260e47] rounded-l-md rounded-r-sm shadow-[10px_10px_20px_rgba(0,0,0,0.4)] border-l-[3px] border-[#a54bc2] border-y border-white/10 flex flex-col z-10 overflow-hidden">
+            {/* Spine lighting */}
+            <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-r from-white/30 to-transparent"></div>
+
+            <div className="p-3.5 flex flex-col h-full items-center justify-center relative z-10">
+              {/* Logo */}
+              <div className="flex items-center gap-1.5">
+                <img src="https://cdn.astroved.com/images/images-av/AstroVed-Logo.svg" alt="AstroVed" className="w-12 mx-auto brightness-0 invert opacity-90" />
+              </div>
+
+              <div className="w-full h-px bg-white/20 mt-3 mb-3"></div>
+
+              {/* Globe Icon */}
+              <div className="w-8 h-8 rounded-full border border-[#e3b659] flex items-center justify-center text-[#e3b659] mb-3 bg-[#3c175c]/30">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" /><path d="M2 12H22" /><path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" /></svg>
+              </div>
+
+              <p className="text-[7px] text-white font-medium mb-1 tracking-wide">{staticContent?.lifeDetailSlide?.bannerBookText}</p>
+
+              <div className="border border-white/20 bg-black/10 rounded-md w-full py-1.5 text-center mt-0.5">
+                <h4 className="text-[10px] font-bold text-[#e3b659] tracking-widest leading-relaxed uppercase whitespace-pre-line">
+                  {staticContent?.lifeDetailSlide?.bannerBookTitle}
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Text Content (Right Side on Desktop, Top on Mobile) */}
+        <div className="relative z-10 flex-1 flex flex-col items-center lg:items-start space-y-4 order-1 lg:order-2">
+
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-[#c2964b] rounded-full">
+            <svg className="w-3 h-3 text-[#e3b659]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg>
+            <span className="text-[9px] font-bold text-[#e1b971] tracking-widest uppercase">{staticContent?.lifeDetailSlide?.bannerSubLabel}</span>
+          </div>
+
+          <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight text-center lg:text-left tracking-tight">
+            {staticContent?.lifeDetailSlide?.bannerTitle}
+          </h3>
+
+          <p className="text-sm text-indigo-100/80 leading-relaxed text-center lg:text-left">
+            {staticContent?.lifeDetailSlide?.bannerDesc}
+          </p>
+
+          <button
+            type="button"
+            onClick={() => navigate('/premium-deliverables')}
+            className="hidden lg:block mt-2 px-6 py-3 bg-gradient-to-r from-[#e3b659] to-[#c2964b] hover:from-[#f0c366] hover:to-[#d1a55a] text-[#2a1148] text-sm font-bold rounded-xl shadow-[0_4px_15px_rgba(227,182,89,0.3)] transition-all hover:scale-105 active:scale-95"
+          >
+            {staticContent?.lifeDetailSlide?.bannerBtn}
+          </button>
+        </div>
+
+        {/* Mobile Button - Order 3 (Bottom on Mobile) */}
+        <div className="relative z-10 lg:hidden w-full order-3 mt-2">
+          <button
+            type="button"
+            onClick={() => navigate('/premium-deliverables')}
+            className="w-full px-6 py-3.5 bg-gradient-to-r from-[#e3b659] to-[#c2964b] text-[#2a1148] text-sm font-bold rounded-xl shadow-[0_4px_15px_rgba(227,182,89,0.3)] active:scale-95 transition-transform"
+          >
+            {staticContent?.lifeDetailSlide?.bannerBtn}
+          </button>
+        </div>
+
+      </motion.div>
+
+      {/* Minimal Callout Box */}
+      <motion.div
+        variants={itemVariants}
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/50 border border-indigo-100 rounded-2xl shadow-sm mt-8"
+      >
+        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white rounded-2xl border border-indigo-200 shadow-sm">
+          <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
+        </div>
+
+        <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
+          {staticContent?.lifeDetailSlide?.calloutText}
+        </p>
+      </motion.div>
+
+    </motion.div>
+  );
+}

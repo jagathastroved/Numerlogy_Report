@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { NumerologyReportData, PersonalDetails } from '../types';
-import { generateNumerologyReport } from '../data/numerologyData';
+import { generateNumerologyReport, fallbackReport } from '../data/numerologyData';
 
 interface ReportContextType {
   reportData: NumerologyReportData | null;
@@ -37,12 +37,33 @@ export function ReportProvider({ children }: { children: ReactNode }) {
         details.birthYear
       );
 
-      // We no longer use fallbackReport, we directly set the generated insights
-      // Since generateNumerologyReport doesn't return the full NumerologyReportData shape,
-      // we need to construct it or assume dynamicInsights is the full shape.
-      // Assuming generateNumerologyReport now returns the full shape NumerologyReportData.
-      const mockData = dynamicInsights as unknown as NumerologyReportData;
-      mockData.personalDetails = details;
+      // Construct the full NumerologyReportData shape using dynamic insights and fallback for missing properties
+      const mockData: NumerologyReportData = {
+        ...fallbackReport,
+        personalDetails: details,
+        coreNumbers: {
+          ...fallbackReport.coreNumbers,
+          lifePath: dynamicInsights.lifePathNumber,
+          destiny: dynamicInsights.destinyNumber,
+          name: dynamicInsights.destinyNumber,
+        },
+        interpretations: {
+          lifePath: {
+            title: dynamicInsights.lifePathTitle,
+            subtitle: "Your Life Path",
+            description: dynamicInsights.lifePathDescription,
+            traits: dynamicInsights.personalityTraits,
+            strengths: dynamicInsights.strengths,
+            challenges: dynamicInsights.challenges,
+            careers: dynamicInsights.careerRecommendations,
+            compatibility: dynamicInsights.relationshipCompatibility
+          },
+          destiny: {
+            title: dynamicInsights.destinyTitle,
+            desc: dynamicInsights.destinyDescription
+          }
+        }
+      };
 
       setReportData(mockData);
       sessionStorage.setItem('numerologyReportData', JSON.stringify(mockData));

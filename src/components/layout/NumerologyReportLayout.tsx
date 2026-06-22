@@ -65,20 +65,22 @@ export default function NumerologyReportLayout() {
       {/* Modern Collapsible Table of Contents Navigation Drawer */}
       <aside
         className={`fixed md:relative inset-y-0 left-0 h-screen z-50 md:z-20 border-r border-slate-200 bg-white flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${isSidebarOpen
-          ? 'translate-x-0 w-[85vw] sm:w-80 shadow-2xl md:shadow-none md:w-80 opacity-100'
+          ? 'translate-x-0 w-[85vw] sm:w-80 shadow-[20px_0_40px_rgba(0,0,0,0.15)] md:shadow-none md:w-80 opacity-100'
           : '-translate-x-full md:translate-x-0 w-[85vw] sm:w-80 md:w-0 md:opacity-0 md:overflow-hidden'
           }`}
       >
-        <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-          <div className="flex items-center space-x-2">
-            <BookOpen className="text-[var(--color-av-indigo)]" size={20} />
-            <span className="font-normal text-sm uppercase tracking-wider text-slate-800">
+        <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-white">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-400 to-rose-500 flex items-center justify-center shadow-md shadow-orange-500/30">
+              <BookOpen className="text-white" size={16} />
+            </div>
+            <span className="font-extrabold text-xs uppercase tracking-[0.15em] text-slate-800">
               {staticContent?.layout?.reportIndex}
             </span>
           </div>
           <button
             onClick={() => setIsSidebarOpen(false)}
-            className="text-slate-500 hover:text-slate-800 p-1 transition-colors block"
+            className="text-slate-400 hover:text-slate-700 p-1.5 rounded-md hover:bg-slate-100 transition-colors block"
             title="Collapse Sidebar"
           >
             <PanelLeftClose size={18} />
@@ -86,7 +88,7 @@ export default function NumerologyReportLayout() {
         </div>
 
         {/* Scrollable checklist items */}
-        <div className="flex-1 overflow-y-auto px-3 py-4 space-y-1 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto px-3 py-6 space-y-1.5 custom-scrollbar bg-slate-50/50">
           {REPORT_PAGES?.map((page, idx) => {
             const isActive = idx === activeIndex;
             const isCompleted = idx < activeIndex;
@@ -98,22 +100,30 @@ export default function NumerologyReportLayout() {
                   handleScrollToTop();
                   if (window.innerWidth < 768) setIsSidebarOpen(false);
                 }}
-                className={`w-full flex items-center px-4 py-2.5 rounded-xl text-left text-xs font-normal transition-all group ${isActive
-                  ? 'bg-gradient-to-r from-[var(--color-av-indigo)] to-[#5c5ce0] text-white shadow-lg shadow-[var(--color-av-indigo)]/20'
-                  : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+                className={`relative w-full flex items-center px-4 py-3 rounded-xl text-left text-[13px] font-bold transition-colors duration-300 group z-0 ${isActive
+                  ? 'text-orange-900'
+                  : 'text-slate-500 hover:text-slate-800'
                   }`}
               >
-                <div className={`w-5 h-5 rounded-full mr-3 text-[10px] flex items-center justify-center font-normal border transition-colors ${isActive
-                  ? 'border-white/40 bg-white/20 text-white'
+                {isActive && (
+                  <motion.div
+                    layoutId="sidebarActiveBackground"
+                    className="absolute inset-0 bg-white border border-orange-200 shadow-sm rounded-xl -z-10"
+                    initial={false}
+                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <div className={`relative z-10 w-7 h-7 rounded-full mr-3 text-[11px] flex items-center justify-center font-black transition-colors duration-300 ${isActive
+                  ? 'bg-orange-50 text-orange-600 border border-orange-200 shadow-sm'
                   : isCompleted
-                    ? 'border-[var(--color-av-indigo)] bg-[var(--color-av-indigo)]/10 text-[var(--color-av-indigo)]'
-                    : 'border-slate-200 bg-slate-50 text-slate-400'
+                    ? 'bg-emerald-50 text-emerald-500 border border-emerald-100'
+                    : 'bg-slate-100 text-slate-400 group-hover:bg-slate-200'
                   }`}>
                   {idx + 1}
                 </div>
-                <span className="flex-1 truncate">{page.title}</span>
+                <span className="relative z-10 flex-1 truncate tracking-wide">{page.title}</span>
                 {idx === REPORT_PAGES.length - 1 && (
-                  <span className={`px-1.5 py-0.5 rounded text-[8px] uppercase font-black font-mono ml-2 tracking-wider ${isActive ? 'bg-[var(--color-av-orange)] text-white' : 'bg-[var(--color-av-orange)] text-white animate-pulse'
+                  <span className={`relative z-10 px-2 py-0.5 rounded text-[9px] uppercase font-black tracking-widest ml-2 transition-colors ${isActive ? 'bg-orange-50 text-orange-700 border border-orange-200' : 'bg-slate-100 text-slate-400 group-hover:text-slate-600 group-hover:bg-slate-200'
                     }`}>
                     PRO
                   </span>
@@ -124,13 +134,13 @@ export default function NumerologyReportLayout() {
         </div>
 
         {/* Exit booklet back to start form */}
-        <div className="p-4 border-t border-slate-100 bg-slate-50/50 flex justify-center">
+        <div className="p-5 border-t border-slate-100 bg-white flex justify-center">
           <button
             onClick={handleResetReport}
-            className="text-xs font-normal text-slate-600 hover:text-[var(--color-av-orange)] flex items-center space-x-1.5 transition-colors focus:outline-none"
+            className="text-xs font-bold text-slate-500 hover:text-orange-600 flex items-center space-x-2 transition-colors focus:outline-none bg-white border-2 border-slate-100 hover:border-orange-200 hover:bg-orange-50 px-4 py-3 rounded-2xl w-full justify-center shadow-sm"
           >
-            <RefreshCw size={12} />
-            <span>{staticContent?.layout?.enterDifferentDetails}</span>
+            <RefreshCw size={14} />
+            <span className="tracking-widest uppercase text-[10px]">{staticContent?.layout?.enterDifferentDetails}</span>
           </button>
         </div>
       </aside>
@@ -166,7 +176,7 @@ export default function NumerologyReportLayout() {
               />
             </div>
 
-            <div className="block flex-1 mt-2">
+            <div className="block flex-1 mt-2 min-w-0">
               {/* Header inside the booklet page */}
               <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-100 relative">
                 {/* Left Logo */}
@@ -206,7 +216,7 @@ export default function NumerologyReportLayout() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.35, ease: 'easeOut' }}
-                  className="space-y-6 text-slate-800 leading-relaxed text-sm md:text-base font-normal selection:bg-indigo-100"
+                  className="space-y-6 text-slate-800 leading-relaxed text-sm md:text-base font-normal selection:bg-indigo-100 selection:text-indigo-900"
                 >
                   <Outlet />
                 </motion.div>
@@ -214,16 +224,17 @@ export default function NumerologyReportLayout() {
             </div>
 
             {/* Bottom Book Navigator Buttons */}
-            <footer className="mt-10 pt-6 border-t border-slate-100 flex justify-between items-center">
+            <footer className="mt-10 pt-6 border-t border-slate-100 flex justify-between items-center relative z-20">
               <button
                 onClick={() => {
                   prevPage();
                   handleScrollToTop();
                 }}
                 disabled={activeIndex === 0}
-                className="flex items-center justify-center w-11 h-11 rounded-2xl bg-white border border-slate-200 hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed shadow-sm transition"
+                className="flex items-center justify-center px-4 py-3 rounded-2xl bg-indigo-50/80 border border-indigo-100/50 hover:bg-indigo-100 hover:border-indigo-200 text-indigo-900 text-xs font-bold transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-sm group"
               >
-                <ArrowLeft size={16} className="text-slate-700" />
+                <ArrowLeft size={14} className="mr-1.5 transition-transform group-hover:-translate-x-0.5" />
+                <span>Back</span>
               </button>
 
               {activeIndex < REPORT_PAGES.length - 1 && (
@@ -232,10 +243,11 @@ export default function NumerologyReportLayout() {
                     nextPage();
                     handleScrollToTop();
                   }}
-                  className="flex items-center px-6 py-3 rounded-2xl bg-gradient-to-r from-[var(--color-av-orange)] to-[#d96222] hover:opacity-90 text-white text-xs font-black shadow-lg shadow-[var(--color-av-orange)]/30 tracking-wider transition cursor-pointer"
+                  className="flex items-center px-7 py-3 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white text-xs font-black shadow-[0_8px_25px_-8px_rgba(249,115,22,0.6)] tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer relative overflow-hidden group"
                 >
-                  <span>{staticContent?.layout?.next}</span>
-                  <ArrowRight size={14} className="ml-1.5" />
+                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay"></div>
+                  <span className="relative z-10">{staticContent?.layout?.next}</span>
+                  <ArrowRight size={14} className="ml-1.5 relative z-10 transition-transform group-hover:translate-x-0.5" />
                 </button>
               )}
             </footer>

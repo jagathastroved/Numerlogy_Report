@@ -2,14 +2,14 @@ import { NumerologyReportData, LIFE_PATH_INTERPRETATIONS, DESTINY_INTERPRETATION
 
 export const REPORT_PAGES = [
   { path: '/welcome', title: 'Welcome' },
-  { path: '/core-numbers', title: 'Your Core Numbers' },
+  { path: '/core-numbers', title: 'Core Numbers' },
   { path: '/life-path-math', title: 'Life Path Math' },
-  { path: '/life-path-detail', title: 'Your Life Path Detail' },
-  { path: '/name-destiny-math', title: 'Name/Destiny Math' },
+  { path: '/life-path-detail', title: 'Life Path Detail' },
+  { path: '/name-destiny-math', title: 'Name Destiny Math' },
   { path: '/numerology-overview', title: 'Numerology Overview' },
-  { path: '/lucky-numbers', title: 'Lucky & Unlucky Numbers' },
+  { path: '/lucky-numbers', title: 'Lucky Numbers' },
   { path: '/month-forecast', title: 'Month Forecast' },
-  { path: '/premium-deliverables', title: 'Your Premium Deliverables' }
+  { path: '/premium-deliverables', title: 'Premium Deliverables' }
 ];
 
 export const staticContent = {
@@ -71,7 +71,7 @@ export const staticContent = {
     topChallenges: "Top 5 Challenges",
     bannerTitle: "Unlock Your Complete Numerological Destiny",
     bannerDesc: "Your Core Numbers reveal so much about you, but it's only the beginning! Buy the full premium report to unlock crucial insights into your future, wealth, health, and much more important cosmic secrets.",
-    bannerBtn: "Book Your Numerology Report Now",
+    bannerBtn: "Book Your Numerology Report",
     bannerSubLabel: "GET YOUR PREMIUM NUMEROLOGY REPORT",
     bannerBookText: "Your Personalised",
     bannerBookTitle: "NUMEROLOGY\nREPORT",
@@ -143,7 +143,7 @@ export const staticContent = {
       role: "Teacher",
       text: "\"The numerology report is very insightful and easy to understand. It explains the meanings of numbers in a straightforward manner. The personalized recommendations are practical and helpful. I highly recommend this numerology report to anyone seeking guidance and clarity in life.\""
     },
-    checkoutBtn: "Get Your Numerology Report Now"
+    checkoutBtn: "Book Your Numerology Report"
   },
   luckyNumbersSlide: {
     title: "Your Core Vibrations",
@@ -208,11 +208,11 @@ export const staticContent = {
     ],
     pricing: {
       label: "Total Order Price",
-      originalPrice: "₹999",
-      currentPrice: "₹399",
-      discountLine1: "SAVE 60%",
+      originalPrice: "₹1199",
+      currentPrice: "₹599",
+      discountLine1: "SAVE 50%",
       discountLine2: "TODAY",
-      btnText: "Proceed to Pay ₹399",
+      btnText: "Proceed to Pay ₹599",
       processing: "Processing..."
     },
     satisfaction: {

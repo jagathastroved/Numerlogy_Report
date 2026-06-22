@@ -6,15 +6,15 @@ import NumerologyReportLayout from './components/layout/NumerologyReportLayout';
 import { type PersonalDetails } from './types';
 
 // Import our Numerology slide components
-import AstroIntroSlide from './components/slides/AstroIntroSlide';
+import Welcome from './components/slides/Welcome';
 import CoreNumbers from './components/slides/CoreNumbers';
-import AstroLifeMathSlide from './components/slides/AstroLifeMathSlide';
-import AstroLifeDetailSlide from './components/slides/AstroLifeDetailSlide';
-import AstroNameMathSlide from './components/slides/AstroNameMathSlide';
-import AstroOverviewSlide from './components/slides/AstroOverviewSlide';
-import AstroMonthSlide from './components/slides/AstroMonthSlide';
-import AstroLuckyNumbersSlide from './components/slides/AstroLuckyNumbersSlide';
-import AstroCheckoutSlide from './components/slides/AstroCheckoutSlide';
+import LifePathMath from './components/slides/LifePathMath';
+import LifePathDetail from './components/slides/LifePathDetail';
+import NameDestinyMath from './components/slides/NameDestinyMath';
+import NumerologyOverview from './components/slides/NumerologyOverview';
+import LuckyNumbers from './components/slides/LuckyNumbers';
+import MonthForecast from './components/slides/MonthForecast';
+import PremiumDeliverables from './components/slides/PremiumDeliverables';
 
 export default function App() {
   const navigate = useNavigate();
@@ -54,15 +54,15 @@ export default function App() {
 
       {/* Nested Layout for the Report Pages */}
       <Route element={<NumerologyReportLayout />}>
-        <Route path="/welcome" element={<AstroIntroSlide />} />
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="/core-numbers" element={<CoreNumbers />} />
-        <Route path="/life-path-math" element={<AstroLifeMathSlide />} />
-        <Route path="/life-path-detail" element={<AstroLifeDetailSlide />} />
-        <Route path="/name-destiny-math" element={<AstroNameMathSlide />} />
-        <Route path="/numerology-overview" element={<AstroOverviewSlide />} />
-        <Route path="/lucky-numbers" element={<AstroLuckyNumbersSlide />} />
-        <Route path="/month-forecast" element={<AstroMonthSlide />} />
-        <Route path="/premium-deliverables" element={<AstroCheckoutSlide />} />
+        <Route path="/life-path-math" element={<LifePathMath />} />
+        <Route path="/life-path-detail" element={<LifePathDetail />} />
+        <Route path="/name-destiny-math" element={<NameDestinyMath />} />
+        <Route path="/numerology-overview" element={<NumerologyOverview />} />
+        <Route path="/lucky-numbers" element={<LuckyNumbers />} />
+        <Route path="/month-forecast" element={<MonthForecast />} />
+        <Route path="/premium-deliverables" element={<PremiumDeliverables />} />
       </Route>
     </Routes>
   );
