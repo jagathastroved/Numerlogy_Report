@@ -14,7 +14,7 @@ export function ReportProvider({ children }: { children: ReactNode }) {
   const [reportData, setReportData] = useState<NumerologyReportData | null>(() => {
     const saved = sessionStorage.getItem('numerologyReportData');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
+      try { return JSON.parse(saved); } catch (e) { }
     }
     return null;
   });
@@ -26,10 +26,10 @@ export function ReportProvider({ children }: { children: ReactNode }) {
       // TODO: Replace with actual API call
       // const response = await fetch('/api/numerology', { method: 'POST', body: JSON.stringify(details) });
       // const data = await response.json();
-      
+
       // Simulating API delay
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       const dynamicInsights = generateNumerologyReport(
         details.fullName || 'User',
         details.birthDay,

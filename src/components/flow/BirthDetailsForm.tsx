@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
 import { PersonalDetails } from '../../types';
-import { ChevronRight, Calendar, User, Mail, Sparkles, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Country, City, ICountry, ICity } from 'country-state-city';
 import { useReport } from '../../context/ReportContext';
@@ -73,10 +72,12 @@ export default function BirthDetailsForm({
 
   return (
     <div
-      className="h-screen w-full flex items-center justify-center p-4 relative overflow-hidden"
+      className="min-h-screen w-full flex items-center justify-center p-4 relative overflow-x-hidden overflow-y-auto"
     >
-      <CelestialBackground />
-      <div className="max-w-6xl w-full h-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10 py-2">
+      <div className="fixed inset-0 z-0 bg-[#0B0F19]">
+        <CelestialBackground />
+      </div>
+      <div className="max-w-6xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center relative z-10 py-8 md:py-12">
 
         {/* Left Side Text */}
         <div className="text-white space-y-6">
@@ -250,18 +251,18 @@ export default function BirthDetailsForm({
                     Day
                   </label>
                   <div className="relative">
-                      <select
-                        id="day-select"
-                        required
-                        value={data.birthDay}
-                        onChange={(e) => onChange({ birthDay: e.target.value })}
-                        className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                      >
-                        <option value="" disabled>Day</option>
-                        {days?.map((d) => (
-                          <option key={d} value={d}>{d}</option>
-                        ))}
-                      </select>
+                    <select
+                      id="day-select"
+                      required
+                      value={data.birthDay}
+                      onChange={(e) => onChange({ birthDay: e.target.value })}
+                      className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                    >
+                      <option value="" disabled>Day</option>
+                      {days?.map((d) => (
+                        <option key={d} value={d}>{d}</option>
+                      ))}
+                    </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
@@ -274,18 +275,18 @@ export default function BirthDetailsForm({
                     Month
                   </label>
                   <div className="relative">
-                      <select
-                        id="month-select"
-                        required
-                        value={data.birthMonth}
-                        onChange={(e) => onChange({ birthMonth: e.target.value })}
-                        className="w-full pl-2 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                      >
-                        <option value="" disabled>Month</option>
-                        {MONTHS?.map((m) => (
-                          <option key={m.val} value={m.val}>{m.name}</option>
-                        ))}
-                      </select>
+                    <select
+                      id="month-select"
+                      required
+                      value={data.birthMonth}
+                      onChange={(e) => onChange({ birthMonth: e.target.value })}
+                      className="w-full pl-2 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                    >
+                      <option value="" disabled>Month</option>
+                      {MONTHS?.map((m) => (
+                        <option key={m.val} value={m.val}>{m.name}</option>
+                      ))}
+                    </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
@@ -298,18 +299,18 @@ export default function BirthDetailsForm({
                     Year
                   </label>
                   <div className="relative">
-                      <select
-                        id="year-select"
-                        required
-                        value={data.birthYear}
-                        onChange={(e) => onChange({ birthYear: e.target.value })}
-                        className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                      >
-                        <option value="" disabled>Year</option>
-                        {years?.map((y) => (
-                          <option key={y} value={y}>{y}</option>
-                        ))}
-                      </select>
+                    <select
+                      id="year-select"
+                      required
+                      value={data.birthYear}
+                      onChange={(e) => onChange({ birthYear: e.target.value })}
+                      className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
+                    >
+                      <option value="" disabled>Year</option>
+                      {years?.map((y) => (
+                        <option key={y} value={y}>{y}</option>
+                      ))}
+                    </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>

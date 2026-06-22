@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useReport } from '../../context/ReportContext';
 import {
   ArrowLeft, ArrowRight, BookOpen, Compass, RefreshCw, PanelLeftClose
@@ -42,6 +42,22 @@ export default function NumerologyReportLayout() {
       el.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
+  const sidebarListRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sidebarListRef.current) return;
+    const container = sidebarListRef.current;
+    const activeBtn = container.querySelector(`[data-index="${activeIndex}"]`) as HTMLElement;
+
+    if (activeBtn) {
+      const containerHeight = container.clientHeight;
+      const btnTop = activeBtn.offsetTop;
+      const btnHeight = activeBtn.clientHeight;
+      const scrollTarget = btnTop - containerHeight / 2 + btnHeight / 2;
+      container.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+    }
+  }, [activeIndex]);
 
   useEffect(() => {
     // Timeout to ensure content has rendered and animation started
@@ -88,13 +104,14 @@ export default function NumerologyReportLayout() {
         </div>
 
         {/* Scrollable checklist items */}
-        <div className="flex-1 overflow-y-auto px-3 py-6 space-y-1.5 custom-scrollbar bg-slate-50/50">
+        <div ref={sidebarListRef} className="flex-1 overflow-y-auto px-3 py-6 space-y-1.5 custom-scrollbar bg-slate-50/50">
           {REPORT_PAGES?.map((page, idx) => {
             const isActive = idx === activeIndex;
             const isCompleted = idx < activeIndex;
             return (
               <button
                 key={idx}
+                data-index={idx}
                 onClick={() => {
                   setPage(idx);
                   handleScrollToTop();

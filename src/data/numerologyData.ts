@@ -214,10 +214,6 @@ export const staticContent = {
       discountLine2: "TODAY",
       btnText: "Proceed to Pay ₹599",
       processing: "Processing..."
-    },
-    satisfaction: {
-      title: "100% Satisfaction Guarantee",
-      desc: "If you're not completely amazed by the accuracy of your report, we'll refund your money."
     }
   }
 };
