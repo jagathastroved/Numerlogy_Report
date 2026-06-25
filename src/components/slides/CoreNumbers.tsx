@@ -60,7 +60,7 @@ export default function CoreNumbers() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 + (i * 0.05) }}
-            className={`flex flex-col bg-white rounded-2xl p-5 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)] border border-slate-100 transition-all duration-300 hover:scale-[1.02] cursor-default group hover:border-transparent ${card.shadow}`}
+            className={`flex flex-col bg-white/60 backdrop-blur-md rounded-2xl p-5 shadow-lg border border-white/60 transition-all duration-300 hover:scale-[1.02] cursor-default group hover:bg-white/80 hover:shadow-xl hover:border-transparent ${card.shadow}`}
           >
             <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
               <span className="font-bold text-slate-800 text-base leading-snug transition-colors pr-2">{card.label}</span>
@@ -80,7 +80,7 @@ export default function CoreNumbers() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/50 border border-indigo-100 rounded-2xl shadow-sm mt-8"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 backdrop-blur-md border border-indigo-100/60 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
       >
         <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white rounded-2xl border border-indigo-200 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />

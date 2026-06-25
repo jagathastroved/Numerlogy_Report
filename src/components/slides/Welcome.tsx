@@ -58,7 +58,7 @@ export default function Welcome() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 + (idx * 0.1) }}
-              className="flex items-start gap-3 p-4 sm:p-5 bg-white border border-slate-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)] rounded-2xl hover:shadow-[0_8px_30px_-10px_rgba(139,92,246,0.25)] hover:border-purple-200 transition-all cursor-default group"
+              className="flex items-start gap-3 p-4 sm:p-5 bg-white/60 backdrop-blur-md border border-white/60 shadow-lg rounded-2xl hover:shadow-xl hover:bg-white/80 hover:border-purple-200 transition-all duration-300 cursor-default group"
             >
               <div className="mt-0.5 w-8 h-8 rounded-full bg-gradient-to-br from-violet-100 to-fuchsia-100 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-inner">
                 <CheckCircle2 className="w-5 h-5 text-violet-600" />
@@ -74,7 +74,7 @@ export default function Welcome() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/50 border border-indigo-100 rounded-2xl shadow-sm mt-6"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 backdrop-blur-md border border-indigo-100/60 rounded-2xl shadow-md mt-6 hover:shadow-lg transition-shadow duration-300"
       >
         <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white rounded-2xl border border-indigo-200 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />

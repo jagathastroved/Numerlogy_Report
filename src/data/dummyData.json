@@ -1,81 +1,71 @@
 {
-    "user": "jagathratchagan",
-    "astro_data": {
-        "lagna_sign": "Virgo",
-        "moon_sign": "Pisces",
-        "sun_sign": "Taurus",
-        "moon_nakshatra": "Uttara Bhadrapada"
+    "personalDetails": {
+        "fullName": "John Doe",
+        "email": "john@example.com",
+        "gender": "Male",
+        "birthDay": "01",
+        "birthMonth": "01",
+        "birthYear": "1990",
+        "birthHour": "12",
+        "birthMinute": "00",
+        "birthSecond": "00",
+        "birthAmPm": "AM",
+        "birthCountry": "US",
+        "birthCity": "New York"
     },
-    "core_numbers": {
-        "birth_number": 4,
-        "destiny_number": 5,
-        "name_number": 4
+    "lifePathMath": {
+        "lifePathNumber": 4
     },
-    "pages": {
-        "welcome": {
-            "title": "Numerology Insights for jagathratchagan",
-            "intro": "Welcome jagathratchagan! Discover personalized numerology highlights crafted exclusively for you. Explore how your unique name influences your life's journey and unlocks your potential.",
-            "highlights": [
-                "Your name, jagathratchagan, carries a distinctive energy that shapes your personality and destiny.",
-                "Embrace the qualities associated with your name to enhance your strengths and overcome challenges.",
-                "Focusing on self-awareness and personal growth can help you make the most of the opportunities that come your way.",
-                "Your name suggests a deep connection to intuition and inner wisdom—trust your instincts in important decisions.",
-                "Building harmonious relationships and maintaining balance in your life will support your overall well-being."
-            ]
-        },
-        "life_path_math": {
-            "day_reduced": 4,
-            "month_reduced": 6,
-            "year_reduced": 4,
-            "calculation": "4 + 6 + 4",
-            "life_path_number": 5
-        },
-        "life_path_detail": {
-            "overview": "Jagathratchagan, as a Birth Number 4 individual, you are known for your practicality, discipline, and methodical approach to life. You possess a strong sense of responsibility and are often seen as reliable and trustworthy. Your grounded nature helps you build stable foundations in all aspects of your life.",
-            "strengths": [
-                "Highly organized and detail-oriented",
-                "Dependable and trustworthy",
-                "Strong work ethic",
-                "Practical and realistic outlook",
-                "Ability to overcome obstacles with perseverance"
-            ],
-            "weaknesses": [
-                "Tendency to be rigid or inflexible",
-                "May struggle with adapting to sudden changes",
-                "Can become overly cautious or conservative",
-                "Sometimes perceived as distant or unemotional"
-            ],
-            "career": "Your disciplined and systematic approach makes you well-suited for careers that require structure and attention to detail. Fields such as engineering, administration, finance, or project management can bring you satisfaction and success. Your reliability and persistence help you excel in long-term projects and leadership roles.",
-            "relationships": "In relationships, you value loyalty, stability, and honesty. You are a supportive partner who prefers long-term commitments over fleeting connections. While you may not always express emotions openly, your actions demonstrate your care and dedication. Building trust and open communication will enhance your personal connections."
-        },
-        "name_destiny_math": {
-            "name": "jagathratchagan",
-            "name_number": 4
-        },
-        "lucky_traits": {
-            "lucky_numbers": [
-                5,
-                14,
-                23,
-                3,
-                12,
-                21,
-                30
-            ],
-            "lucky_colors": [
-                "green",
-                "light green",
-                "parrot green",
-                "yellow",
-                "saffron",
-                "gold",
-                "dark blue"
-            ]
-        },
-        "month_forecast": {
-            "month_keyword": "Transformation",
-            "forecast": "This month brings opportunities for significant changes in your personal and professional life. Your Birth Number 4 endows you with discipline and practicality, while your Destiny Number 5 encourages adaptability and exploration. Expect new experiences that may challenge your routines, but also open doors to growth and progress. Networking and communication will play a key role in your success.",
-            "advice": "Embrace flexibility and be open to new ideas. Trust your organizational skills to manage transitions smoothly. Avoid resisting change; instead, use it as a stepping stone for advancement. Stay grounded while exploring new possibilities."
-        }
+    "lifePathDetail": {
+        "lifePathNumber": 4,
+        "numberContent": "As a Life Path 4, your essence is built on order, discipline, stability, and hard work. You are the pillar of trust. You enjoy transforming ideas into concrete, physical realities with step-by-step systemic organization.",
+        "topStrengths": [
+            "Unyielding reliability",
+            "Strategic foundation builder",
+            "Eye for detail",
+            "Exceptional focus"
+        ],
+        "topChallenges": [
+            "Rigidity or resistance to change",
+            "Over-analytical worry",
+            "Strict perfectionism",
+            "Prone to overworking"
+        ]
+    },
+    "coreNumbers": {
+        "birthNumber": 7,
+        "birthNumberContent": "Your Birth Number reveals your fundamental character traits, hidden talents, and the innate potential you were born with. It highlights your natural disposition and the core energy you project into the world.",
+        "destinyNumber": 2,
+        "destinyNumberContent": "The Destiny-Life Path Number is the most critical vibration in your chart. It points you toward your true soul's purpose, the primary karmic lessons you must learn, and the ultimate path you are destined to walk.",
+        "nameNumber": 8,
+        "nameNumberContent": "Your Name Destiny Number acts as a powerful vibrational magnet. It influences the types of opportunities you attract, your professional success, and how you are perceived by others in society."
+    },
+    "nameDestinyNumberPage": {
+        "nameDestinyNumber": 8,
+        "destinyNumberContent": "Your ultimate destiny is to command financial and organizational operations, demonstrate executive power, and use resources to support noble humanitarian causes or enterprises."
+    },
+    "luckyTraits": {
+        "luckyNumbers": [
+            5,
+            14,
+            23,
+            3,
+            12,
+            21,
+            30
+        ],
+        "luckyColors": [
+            "green",
+            "light green",
+            "parrot green",
+            "yellow",
+            "saffron",
+            "gold",
+            "dark blue"
+        ]
+    },
+    "monthlyForecast": {
+        "monthForecastNumber": 5,
+        "monthForecastContent": "A Personal Month of 5 ushers in adventure, unpredictability, and major shifts. Stay flexible and embrace the unknown. This is the ultimate time for travel, networking, and breaking free from stagnant routines. Expand your horizons."
     }
 }

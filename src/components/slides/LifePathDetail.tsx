@@ -59,7 +59,7 @@ export default function LifePathDetail() {
       </motion.div>
 
       {/* Detailed Descriptions */}
-      <motion.div variants={itemVariants} className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)] relative overflow-hidden space-y-4 hover:shadow-[0_8px_30px_-10px_rgba(139,92,246,0.15)] transition-shadow" id="life-path-description">
+      <motion.div variants={itemVariants} className="bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg relative overflow-hidden space-y-4 hover:shadow-xl hover:bg-white/80 transition-all duration-300" id="life-path-description">
         <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-100/50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
         <p className="font-bold text-indigo-950 text-lg leading-snug">{details.subtitle}</p>
@@ -73,7 +73,7 @@ export default function LifePathDetail() {
       <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
         
         {/* Strengths Column */}
-        <div className="space-y-4 bg-white p-6 rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-10px_rgba(16,185,129,0.15)] transition-all">
+        <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <h3 className="text-emerald-700 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
             <span className="w-6 h-1 bg-emerald-400 rounded-full"></span>
             {staticContent?.lifeDetailSlide?.topStrengths}
@@ -91,7 +91,7 @@ export default function LifePathDetail() {
         </div>
 
         {/* Challenges */}
-        <div className="space-y-4 bg-white p-6 rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-10px_rgba(244,63,94,0.15)] transition-all">
+        <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <h3 className="text-rose-700 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
             <span className="w-6 h-1 bg-rose-400 rounded-full"></span>
             {staticContent?.lifeDetailSlide?.topChallenges}
@@ -172,7 +172,7 @@ export default function LifePathDetail() {
       {/* Minimal Callout Box */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/50 border border-indigo-100 rounded-2xl shadow-sm mt-8"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 backdrop-blur-md border border-indigo-100/60 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
       >
         <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white rounded-2xl border border-indigo-200 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />

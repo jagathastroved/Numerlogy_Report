@@ -73,17 +73,17 @@ export default function NumerologyOverview() {
             <motion.div
               whileHover={{ scale: 1.02 }}
               key={idx}
-              className="flex items-start gap-4 p-5 bg-white border border-slate-100 rounded-2xl transition-all duration-300 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_-10px_rgba(99,102,241,0.2)] hover:border-indigo-200 group relative overflow-hidden"
+              className="flex items-start gap-4 p-5 bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/80 hover:border-indigo-200 group relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/0 to-indigo-50/0 group-hover:from-indigo-50/50 group-hover:to-purple-50/50 transition-colors duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/20 to-purple-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
               {/* Check circle */}
-              <div className="relative z-10 w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center shrink-0 group-hover:bg-indigo-500 transition-colors duration-300 shadow-sm border border-indigo-100/50">
+              <div className="relative z-10 w-10 h-10 rounded-xl bg-indigo-100/80 flex items-center justify-center shrink-0 group-hover:bg-indigo-500 transition-colors duration-300 shadow-sm border border-indigo-200/50">
                 <CheckCircle2 className="w-5 h-5 text-indigo-600 group-hover:text-white transition-colors duration-300" />
               </div>
               <div className="space-y-1 relative z-10">
                 <h3 className="text-[15px] font-bold text-indigo-950 tracking-tight">{item.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-medium">{item.desc}</p>
+                <p className="text-sm text-slate-700 leading-relaxed font-medium">{item.desc}</p>
               </div>
             </motion.div>
           ))}

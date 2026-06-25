@@ -69,11 +69,6 @@ export interface NumerologyReportData {
     lucky_numbers: number[];
     lucky_colors: string[];
   };
-  loShuGrid: {
-    grid: Record<string, number>;
-    story: string;
-    analysis: string;
-  };
   monthlyForecast: string;
 }
 
@@ -250,31 +245,3 @@ export const DESTINY_INTERPRETATIONS: Record<number, { title: string; desc: stri
     desc: "Your ultimate destiny is to direct global compassion, heal complex wounds, and tutor humanity in unconditional love, kindness, and spiritual harmony."
   }
 };
-
-export const COUNTRIES: string[] = [
-  "India",
-  "United States",
-  "United Kingdom",
-  "Canada",
-  "Australia",
-  "Singapore",
-  "Germany",
-  "France",
-  "United Arab Emirates",
-  "Indonesia",
-  "Nepal",
-  "Sri Lanka",
-  "Japan",
-  "New Zealand",
-  "South Africa",
-  "Malaysia",
-  "Netherlands",
-  "Switzerland",
-  "Brazil",
-  "Mexico",
-  "Italy",
-  "Spain",
-  "Ireland",
-  "Norway",
-  "Sweden"
-];

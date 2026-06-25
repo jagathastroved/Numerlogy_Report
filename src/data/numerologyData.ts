@@ -227,11 +227,6 @@ export const fallbackReport: NumerologyReportData = {
     lucky_numbers: [5, 14, 23, 3, 12, 21, 30],
     lucky_colors: ["green", "light green", "parrot green", "yellow", "saffron", "gold", "dark blue"]
   },
-  loShuGrid: {
-    grid: { "1": 1, "2": 2, "0": 3 },
-    story: "Your Lo Shu Grid reveals a strong balance of energy...",
-    analysis: "The presence of these numbers indicates a dynamic life path full of adventure and spiritual exploration."
-  },
   monthlyForecast: "This month you will experience a surge in creative energy and new opportunities for travel."
 };
 

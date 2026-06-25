@@ -88,7 +88,7 @@ export default function LifePathMath() {
       </motion.div>
 
       {/* Input Pills Block */}
-      <motion.div variants={itemVariants} className="space-y-4 bg-white border border-slate-100 p-6 rounded-[2rem] shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)] relative overflow-hidden group">
+      <motion.div variants={itemVariants} className="space-y-4 bg-white/60 backdrop-blur-md border border-white/60 p-6 rounded-[2rem] shadow-lg relative overflow-hidden group hover:bg-white/80 transition-colors duration-300">
         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-100/50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
         <p className="text-slate-500 font-bold text-xs text-center uppercase tracking-widest">
@@ -115,7 +115,7 @@ export default function LifePathMath() {
       <motion.div variants={itemVariants} className="space-y-6">
 
         {/* Step 1 */}
-        <div className="space-y-4 bg-white p-6 rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_-10px_rgba(139,92,246,0.15)] transition-all">
+        <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <p className="text-sm text-slate-600 border-b border-slate-50 pb-3 font-medium">
             <strong className="text-violet-600 font-bold mr-1">{staticContent?.lifeMathSlide?.step1}</strong> {staticContent?.lifeMathSlide?.step1Desc}
           </p>
@@ -136,7 +136,7 @@ export default function LifePathMath() {
         </div>
 
         {/* Step 2 */}
-        <div className="space-y-4 bg-white p-6 rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_-10px_rgba(249,115,22,0.15)] transition-all">
+        <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <p className="text-sm text-slate-600 border-b border-slate-50 pb-3 font-medium">
             <strong className="text-orange-500 font-bold mr-1">{staticContent?.lifeMathSlide?.step2}</strong> {staticContent?.lifeMathSlide?.step2Desc}
           </p>
@@ -181,7 +181,7 @@ export default function LifePathMath() {
       {/* Minimal Callout Box */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/50 border border-indigo-100 rounded-2xl shadow-sm mt-8"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 backdrop-blur-md border border-indigo-100/60 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
       >
         <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white rounded-2xl border border-indigo-200 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />

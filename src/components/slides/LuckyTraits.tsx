@@ -71,7 +71,7 @@ export default function LuckyTraits() {
       <div className="grid grid-cols-1 gap-10">
         {/* ================= LUCKY NUMBERS ================= */}
         <motion.div variants={itemVariants} className="relative group">
-          <div className="relative bg-white border border-slate-200 rounded-[2rem] p-6 sm:p-8 overflow-hidden">
+          <div className="relative bg-white/60 backdrop-blur-md border border-white/60 shadow-lg rounded-[2rem] p-6 sm:p-8 overflow-hidden transition-all duration-300 hover:shadow-xl hover:bg-white/80">
 
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-50 to-transparent rounded-full pointer-events-none"></div>
@@ -107,7 +107,7 @@ export default function LuckyTraits() {
 
         {/* ================= LUCKY COLORS ================= */}
         <motion.div variants={itemVariants} className="relative group">
-          <div className="relative bg-white border border-slate-200 rounded-[2rem] p-6 sm:p-8 overflow-hidden">
+          <div className="relative bg-white/60 backdrop-blur-md border border-white/60 shadow-lg rounded-[2rem] p-6 sm:p-8 overflow-hidden transition-all duration-300 hover:shadow-xl hover:bg-white/80">
 
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-transparent rounded-full pointer-events-none"></div>
@@ -136,28 +136,15 @@ export default function LuckyTraits() {
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 300, damping: 25, delay: index * 0.1 + 0.4 }}
-                    // Desktop styles: white bg by default, turns to color on hover. 
-                    // Mobile styles: color bg by default.
-                    className="relative px-6 py-4 flex items-center justify-center rounded-2xl font-bold text-sm sm:text-base border border-slate-200 cursor-default tracking-wide transition-all duration-300 overflow-hidden group/color"
+                    style={{ '--theme-color': hexColor, '--text-color': textColor, borderColor: hexColor } as React.CSSProperties}
+                    className="relative px-6 py-4 flex items-center justify-center rounded-2xl font-bold text-sm sm:text-base border-2 cursor-default tracking-wide transition-all duration-300 overflow-hidden group/color shadow-md hover:shadow-lg bg-white/40 backdrop-blur-sm"
                   >
-                    {/* Background fill - active immediately on mobile, on hover for desktop */}
-                    <div
-                      className="absolute inset-0 transition-opacity duration-300 opacity-100 md:opacity-0 md:group-hover/color:opacity-100"
-                      style={{ backgroundColor: hexColor }}
-                    />
+                    {/* The Fill Background - Active by default, empties on hover */}
+                    <div className="absolute inset-0 bg-[var(--theme-color)] transition-transform duration-500 ease-in-out origin-right scale-x-100 group-hover/color:scale-x-0"></div>
 
-                    {/* Text - dynamic color based on state */}
-                    <span
-                      className="relative z-10 transition-colors duration-300"
-                    >
-                      {/* For responsive text color, we can hide/show two spans or use CSS variables */}
-                      <span className="md:hidden" style={{ color: textColor }}>{formattedColor}</span>
-                      <span className="hidden md:inline text-slate-700 group-hover/color:hidden">{formattedColor}</span>
-                      <span className="hidden md:group-hover/color:inline" style={{ color: textColor }}>{formattedColor}</span>
+                    <span className="relative z-10 text-[var(--text-color)] group-hover/color:text-[var(--theme-color)] transition-colors duration-500">
+                      {formattedColor}
                     </span>
-
-                    {/* Subtle shine effect */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover/color:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                   </motion.div>
                 );
               })}
