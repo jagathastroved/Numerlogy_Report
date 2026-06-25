@@ -23,7 +23,7 @@ export interface PersonalDetails {
 export interface LocationPreferences {
   country: string;
   includeLifePath: boolean;
-  includeLuckyNumbers: boolean;
+  includeLuckyTraits: boolean;
 }
 
 export interface NumerologyInsights {
@@ -57,18 +57,17 @@ export interface NumerologyDefinition {
 export interface NumerologyReportData {
   personalDetails: PersonalDetails;
   coreNumbers: {
-    lifePath: number;
-    destiny: number;
-    name: number;
-    personality: number;
-    expression: number;
-    soulUrge: number;
-    subconsciousSelf: number;
-    challengeNumbers: number[];
+    birthNumber: number;
+    destinyNumber: number;
+    nameNumber: number;
   };
   interpretations: {
     lifePath: NumerologyDefinition;
     destiny: { title: string; desc: string };
+  };
+  lucky_traits: {
+    lucky_numbers: number[];
+    lucky_colors: string[];
   };
   loShuGrid: {
     grid: Record<string, number>;

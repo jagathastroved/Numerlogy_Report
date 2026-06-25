@@ -30,56 +30,32 @@ export default function NumerologyOverview() {
       <motion.div variants={itemVariants} className="relative flex flex-col xl:flex-row items-center xl:items-start justify-between gap-6">
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-purple-300/30 blur-3xl rounded-full pointer-events-none"></div>
 
-        <div className="space-y-4 relative z-10 flex-1">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-full shadow-sm">
+        <div className="flex flex-col items-center xl:items-start text-center xl:text-left flex-1 relative z-10 order-1 xl:order-1 mt-2 xl:mt-0 gap-4">
+          <div className="order-1 inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-full shadow-sm">
             <Sparkles className="w-4 h-4 text-purple-600" />
             <span className="text-[11px] font-bold tracking-widest uppercase text-purple-700">{staticContent?.overviewSlide?.subtitle}</span>
           </div>
 
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
+          <h2 className="order-2 font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
             {staticContent?.overviewSlide?.title}
           </h2>
+
+          <div className="order-3 xl:hidden flex justify-center items-center shrink-0 relative z-10 w-48 sm:w-56 animate-float cursor-pointer group py-2">
+            <img 
+              src="/images/Numerology_Book.png" 
+              alt="Numerology Report" 
+              className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" 
+            />
+          </div>
         </div>
 
-        {/* Cover book */}
-        <div style={{ perspective: '800px' }} className="flex justify-center items-center p-2 pr-4 shrink-0 mt-4 md:mt-0 relative z-10">
-          <div
-            className="relative shrink-0 w-28 h-40 transform transition-transform duration-500 hover:rotate-y-0"
-            style={{ transform: 'rotateY(-20deg) rotateX(10deg)', transformStyle: 'preserve-3d' }}
-          >
-            {/* Thick book pages effect on the right */}
-            <div className="absolute right-[-8px] top-1.5 bottom-1.5 w-4 bg-[#f0f0f0] rounded-r-xl border-y border-r border-[#d0d0d0] shadow-[inset_-2px_0_4px_rgba(0,0,0,0.15)] flex flex-col justify-evenly py-1" style={{ transform: 'translateZ(-1px)' }}>
-              <div className="h-px bg-gray-300/50 w-full"></div>
-              <div className="h-px bg-gray-300/50 w-full"></div>
-              <div className="h-px bg-gray-300/50 w-full"></div>
-              <div className="h-px bg-gray-300/50 w-full"></div>
-              <div className="h-px bg-gray-300/50 w-full"></div>
-            </div>
-
-            {/* Main Book Cover */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#7c2877] via-[#521c7a] to-[#260e47] rounded-l-md rounded-r-sm shadow-[15px_15px_25px_rgba(0,0,0,0.4)] border-l-[3px] border-[#a54bc2] border-y border-white/10 flex flex-col z-10 overflow-hidden">
-              {/* Spine lighting */}
-              <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-r from-white/30 to-transparent"></div>
-
-              <div className="p-2.5 flex flex-col h-full items-center justify-center relative z-10">
-                <img src="https://cdn.astroved.com/images/images-av/AstroVed-Logo.svg" alt="AstroVed" className="w-10 mx-auto brightness-0 invert opacity-90" style={{ transform: 'translateZ(1px)' }} />
-
-                <div className="w-full h-px bg-white/20 mt-2 mb-2"></div>
-
-                <div className="w-6 h-6 rounded-full border border-[#e3b659] flex items-center justify-center text-[#e3b659] mb-2 bg-[#3c175c]/30" style={{ transform: 'translateZ(2px)' }}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" /><path d="M2 12H22" /><path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" /></svg>
-                </div>
-
-                <p className="text-[6px] text-white font-medium mb-1 tracking-wide" style={{ transform: 'translateZ(1px)' }}>{staticContent?.overviewSlide?.bookLabel}</p>
-
-                <div className="border border-white/20 bg-black/10 rounded-md w-full py-1 text-center mt-0.5" style={{ transform: 'translateZ(2px)' }}>
-                  <h4 className="text-[8px] font-bold text-[#e3b659] tracking-widest leading-relaxed uppercase whitespace-pre-line">
-                    {staticContent?.overviewSlide?.bookTitle}
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* Cover book (Desktop) */}
+        <div className="hidden xl:flex justify-center items-center shrink-0 relative z-10 order-2 w-44 animate-float cursor-pointer group">
+          <img 
+            src="/images/Numerology_Book.png" 
+            alt="Numerology Report" 
+            className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" 
+          />
         </div>
       </motion.div>
 

@@ -228,3 +228,10 @@ h6 {
     @apply font-sans;
   }
 }
+@keyframes float-straight {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+.animate-float-straight {
+  animation: float-straight 6s ease-in-out infinite;
+}

@@ -42,10 +42,9 @@ export function ReportProvider({ children }: { children: ReactNode }) {
         ...fallbackReport,
         personalDetails: details,
         coreNumbers: {
-          ...fallbackReport.coreNumbers,
-          lifePath: dynamicInsights.lifePathNumber,
-          destiny: dynamicInsights.destinyNumber,
-          name: dynamicInsights.destinyNumber,
+          birthNumber: dynamicInsights.destinyNumber,
+          destinyNumber: dynamicInsights.lifePathNumber,
+          nameNumber: dynamicInsights.destinyNumber,
         },
         interpretations: {
           lifePath: {

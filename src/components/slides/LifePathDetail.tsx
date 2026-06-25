@@ -10,7 +10,7 @@ export default function LifePathDetail() {
 
   // Dynamic lookup with fallback to prevent blank page on outdated cache
   const details = reportData?.interpretations?.lifePath || fallbackReport.interpretations.lifePath;
-  const lifePathNumber = reportData?.coreNumbers?.lifePath || 6;
+  const lifePathNumber = reportData?.coreNumbers?.destinyNumber || 6;
 
   // Specific strengths/challenges default arrays if not found
   const strengths = details.strengths?.slice(0, 5) || [];
@@ -121,66 +121,36 @@ export default function LifePathDetail() {
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg>
         </div>
 
-        {/* Premium Book Mockup (Left Side on Desktop, Middle on Mobile) */}
-        <div className="relative z-10 shrink-0 w-36 h-52 lg:order-1 order-2 mx-auto transform transition-transform duration-500 hover:scale-105">
-          {/* Thick book pages effect on the right */}
-          <div className="absolute right-[-10px] top-2 bottom-2 w-5 bg-[#f0f0f0] rounded-r-xl border-y border-r border-[#d0d0d0] shadow-[inset_-2px_0_4px_rgba(0,0,0,0.15)] flex flex-col justify-evenly py-1.5">
-            <div className="h-px bg-gray-300/50 w-full"></div>
-            <div className="h-px bg-gray-300/50 w-full"></div>
-            <div className="h-px bg-gray-300/50 w-full"></div>
-            <div className="h-px bg-gray-300/50 w-full"></div>
-            <div className="h-px bg-gray-300/50 w-full"></div>
-          </div>
-
-          {/* Main Book Cover */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#7c2877] via-[#521c7a] to-[#260e47] rounded-l-md rounded-r-sm shadow-[10px_10px_20px_rgba(0,0,0,0.4)] border-l-[3px] border-[#a54bc2] border-y border-white/10 flex flex-col z-10 overflow-hidden">
-            {/* Spine lighting */}
-            <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-r from-white/30 to-transparent"></div>
-
-            <div className="p-3.5 flex flex-col h-full items-center justify-center relative z-10">
-              {/* Logo */}
-              <div className="flex items-center gap-1.5">
-                <img src="https://cdn.astroved.com/images/images-av/AstroVed-Logo.svg" alt="AstroVed" className="w-12 mx-auto brightness-0 invert opacity-90" />
-              </div>
-
-              <div className="w-full h-px bg-white/20 mt-3 mb-3"></div>
-
-              {/* Globe Icon */}
-              <div className="w-8 h-8 rounded-full border border-[#e3b659] flex items-center justify-center text-[#e3b659] mb-3 bg-[#3c175c]/30">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" /><path d="M2 12H22" /><path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" /></svg>
-              </div>
-
-              <p className="text-[7px] text-white font-medium mb-1 tracking-wide">{staticContent?.lifeDetailSlide?.bannerBookText}</p>
-
-              <div className="border border-white/20 bg-black/10 rounded-md w-full py-1.5 text-center mt-0.5">
-                <h4 className="text-[10px] font-bold text-[#e3b659] tracking-widest leading-relaxed uppercase whitespace-pre-line">
-                  {staticContent?.lifeDetailSlide?.bannerBookTitle}
-                </h4>
-              </div>
-            </div>
-          </div>
+        {/* Premium Book Mockup (Desktop) */}
+        <div className="hidden lg:flex relative z-10 shrink-0 w-44 lg:order-1 mx-auto animate-float cursor-pointer group items-center justify-center mb-4 lg:mb-0">
+          <img src="/images/Numerology_Book.png" alt="Numerology Report" className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" />
         </div>
 
-        {/* Text Content (Right Side on Desktop, Top on Mobile) */}
-        <div className="relative z-10 flex-1 flex flex-col items-center lg:items-start space-y-4 order-1 lg:order-2">
+        {/* Text Content Block */}
+        <div className="relative z-10 flex-1 flex flex-col items-center lg:items-start order-2 gap-4 w-full">
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-[#c2964b] rounded-full">
+          <div className="order-1 inline-flex items-center gap-1.5 px-3 py-1 border border-[#c2964b] rounded-full">
             <svg className="w-3 h-3 text-[#e3b659]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg>
             <span className="text-[9px] font-bold text-[#e1b971] tracking-widest uppercase">{staticContent?.lifeDetailSlide?.bannerSubLabel}</span>
           </div>
 
-          <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight text-center lg:text-left tracking-tight">
+          <h3 className="order-2 text-2xl lg:text-3xl font-bold text-white leading-tight text-center lg:text-left tracking-tight">
             {staticContent?.lifeDetailSlide?.bannerTitle}
           </h3>
 
-          <p className="text-sm text-indigo-100/80 leading-relaxed text-center lg:text-left">
+          {/* Premium Book Mockup (Mobile) */}
+          <div className="order-3 lg:hidden relative z-10 shrink-0 w-48 sm:w-56 mx-auto animate-float cursor-pointer group flex items-center justify-center py-2">
+            <img src="/images/Numerology_Book.png" alt="Numerology Report" className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" />
+          </div>
+
+          <p className="order-4 text-sm text-indigo-100/80 leading-relaxed text-center lg:text-left">
             {staticContent?.lifeDetailSlide?.bannerDesc}
           </p>
 
           <button
             type="button"
             onClick={() => navigate('/premium-deliverables')}
-            className="hidden lg:block mt-2 px-6 py-3 bg-gradient-to-r from-[#e3b659] to-[#c2964b] hover:from-[#f0c366] hover:to-[#d1a55a] text-[#2a1148] text-sm font-bold rounded-xl shadow-[0_4px_15px_rgba(227,182,89,0.3)] transition-all hover:scale-105 active:scale-95"
+            className="order-5 hidden lg:block mt-2 px-6 py-3 bg-gradient-to-r from-[#e3b659] to-[#c2964b] hover:from-[#f0c366] hover:to-[#d1a55a] text-[#2a1148] text-sm font-bold rounded-xl shadow-[0_4px_15px_rgba(227,182,89,0.3)] transition-all hover:scale-105 active:scale-95"
           >
             {staticContent?.lifeDetailSlide?.bannerBtn}
           </button>

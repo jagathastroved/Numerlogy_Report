@@ -2,12 +2,12 @@ import { NumerologyReportData, LIFE_PATH_INTERPRETATIONS, DESTINY_INTERPRETATION
 
 export const REPORT_PAGES = [
   { path: '/welcome', title: 'Welcome' },
-  { path: '/core-numbers', title: 'Core Numbers' },
   { path: '/life-path-math', title: 'Life Path Math' },
   { path: '/life-path-detail', title: 'Life Path Detail' },
+  { path: '/core-numbers', title: 'Core Numbers' },
   { path: '/name-destiny-math', title: 'Name Destiny Math' },
   { path: '/numerology-overview', title: 'Numerology Overview' },
-  { path: '/lucky-numbers', title: 'Lucky Numbers' },
+  { path: '/lucky-traits', title: 'Lucky Traits' },
   { path: '/month-forecast', title: 'Month Forecast' },
   { path: '/premium-deliverables', title: 'Premium Deliverables' }
 ];
@@ -22,48 +22,50 @@ export const staticContent = {
   introSlide: {
     greeting: "Hey",
     paragraphs: [
-      "Welcome to your personalized numerology report! Here, we’ll look at the special meanings behind your numbers. Numerology can give you helpful info about your personality, strong points, weak points, and life path.",
-      "Numerology is best used as a guide to help you in life, along with your intuition, good choices, and common sense. It should be a tool to help you live your life better, not the only thing you depend on."
+      "Your numbers carry a unique energetic blueprint that influences your personality, strengths, talents, and life direction. Discover the deeper patterns that make your journey truly one of a kind.",
+
+      "This personalized Numerology Report reveals valuable insights into your potential, opportunities, and personal growth. Use this wisdom to navigate life with greater clarity, confidence, and purpose."
     ],
-    whatWeCoverTitle: "We cover the following points in your numerology report:",
+    whatWeCoverTitle: "Your personalized Numerology Report includes:",
     whatWeCoverItems: [
       "Your core numbers (life path, destiny, name, and more)",
-      "Your personality, strengths and weaknesses",
-      "Detailed Birth Number calculation and personality analysis",
-      "Unlock your Name Destiny and numerology insights",
-      "Get personalized Monthly Forecast and future guidance"
+      "Your hidden strengths, core personality, and areas for growth",
+      "In-depth Birth Number calculation with personality profiling",
+      "Decoding your Name Destiny and its numerological impact",
+      "Exclusive Monthly Forecast tailored for your upcoming journey"
     ],
-    calloutText: "Click NEXT to see your core numbers, which are the most important in numerology."
+    calloutText: "Click Next to calculate your Life Path number—the most important number in your numerology profile."
   },
   coreNumbersSlide: {
-    title: "Your Core Numbers",
-    description: "Your core numbers in numerology are like pieces of a puzzle that make up who you are. There are main numbers that create your personality profile. To really understand yourself, you need to look at how all these numbers work together.",
+    title: "Your Foundational Core Numbers",
+    description: "In numerology, your core numbers are the fundamental building blocks of your soul's identity. They form the master blueprint of your personality, highlighting your true essence. To fully grasp your cosmic potential, we must look at how these distinct vibrations harmonize.",
     labels: {
-      lifePath: "Your Life Path Number",
-      destiny: "Your Destiny Number",
-      personality: "Your Personality Number",
-      expression: "Your Expression Number",
-      soulUrge: "Your Soul Urge Number",
-      subconsciousSelf: "Your Subconscious Self Number",
-      challengeNumbers: "Your Challenge\nNumbers"
+      birthNumber: "Birth Number",
+      nameNumber: "Name Destiny Number",
+      destinyNumber: "Destiny-Life Path Number",
     },
-    calloutText: "Let's check out your life path number. Click NEXT to see it."
+    descriptions: {
+      birthNumber: "Your Birth Number reveals your fundamental character traits, hidden talents, and the innate potential you were born with. It highlights your natural disposition and the core energy you project into the world.",
+      destinyNumber: "The Destiny-Life Path Number is the most critical vibration in your chart. It points you toward your true soul's purpose, the primary karmic lessons you must learn, and the ultimate path you are destined to walk.",
+      nameNumber: "Your Name Destiny Number acts as a powerful vibrational magnet. It influences the types of opportunities you attract, your professional success, and how you are perceived by others in society."
+    },
+    calloutText: "Ready to explore further? Click Next to decode your Name Destiny number."
   },
   lifeMathSlide: {
-    title: "Calculating Your Life Path",
-    description: "Your Life Path Number reveals the most about your personality and the kind of life you might lead. We calculate it by continually adding the digits of your birth date until we reach a single number (or a Master Number).",
-    exactDateLabel: "Your Exact Birth Date",
+    title: "Decoding Your Life Path",
+    description: "Your Life Path Number is the most profound indicator of your character and the trajectory of your lifetime. We derive this powerful digit by systematically reducing your birth date until it reveals your foundational vibration or a rare Master Number.",
+    exactDateLabel: "Your Exact Date of Birth",
     day: "Day",
     month: "Month",
     year: "Year",
-    step1: "Step 1:",
-    step1Desc: "Reduce day, month, and year individually.",
-    step2: "Step 2:",
-    step2Desc: "Add the reduced results together.",
-    step3: "Step 3:",
-    step3Desc: "Reduce the final sum to a single digit.",
-    lifePathLabel: "Your Life Path Number",
-    calloutText: "Let’s keep going! Click NEXT to see what your Life Path number says about your personality, strengths, and weaknesses."
+    step1: "Phase 1:",
+    step1Desc: "Reduce the day, month, and year down to single digits.",
+    step2: "Phase 2:",
+    step2Desc: "Sum the reduced values together.",
+    step3: "Phase 3:",
+    step3Desc: "Reduce the final sum to unveil your single-digit path.",
+    lifePathLabel: "Your Core Life Path Number",
+    calloutText: "Let's dig deeper! Click Next to discover what your Life Path reveals about your greatest advantages and karmic lessons."
   },
   lifeDetailSlide: {
     title: "Your Life Path Number",
@@ -75,23 +77,23 @@ export const staticContent = {
     bannerSubLabel: "GET YOUR PREMIUM NUMEROLOGY REPORT",
     bannerBookText: "Your Personalised",
     bannerBookTitle: "NUMEROLOGY\nREPORT",
-    calloutText: "Now let’s look at your second main or most important number, which will be your name number."
+    calloutText: "Click Next to uncover your Core Numbers—the master blueprint of your personality."
   },
   nameMathSlide: {
-    title: "Your Name/ Destiny Number",
+    title: "Your Name Destiny Number",
     paragraphs: [
-      "Your Name/ Destiny Number, also called your Minor Expression Number, comes from the first and last name you use every day. It might be a shorter version of your birth name or a new name if you got married, or changed it for another reason.",
-      "This number shows the energy you put out into the world when you use that name. It’s like your \"energetic signature\" that adds to your personality, strengths, lessons, experiences, and opportunities based on your other numbers."
+      "Your Name Destiny Number, frequently known as your Minor Expression Number, is derived from the exact name you use on a daily basis. This could be a nickname, your professional title, or a new surname taken after marriage.",
+      "This powerful number dictates the distinct energetic frequency you project into the universe. It acts as your \"vibrational signature,\" influencing your daily interactions, professional opportunities, and how others perceive you."
     ],
-    fullNameLabel: "Your Full Name",
-    step1: "Step 1",
-    step1Desc: "Give each letter a number based on its place in the alphabet.",
-    step2: "Step 2",
-    step2Desc: "Find total for first, middle(s), and last name separately.",
-    step3: "Step 3",
-    step3Desc: "If multiple digits, keep adding until a single digit is reached.",
-    nameLabel: "Your Name Number",
-    calloutText: "Let's proceed to Depth Personalized Numerology Report Overview."
+    fullNameLabel: "Your Current Full Name",
+    step1: "Phase 1",
+    step1Desc: "Assign the corresponding numerological value to every letter.",
+    step2: "Phase 2",
+    step2Desc: "Calculate the sum for your first, middle, and last names individually.",
+    step3: "Phase 3",
+    step3Desc: "Continue reducing the sums until you arrive at a master or single digit.",
+    nameLabel: "Your Name Vibration",
+    calloutText: "Let's advance to your comprehensive Personalized Numerology Overview."
   },
   overviewSlide: {
     title: "Here We Have Prepared Your In-Depth Personalized Numerology Report",
@@ -102,95 +104,74 @@ export const staticContent = {
     preparedItems: [
       {
         title: "Analysis of Your Core Numbers",
-        desc: "Explore the deep significance of your Destiny, Soul Urge, and Expression numbers."
+        desc: "Unlock the hidden meanings behind your Destiny, Soul Urge, and Expression vibrations to understand your true self."
       },
       {
         title: "Your Life Path Number",
-        desc: "Discover your primary purpose, strengths, and the path you are destined to walk."
+        desc: "Unveil your ultimate soul mission, innate talents, and the specific cosmic path you were born to fulfill."
       },
       {
         title: "Business Name Number",
-        desc: "Find out the most prosperous and lucky numerological vibration for your business or brand."
+        desc: "Determine the exact numerological frequency that will attract maximum wealth and success to your enterprise."
       },
       {
         title: "Suitable Business Fields",
-        desc: "Identify the specific industries and career paths most aligned with your cosmic energy."
+        desc: "Pinpoint the ideal career trajectories and industries that perfectly match your energetic blueprint."
       },
       {
         title: "Mobile Number Selection Guide",
-        desc: "Learn how to choose a lucky phone number that attracts success, wealth, and positive connections."
+        desc: "Discover the secret to picking a phone number that acts as a magnet for prosperity, luck, and powerful connections."
       },
       {
         title: "Vehicle Number Selection",
-        desc: "Ensure safe, smooth, and fortunate travels by choosing the right vehicle registration number."
+        desc: "Guarantee safety, smooth journeys, and constant good fortune by selecting an auspicious license plate."
       },
       {
         title: "Your Future Predictions",
-        desc: "Get personalized forecasts and guidance for the coming months and years ahead."
+        desc: "Receive highly accurate, customized forecasts and strategic cosmic advice for the upcoming years."
       },
       {
         title: "Favorable Calendar Dates",
-        desc: "Discover your most lucky and auspicious dates for making important life decisions."
+        desc: "Identify your absolute luckiest days of the month to sign contracts, travel, or make life-altering choices."
       },
       {
         title: "Temples to Visit",
-        desc: "Spiritual remedies and specific temples recommended to enhance your cosmic alignment."
+        desc: "Access powerful spiritual remedies and specific sacred locations tailored to balance your unique energies."
       }
     ],
     testimonial: {
       initials: "AS",
-      name: "Anjali Sharma",
-      role: "Teacher",
-      text: "\"The numerology report is very insightful and easy to understand. It explains the meanings of numbers in a straightforward manner. The personalized recommendations are practical and helpful. I highly recommend this numerology report to anyone seeking guidance and clarity in life.\""
+      name: "Anjali",
+      role: "Verified User",
+      text: "\"This numerology report completely blew me away. It broke down complex cosmic concepts into simple, actionable advice. The personalized remedies have brought so much clarity and peace to my daily life. I can't recommend this enough!\""
     },
     checkoutBtn: "Book Your Numerology Report"
   },
-  luckyNumbersSlide: {
-    title: "Your Core Vibrations",
-    subtitle: "The lucky, friendly, and unlucky numbers in your life",
-    lucky: {
-      title: "Your Lucky Numbers",
-      veryLucky: "Very Lucky",
-      supportive: "Supportive",
-      moderate: "Moderate",
-      caution: "Caution"
-    },
-    friendly: {
-      title: "Friendly Numbers",
-      mostFriendly: "Most Friendly",
-      friendly: "Friendly",
-      neutral: "Neutral",
-      notFriendly: "Not Friendly"
-    },
-    unlucky: {
-      title: "Unlucky Numbers to Avoid",
-      rahuEnergy: "Rahu Energy",
-      rahuDesc: "May create sudden confusion, illusion, and unexpected changes.",
-      saturnEnergy: "Saturn Energy",
-      saturnDesc: "Associated with karmic lessons, delays, and sudden obstacles.",
-      warningLabel: "Critical Warning",
-      warningTitle: "Avoid 4 + 8 Combinations",
-      warningDesc: "Numbers that reduce to 4 or 8, or combinations containing both, should be strictly avoided for important events.",
-      examplesTitle: "Examples to avoid"
-    }
+  luckyTraitsSlide: {
+    title: "Your Lucky Traits",
+    subtitle: "Unlock the energetic frequencies and colors that align perfectly with your cosmic blueprint.",
+    numbersTitle: "Your Auspicious Numbers",
+    numbersDesc: "These numbers resonate with your highest vibrational potential. Use them for important dates, financial decisions, and major life events.",
+    colorsTitle: "Your Power Colors",
+    colorsDesc: "Wearing or surrounding yourself with these colors enhances your aura, attracts positive opportunities, and deflects negative energy."
   },
   monthSlide: {
-    title: "June Month Prediction",
-    subtitle: "A comprehensive layout of energies active in June 2026",
-    monthLabel: "Your Personal Month Number",
-    calloutText: "That was the prediction for this month. Now let's see what’s inside your full report, prices, and how you can get it for yourself.",
+    title: "Current Month Forecast",
+    subtitle: "A detailed breakdown of the energetic forces shaping your current month",
+    monthLabel: "Your Personal Monthly Cycle",
+    calloutText: "That concludes your monthly preview. Now let's explore everything waiting for you in the full premium dossier.",
     interpretations: {
-      1: { title: "New Beginnings & Action", desc: "A Personal Month of 1 is a time of fresh starts and new opportunities. This is the perfect month to plant new seeds, start new projects, and take the initiative. Your independence and leadership skills are highlighted. Trust your instincts and move forward with confidence." },
-      2: { title: "Cooperation & Patience", desc: "A Personal Month of 2 focuses on relationships, harmony, and teamwork. It's a time to be patient and let the seeds you planted last month grow. Diplomacy and cooperation will bring you success. Listen to others and nurture your partnerships." },
-      3: { title: "Creativity & Self-Expression", desc: "A Personal Month of 3 is vibrant, social, and communicative. Your creative energies are flowing, making it a great time for writing, speaking, or artistic pursuits. Enjoy yourself, connect with friends, and let your authentic voice be heard." },
-      4: { title: "Hard Work & Foundation", desc: "A Personal Month of 4 requires discipline, organization, and practical effort. It's time to get down to business and build a solid foundation for your future. Focus on the details, handle administrative tasks, and work diligently toward your goals." },
-      5: { title: "Change & Freedom", desc: "A Personal Month of 5 brings shifts, adventure, and new experiences. Expect the unexpected and be ready to adapt. This is an excellent time for travel, networking, and embracing change. Break free from routine and explore new horizons." },
-      6: { title: "Home & Responsibility", desc: "A Personal Month of 6 centers around family, home, and duty. You may find yourself caring for others or focusing on domestic matters. It's a period for healing, resolving conflicts, and bringing beauty and harmony into your living space." },
-      7: { title: "Introspection & Spiritual Growth", desc: "A Personal Month of 7 is a time for inner work, study, and spiritual reflection. Step back from the hustle and bustle to recharge. Focus on learning, research, and connecting with your higher self. Trust your intuition above all else." },
-      8: { title: "Power & Financial Gains", desc: "A Personal Month of 8 is focused on career, finances, and material success. Your manifestation power is high. Step into your authority, make important business decisions, and take charge of your financial future. Hard work pays off now." },
-      9: { title: "Termination & New Seed-planting", desc: "A Personal Month of 9 is a highly karmic time of endings, completion, and reflection. Clean out the old to make room for the new. Let go of associations or jobs that no longer serve your core path. Tie up loose ends and prepare for a new cycle." },
-      11: { title: "Intuition & Illumination", desc: "A Master Personal Month of 11 brings heightened sensitivity and spiritual insights. Your intuition is incredibly sharp right now. Use this time for inspiration, spiritual teaching, and connecting with higher frequencies." },
-      22: { title: "Master Builder", desc: "A Master Personal Month of 22 challenges you to turn your grandest dreams into practical reality. The potential for large-scale success is immense if you combine your vision with disciplined, organized effort." }
+      1: { title: "Fresh Starts & Bold Action", desc: "A Personal Month of 1 kicks off a dynamic cycle of new beginnings. Now is the exact moment to plant fresh seeds, launch new ventures, and assert your independence. Your leadership qualities are amplified—trust your gut and take decisive action." },
+      2: { title: "Harmony & Diplomatic Patience", desc: "A Personal Month of 2 shifts the focus to partnerships and emotional balance. It is a period for nurturing the seeds you recently planted. Empathy, teamwork, and careful diplomacy will yield the best results. Lean into your relationships." },
+      3: { title: "Creative Spark & Joyful Expression", desc: "A Personal Month of 3 is electric, social, and highly communicative. Your creative juices are overflowing, making it a stellar time for art, writing, or public speaking. Embrace joy, surround yourself with friends, and let your true self shine." },
+      4: { title: "Discipline & Solid Foundations", desc: "A Personal Month of 4 demands hard work, structure, and practical planning. It is time to roll up your sleeves and fortify your future. Concentrate on administrative tasks, manage your details, and build a sturdy framework for success." },
+      5: { title: "Dynamic Change & Liberation", desc: "A Personal Month of 5 ushers in adventure, unpredictability, and major shifts. Stay flexible and embrace the unknown. This is the ultimate time for travel, networking, and breaking free from stagnant routines. Expand your horizons." },
+      6: { title: "Domestic Harmony & Responsibility", desc: "A Personal Month of 6 revolves around love, family, and home life. You may be called upon to support loved ones or heal strained relationships. It is a beautiful period for beautifying your sanctuary and finding peace at home." },
+      7: { title: "Deep Introspection & Spiritual Awakening", desc: "A Personal Month of 7 invites you to step back from the chaos and journey inward. It is a profound period for meditation, research, and soul-searching. Listen closely to your inner voice and prioritize your spiritual and mental well-being." },
+      8: { title: "Manifestation & Material Power", desc: "A Personal Month of 8 activates your career and financial sectors. Your ability to manifest wealth is at its peak. Step confidently into your power, make bold executive decisions, and watch your disciplined efforts translate into material rewards." },
+      9: { title: "Culmination & Karmic Release", desc: "A Personal Month of 9 marks the end of a cycle. It is a time of deep reflection, closure, and releasing what no longer serves you. Declutter your life—both physically and emotionally—to clear the runway for your next great chapter." },
+      11: { title: "Divine Intuition & Illumination", desc: "A Master Personal Month of 11 opens a powerful channel to higher consciousness. Your psychic sensitivity and intuition are amplified. Utilize this rare energy for spiritual teaching, profound inspiration, and elevating your vibration." },
+      22: { title: "The Master Architect", desc: "A Master Personal Month of 22 presents a monumental opportunity to turn your most ambitious visions into tangible reality. By combining your high ideals with grounded, practical effort, you can achieve success on a massive scale." }
     }
   },
   checkoutSlide: {
@@ -210,10 +191,10 @@ export const staticContent = {
       label: "Total Order Price",
       originalPrice: "₹1199",
       currentPrice: "₹599",
-      discountLine1: "SAVE 50%",
-      discountLine2: "TODAY",
-      btnText: "Proceed to Pay ₹599",
-      processing: "Processing..."
+      discountLine1: "INSTANT 50% OFF",
+      discountLine2: "APPLIED TODAY",
+      btnText: "Unlock Complete Report for ₹599",
+      processing: "Processing...",
     }
   }
 };
@@ -234,18 +215,17 @@ export const fallbackReport: NumerologyReportData = {
     birthCity: "New York"
   },
   coreNumbers: {
-    lifePath: 7,
-    destiny: 2,
-    name: 8,
-    personality: 9,
-    expression: 2,
-    soulUrge: 2,
-    subconsciousSelf: 4,
-    challengeNumbers: [0, 7, 7, 7]
+    birthNumber: 7,
+    destinyNumber: 2,
+    nameNumber: 8
   },
   interpretations: {
     lifePath: LIFE_PATH_INTERPRETATIONS[5],
     destiny: DESTINY_INTERPRETATIONS[1]
+  },
+  lucky_traits: {
+    lucky_numbers: [5, 14, 23, 3, 12, 21, 30],
+    lucky_colors: ["green", "light green", "parrot green", "yellow", "saffron", "gold", "dark blue"]
   },
   loShuGrid: {
     grid: { "1": 1, "2": 2, "0": 3 },

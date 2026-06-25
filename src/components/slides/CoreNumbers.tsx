@@ -5,40 +5,28 @@ import { staticContent } from '../../data/numerologyData';
 
 export default function CoreNumbers() {
   const { reportData } = useReport();
-  
+
   // Safe defaults if the coreNumbers are not yet fully populated
   const coreNumbers = reportData?.coreNumbers || {
-    lifePath: 7,
-    destiny: 2,
-    personality: 9,
-    expression: 2,
-    soulUrge: 2,
-    subconsciousSelf: 4,
-    challengeNumbers: [0, 7, 7, 7]
+    birthNumber: 7,
+    nameNumber: 4,
+    destinyNumber: 2,
   };
 
-  const {
-    lifePath,
-    destiny,
-    personality,
-    expression,
-    soulUrge,
-    subconsciousSelf,
-    challengeNumbers
-  } = coreNumbers;
+  // Handle both fresh data and old cached data in sessionStorage
+  const birthNumber = (coreNumbers as any).birthNumber ?? (coreNumbers as any).destiny ?? 7;
+  const nameNumber = (coreNumbers as any).nameNumber ?? (coreNumbers as any).name ?? 4;
+  const destinyNumber = (coreNumbers as any).destinyNumber ?? (coreNumbers as any).lifePath ?? 2;
 
   // Configuration for each core number card to give them unique, vibrant gradients
   const cardConfig = [
-    { key: 'lifePath', val: lifePath, label: staticContent?.coreNumbersSlide?.labels.lifePath, grad: 'from-orange-400 to-rose-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(244,63,94,0.3)]' },
-    { key: 'destiny', val: destiny, label: staticContent?.coreNumbersSlide?.labels.destiny, grad: 'from-violet-500 to-purple-600', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(139,92,246,0.3)]' },
-    { key: 'personality', val: personality, label: staticContent?.coreNumbersSlide?.labels.personality, grad: 'from-emerald-400 to-teal-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(16,185,129,0.3)]' },
-    { key: 'expression', val: expression, label: staticContent?.coreNumbersSlide?.labels.expression, grad: 'from-blue-400 to-indigo-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(59,130,246,0.3)]' },
-    { key: 'soulUrge', val: soulUrge, label: staticContent?.coreNumbersSlide?.labels.soulUrge, grad: 'from-fuchsia-400 to-pink-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(217,70,239,0.3)]' },
-    { key: 'subconsciousSelf', val: subconsciousSelf, label: staticContent?.coreNumbersSlide?.labels.subconsciousSelf, grad: 'from-amber-400 to-orange-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(245,158,11,0.3)]' },
+    { key: 'birthNumber', val: birthNumber, label: staticContent?.coreNumbersSlide?.labels.birthNumber, desc: staticContent?.coreNumbersSlide?.descriptions?.birthNumber, grad: 'from-orange-400 to-rose-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(244,63,94,0.3)]' },
+    { key: 'destinyNumber', val: destinyNumber, label: staticContent?.coreNumbersSlide?.labels.destinyNumber, desc: staticContent?.coreNumbersSlide?.descriptions?.destinyNumber, grad: 'from-violet-500 to-purple-600', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(139,92,246,0.3)]' },
+    { key: 'nameNumber', val: nameNumber, label: staticContent?.coreNumbersSlide?.labels.nameNumber, desc: staticContent?.coreNumbersSlide?.descriptions?.nameNumber, grad: 'from-amber-400 to-orange-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(245,158,11,0.3)]' },
   ];
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -48,7 +36,7 @@ export default function CoreNumbers() {
       {/* Header */}
       <div className="relative">
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-purple-300/30 blur-3xl rounded-full pointer-events-none"></div>
-        
+
         <div className="space-y-4 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-full shadow-sm">
             <Sparkles className="w-4 h-4 text-purple-600" />
@@ -65,44 +53,30 @@ export default function CoreNumbers() {
       </div>
 
       {/* Core Numbers List */}
-      <div className="grid grid-cols-1 gap-4 relative z-10">
+      <div className="grid grid-cols-1 gap-6 relative z-10">
         {cardConfig.map((card, i) => (
-          <motion.div 
+          <motion.div
             key={card.key}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 + (i * 0.05) }}
-            className={`flex items-center justify-between bg-white rounded-2xl pl-5 p-3 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)] border border-slate-100 transition-all duration-300 hover:scale-[1.02] cursor-default group hover:border-transparent ${card.shadow}`}
+            className={`flex flex-col bg-white rounded-2xl p-5 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)] border border-slate-100 transition-all duration-300 hover:scale-[1.02] cursor-default group hover:border-transparent ${card.shadow}`}
           >
-            <span className="font-bold text-slate-700 text-sm leading-snug group-hover:text-slate-900 transition-colors pr-2">{card.label}</span>
-            <div className={`w-12 h-12 shrink-0 bg-gradient-to-br ${card.grad} rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-inner group-hover:scale-110 transition-transform`}>
-              {card.val}
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+              <span className="font-bold text-slate-800 text-base leading-snug transition-colors pr-2">{card.label}</span>
+              <div className={`w-12 h-12 shrink-0 bg-gradient-to-br ${card.grad} rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-inner group-hover:scale-110 transition-transform`}>
+                {card.val}
+              </div>
             </div>
+            <p className="text-[14px] text-slate-600 leading-relaxed font-medium">
+              {card.desc}
+            </p>
           </motion.div>
         ))}
-
-        {/* Challenge Numbers (Full Width) */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4 }}
-          className="flex flex-col sm:flex-row sm:items-center justify-between bg-white rounded-2xl p-4 sm:pl-5 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)] border border-slate-100 transition-all duration-300 hover:scale-[1.01] hover:border-transparent hover:shadow-[0_8px_30px_-10px_rgba(236,72,153,0.3)] cursor-default group gap-4 sm:gap-0"
-        >
-          <span className="font-bold text-slate-700 text-sm whitespace-pre-line group-hover:text-slate-900 transition-colors">
-            {staticContent?.coreNumbersSlide?.labels.challengeNumbers}
-          </span>
-          <div className="flex gap-2">
-            {challengeNumbers?.map((num, i) => (
-              <div key={i} className="w-10 h-10 shrink-0 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-inner group-hover:-translate-y-1 transition-transform" style={{ transitionDelay: `${i * 50}ms` }}>
-                {num}
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
 
       {/* Minimal Callout Box */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}

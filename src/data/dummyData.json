@@ -1,0 +1,81 @@
+{
+    "user": "jagathratchagan",
+    "astro_data": {
+        "lagna_sign": "Virgo",
+        "moon_sign": "Pisces",
+        "sun_sign": "Taurus",
+        "moon_nakshatra": "Uttara Bhadrapada"
+    },
+    "core_numbers": {
+        "birth_number": 4,
+        "destiny_number": 5,
+        "name_number": 4
+    },
+    "pages": {
+        "welcome": {
+            "title": "Numerology Insights for jagathratchagan",
+            "intro": "Welcome jagathratchagan! Discover personalized numerology highlights crafted exclusively for you. Explore how your unique name influences your life's journey and unlocks your potential.",
+            "highlights": [
+                "Your name, jagathratchagan, carries a distinctive energy that shapes your personality and destiny.",
+                "Embrace the qualities associated with your name to enhance your strengths and overcome challenges.",
+                "Focusing on self-awareness and personal growth can help you make the most of the opportunities that come your way.",
+                "Your name suggests a deep connection to intuition and inner wisdom—trust your instincts in important decisions.",
+                "Building harmonious relationships and maintaining balance in your life will support your overall well-being."
+            ]
+        },
+        "life_path_math": {
+            "day_reduced": 4,
+            "month_reduced": 6,
+            "year_reduced": 4,
+            "calculation": "4 + 6 + 4",
+            "life_path_number": 5
+        },
+        "life_path_detail": {
+            "overview": "Jagathratchagan, as a Birth Number 4 individual, you are known for your practicality, discipline, and methodical approach to life. You possess a strong sense of responsibility and are often seen as reliable and trustworthy. Your grounded nature helps you build stable foundations in all aspects of your life.",
+            "strengths": [
+                "Highly organized and detail-oriented",
+                "Dependable and trustworthy",
+                "Strong work ethic",
+                "Practical and realistic outlook",
+                "Ability to overcome obstacles with perseverance"
+            ],
+            "weaknesses": [
+                "Tendency to be rigid or inflexible",
+                "May struggle with adapting to sudden changes",
+                "Can become overly cautious or conservative",
+                "Sometimes perceived as distant or unemotional"
+            ],
+            "career": "Your disciplined and systematic approach makes you well-suited for careers that require structure and attention to detail. Fields such as engineering, administration, finance, or project management can bring you satisfaction and success. Your reliability and persistence help you excel in long-term projects and leadership roles.",
+            "relationships": "In relationships, you value loyalty, stability, and honesty. You are a supportive partner who prefers long-term commitments over fleeting connections. While you may not always express emotions openly, your actions demonstrate your care and dedication. Building trust and open communication will enhance your personal connections."
+        },
+        "name_destiny_math": {
+            "name": "jagathratchagan",
+            "name_number": 4
+        },
+        "lucky_traits": {
+            "lucky_numbers": [
+                5,
+                14,
+                23,
+                3,
+                12,
+                21,
+                30
+            ],
+            "lucky_colors": [
+                "green",
+                "light green",
+                "parrot green",
+                "yellow",
+                "saffron",
+                "gold",
+                "dark blue"
+            ]
+        },
+        "month_forecast": {
+            "month_keyword": "Transformation",
+            "forecast": "This month brings opportunities for significant changes in your personal and professional life. Your Birth Number 4 endows you with discipline and practicality, while your Destiny Number 5 encourages adaptability and exploration. Expect new experiences that may challenge your routines, but also open doors to growth and progress. Networking and communication will play a key role in your success.",
+            "advice": "Embrace flexibility and be open to new ideas. Trust your organizational skills to manage transitions smoothly. Avoid resisting change; instead, use it as a stepping stone for advancement. Stay grounded while exploring new possibilities."
+        }
+    }
+}

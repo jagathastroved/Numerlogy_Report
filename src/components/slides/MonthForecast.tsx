@@ -69,10 +69,10 @@ export default function MonthForecast() {
         
         <motion.div 
           whileHover={{ scale: 1.05 }}
-          className="w-36 h-36 rounded-full bg-gradient-to-br from-violet-600 via-fuchsia-600 to-orange-500 flex items-center justify-center font-serif font-black text-7xl text-white shadow-[0_15px_40px_-15px_rgba(249,115,22,0.6)] relative z-10 cursor-default"
+          className="w-36 h-36 rounded-full bg-gradient-to-br from-violet-600 via-fuchsia-600 to-orange-500 flex items-center justify-center font-black text-7xl leading-none text-white shadow-[0_15px_40px_-15px_rgba(249,115,22,0.6)] relative z-10 cursor-default"
         >
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay rounded-full"></div>
-          <span className="relative z-10 drop-shadow-md">{personalMonth}</span>
+          <span className="relative z-10 translate-y-1">{personalMonth}</span>
         </motion.div>
 
         <p className="text-sm font-bold text-slate-500 tracking-[0.2em] uppercase mt-6 relative z-10">

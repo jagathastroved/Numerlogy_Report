@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { PersonalDetails } from '../../types';
 import { useNavigate } from 'react-router-dom';
-import { Country, City, ICountry, ICity } from 'country-state-city';
+import { Country, ICountry } from 'country-state-city';
 import { useReport } from '../../context/ReportContext';
 import { motion, AnimatePresence } from 'motion/react';
 import CelestialBackground from '../animations/CelestialBackground';
@@ -39,17 +39,51 @@ export default function BirthDetailsForm({
   const [activeTab, setActiveTab] = useState<'Numerology'>('Numerology');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const availableCities = useMemo(() => {
-    if (!data.birthCountry) return [];
-    return City.getCitiesOfCountry(data.birthCountry) || [];
-  }, [data.birthCountry]);
+  const [apiCities, setApiCities] = useState<{ name: string, displayName: string }[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [isValidCity, setIsValidCity] = useState(false);
 
-  const filteredCities = useMemo(() => {
-    if (!data.birthCountry) return [];
-    if (!data.birthCity || data.birthCity.length < 3) return [];
-    const lower = data.birthCity.toLowerCase();
-    return availableCities.filter((c: ICity) => c.name.toLowerCase().includes(lower)).slice(0, 100);
-  }, [data.birthCity, availableCities, data.birthCountry]);
+  useEffect(() => {
+    if (!data.birthCountry || !data.birthCity || data.birthCity.length < 3) {
+      setApiCities([]);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setIsSearching(true);
+      try {
+        const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(data.birthCity)}&count=20&language=en&format=json`);
+        const dataJson = await response.json();
+
+        if (!dataJson.results) {
+          setApiCities([]);
+          return;
+        }
+
+        // Filter by selected country
+        const filteredByCountry = dataJson.results.filter((item: any) =>
+          item.country_code.toLowerCase() === data.birthCountry.toLowerCase()
+        );
+
+        // Map the results to a unique list of city names
+        const formattedCities = filteredByCountry.map((item: any) => ({
+          name: item.name,
+          displayName: [item.name, item.admin2, item.admin1, item.country].filter(Boolean).join(", ")
+        }));
+
+        // Remove duplicates by name
+        const uniqueCities = Array.from(new Map(formattedCities.map((item: any) => [item.name, item])).values()) as { name: string, displayName: string }[];
+
+        setApiCities(uniqueCities);
+      } catch (error) {
+        console.error("Error fetching cities:", error);
+      } finally {
+        setIsSearching(false);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [data.birthCity, data.birthCountry]);
 
   const days = Array.from({ length: 31 }, (_, i) => String(i + 1));
   const currentYear = new Date().getFullYear();
@@ -57,14 +91,9 @@ export default function BirthDetailsForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (data.birthCountry) {
-      const cityIsValid = availableCities.some(
-        (c: ICity) => c.name.toLowerCase() === data.birthCity.toLowerCase()
-      );
-      if (!cityIsValid) {
-        alert("Please submit valid city name as per suggestion");
-        return;
-      }
+    if (data.birthCountry && (!data.birthCity || !isValidCity)) {
+      alert("Please select a valid city from the suggested list.");
+      return;
     }
     fetchReport(data);
     navigate('/calculating');
@@ -80,15 +109,15 @@ export default function BirthDetailsForm({
       <div className="max-w-6xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center relative z-10 py-8 md:py-12">
 
         {/* Left Side Text */}
-        <div className="text-white space-y-6">
-          <h1 className="text-4xl md:text-5xl font-normal leading-tight text-white drop-shadow-md font-serif">
-            Discover Your True Path <br /> Through Numerology
+        <div className="text-white space-y-6 flex flex-col items-center md:items-start w-full">
+          <h1 className="text-4xl md:text-5xl font-normal leading-tight text-white drop-shadow-md font-serif text-center md:text-left">
+            Discover Your True Path <br className="hidden md:block" /> Through Numerology
           </h1>
-          <p className="text-white/90 text-sm md:text-base leading-relaxed font-normal max-w-lg">
+          <p className="text-white/90 text-sm md:text-base leading-relaxed font-normal max-w-lg mx-auto md:mx-0 text-center md:text-left">
             Unlock the hidden meanings of your birth numbers and name. Gain deep insights into your personality, destiny, and life's true purpose.
           </p>
 
-          <div className="space-y-4 pt-4 border-t border-white/20 max-w-md">
+          <div className="space-y-4 pt-4 border-t border-white/20 max-w-md w-full">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-600/20 flex items-center justify-center border border-indigo-500/50 mt-0.5">
                 <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
@@ -132,13 +161,13 @@ export default function BirthDetailsForm({
         </div>
 
         {/* Right Side Form Card */}
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden max-w-md w-full ml-auto flex flex-col max-h-full">
+        <div className="bg-white rounded-2xl shadow-2xl overflow-visible max-w-md w-full mx-auto md:ml-auto md:mr-0 flex flex-col max-h-full">
 
           {/* Tabs */}
           <div className="flex w-full shrink-0">
             <button
               onClick={() => setActiveTab('Numerology')}
-              className={`flex-1 py-3 text-center font-normal text-sm transition-colors duration-200 ${activeTab === 'Numerology'
+              className={`flex-1 py-3 text-center font-normal text-sm transition-colors duration-200 rounded-t-2xl ${activeTab === 'Numerology'
                 ? 'bg-indigo-600 text-white'
                 : 'bg-white text-gray-500 hover:bg-gray-50'
                 }`}
@@ -185,8 +214,8 @@ export default function BirthDetailsForm({
             <form onSubmit={handleSubmit} className="space-y-3">
 
               {/* Row: Name and Gender */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="relative mt-2">
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <div className="relative">
                   <label htmlFor="name-input" className="absolute -top-2 left-3 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
                     Full Name
                   </label>
@@ -318,8 +347,8 @@ export default function BirthDetailsForm({
                 </div>
               </div>
 
-              {/* Birth Time: Hour / Minute / AM-PM */}
-              <div className="grid grid-cols-3 gap-3 pt-1">
+              {/* Birth Time: Hour / Minute */}
+              <div className="grid grid-cols-2 gap-3 pt-1">
                 {/* Hour */}
                 <div className="relative">
                   <label id="hour-label" htmlFor="hour-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
@@ -331,13 +360,21 @@ export default function BirthDetailsForm({
                       aria-labelledby="hour-label"
                       required
                       value={data.birthHour}
-                      onChange={(e) => onChange({ birthHour: e.target.value })}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value, 10);
+                        onChange({
+                          birthHour: e.target.value,
+                          birthAmPm: val < 12 ? 'AM' : 'PM'
+                        });
+                      }}
                       className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
                     >
                       <option value="">Hour</option>
-                      {Array.from({ length: 12 }, (_, i) => {
-                        const displayHour = i + 1;
-                        return <option key={i} value={String(displayHour).padStart(2, '0')}>{displayHour}</option>;
+                      {Array.from({ length: 24 }, (_, i) => {
+                        const ampm = i < 12 ? 'Am' : 'pm';
+                        const displayHour12 = i === 0 ? 12 : (i > 12 ? i - 12 : i);
+                        const label = `${i} (${displayHour12} ${ampm})`;
+                        return <option key={i} value={String(i).padStart(2, '0')}>{label}</option>;
                       })}
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
@@ -364,29 +401,6 @@ export default function BirthDetailsForm({
                       {Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0'))?.map((min) => (
                         <option key={min} value={min}>{min}</option>
                       ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                  </div>
-                </div>
-
-                {/* AM/PM */}
-                <div className="relative">
-                  <label id="ampm-label" htmlFor="ampm-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
-                    AM / PM
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="ampm-select"
-                      aria-labelledby="ampm-label"
-                      required
-                      value={data.birthAmPm}
-                      onChange={(e) => onChange({ birthAmPm: e.target.value as 'AM' | 'PM' })}
-                      className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                    >
-                      <option value="AM">AM</option>
-                      <option value="PM">PM</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -432,6 +446,7 @@ export default function BirthDetailsForm({
                       value={data.birthCity}
                       onChange={(e) => {
                         onChange({ birthCity: e.target.value });
+                        setIsValidCity(false);
                         setShowSuggestions(true);
                       }}
                       onFocus={() => setShowSuggestions(true)}
@@ -442,26 +457,42 @@ export default function BirthDetailsForm({
                       autoComplete="off"
                     />
                     <AnimatePresence>
-                      {showSuggestions && filteredCities.length > 0 && (
+                      {showSuggestions && data.birthCity.length >= 3 && (
                         <motion.ul
-                          initial={{ opacity: 0, y: -5 }}
+                          initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                          className="absolute left-0 right-0 top-full z-50 mt-1 max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-xl py-1"
+                          exit={{ opacity: 0, y: 5 }}
+                          className="absolute left-0 right-0 bottom-full z-50 mb-1 max-h-48 overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-xl py-1"
                         >
-                          {filteredCities.map((city: ICity, idx: number) => (
-                            <li
-                              key={`${city.name}-${idx}`}
-                              onMouseDown={(e) => e.preventDefault()}
-                              onClick={() => {
-                                onChange({ birthCity: city.name });
-                                setShowSuggestions(false);
-                              }}
-                              className="px-4 py-2 text-sm text-gray-700 font-medium hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer transition-colors"
-                            >
-                              {city.name}
+                          {isSearching ? (
+                            <li className="px-4 py-3 text-sm text-gray-500 font-medium flex items-center justify-center gap-2">
+                              <svg className="animate-spin h-4 w-4 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                              </svg>
+                              Searching for "{data.birthCity}"...
                             </li>
-                          ))}
+                          ) : apiCities.length > 0 ? (
+                            apiCities.map((city, idx) => (
+                              <li
+                                key={`${city.name}-${idx}`}
+                                onMouseDown={(e) => e.preventDefault()}
+                                onClick={() => {
+                                  onChange({ birthCity: city.name });
+                                  setIsValidCity(true);
+                                  setShowSuggestions(false);
+                                }}
+                                className="px-4 py-2 text-sm text-gray-700 font-medium hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer transition-colors border-b border-gray-50 last:border-0"
+                              >
+                                <span className="block font-bold text-gray-900">{city.name}</span>
+                                <span className="block text-[10px] text-gray-500 truncate mt-0.5">{city.displayName}</span>
+                              </li>
+                            ))
+                          ) : (
+                            <li className="px-4 py-3 text-sm text-gray-500 font-medium text-center">
+                              No cities found. Please check spelling.
+                            </li>
+                          )}
                         </motion.ul>
                       )}
                     </AnimatePresence>

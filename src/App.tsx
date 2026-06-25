@@ -12,7 +12,7 @@ import LifePathMath from './components/slides/LifePathMath';
 import LifePathDetail from './components/slides/LifePathDetail';
 import NameDestinyMath from './components/slides/NameDestinyMath';
 import NumerologyOverview from './components/slides/NumerologyOverview';
-import LuckyNumbers from './components/slides/LuckyNumbers';
+import LuckyTraits from './components/slides/LuckyTraits';
 import MonthForecast from './components/slides/MonthForecast';
 import PremiumDeliverables from './components/slides/PremiumDeliverables';
 
@@ -60,7 +60,7 @@ export default function App() {
         <Route path="/life-path-detail" element={<LifePathDetail />} />
         <Route path="/name-destiny-math" element={<NameDestinyMath />} />
         <Route path="/numerology-overview" element={<NumerologyOverview />} />
-        <Route path="/lucky-numbers" element={<LuckyNumbers />} />
+        <Route path="/lucky-traits" element={<LuckyTraits />} />
         <Route path="/month-forecast" element={<MonthForecast />} />
         <Route path="/premium-deliverables" element={<PremiumDeliverables />} />
       </Route>

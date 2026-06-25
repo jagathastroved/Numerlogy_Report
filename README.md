@@ -60,7 +60,7 @@ The application uses standard React Router DOM browser routing.
     *   `/report/life-path-detail`
     *   `/report/name-destiny-math`
     *   `/report/numerology-overview`
-    *   `/report/lucky-numbers`
+    *   `/report/lucky-traits`
     *   `/report/month-forecast`
     *   `/report/premium-deliverables`
 

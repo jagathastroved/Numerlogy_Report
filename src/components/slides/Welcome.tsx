@@ -28,7 +28,7 @@ export default function Welcome() {
 
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight">
             <span className="text-slate-800">{staticContent?.introSlide?.greeting} </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-fuchsia-500 to-orange-500 drop-shadow-sm">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-fuchsia-500 to-orange-500 drop-shadow-sm capitalize">
               {name || "Seeker"}
             </span>
           </h2>
