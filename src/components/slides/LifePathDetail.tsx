@@ -71,7 +71,7 @@ export default function LifePathDetail() {
 
       {/* Strengths & Challenges Dual Columns */}
       <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
-        
+
         {/* Strengths Column */}
         <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <h3 className="text-emerald-700 font-bold text-xs uppercase tracking-widest flex items-center gap-2">

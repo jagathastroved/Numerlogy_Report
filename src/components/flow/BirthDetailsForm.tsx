@@ -5,6 +5,7 @@ import { Country, ICountry } from 'country-state-city';
 import { useReport } from '../../context/ReportContext';
 import { motion, AnimatePresence } from 'motion/react';
 import CelestialBackground from '../animations/CelestialBackground';
+import CustomSelect from '../ui/CustomSelect';
 
 interface BirthDetailsFormProps {
   data: PersonalDetails;
@@ -14,18 +15,18 @@ interface BirthDetailsFormProps {
 }
 
 const MONTHS = [
-  { name: 'January', val: '1' },
-  { name: 'February', val: '2' },
-  { name: 'March', val: '3' },
-  { name: 'April', val: '4' },
+  { name: 'Jan', val: '1' },
+  { name: 'Feb', val: '2' },
+  { name: 'Mar', val: '3' },
+  { name: 'Apr', val: '4' },
   { name: 'May', val: '5' },
-  { name: 'June', val: '6' },
-  { name: 'July', val: '7' },
-  { name: 'August', val: '8' },
-  { name: 'September', val: '9' },
-  { name: 'October', val: '10' },
-  { name: 'November', val: '11' },
-  { name: 'December', val: '12' }
+  { name: 'Jun', val: '6' },
+  { name: 'Jul', val: '7' },
+  { name: 'Aug', val: '8' },
+  { name: 'Sep', val: '9' },
+  { name: 'Oct', val: '10' },
+  { name: 'Nov', val: '11' },
+  { name: 'Dec', val: '12' }
 ];
 
 export default function BirthDetailsForm({
@@ -194,18 +195,13 @@ export default function BirthDetailsForm({
                   Language
                 </label>
                 <div className="relative">
-                  <select
+                  <CustomSelect
                     id="language-select"
                     value={language}
-                    onChange={(e) => setLanguage(e.target.value)}
-                    className="pl-3 pr-8 py-2 text-sm font-normal text-gray-700 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                  >
-                    <option value="English">English</option>
-                    <option value="Hindi">Hindi</option>
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                  </div>
+                    onChange={(val) => setLanguage(val)}
+                    options={['English', 'Hindi']}
+                    className="!pl-3 !pr-8 !py-2 !text-sm border-gray-200 rounded-lg"
+                  />
                 </div>
               </div>
             </div>
@@ -235,21 +231,19 @@ export default function BirthDetailsForm({
                     Gender
                   </label>
                   <div className="relative">
-                    <select
+                    <CustomSelect
                       id="gender-select"
                       required
                       value={data.gender}
-                      onChange={(e) => onChange({ gender: e.target.value as 'Male' | 'Female' | 'Prefer not to say' })}
-                      className="w-full pl-4 pr-8 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                    >
-                      <option value="">Select Gender</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Prefer not to say">Other</option>
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500 z-10">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
+                      onChange={(val) => onChange({ gender: val as 'Male' | 'Female' | 'Prefer not to say' })}
+                      placeholder="Select Gender"
+                      options={[
+                        { value: 'Male', label: 'Male' },
+                        { value: 'Female', label: 'Female' },
+                        { value: 'Prefer not to say', label: 'Other' }
+                      ]}
+                      className="!pl-4 !pr-8 !py-3 !text-sm border-gray-200 rounded-xl"
+                    />
                   </div>
                 </div>
               </div>
@@ -273,28 +267,22 @@ export default function BirthDetailsForm({
               </div>
 
               {/* Day / Month / Year Dropdowns */}
-              <div className="grid grid-cols-3 gap-3 pt-1">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-1">
                 {/* Day */}
                 <div className="relative">
                   <label htmlFor="day-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
                     Day
                   </label>
                   <div className="relative">
-                    <select
+                    <CustomSelect
                       id="day-select"
                       required
                       value={data.birthDay}
-                      onChange={(e) => onChange({ birthDay: e.target.value })}
-                      className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                    >
-                      <option value="" disabled>Day</option>
-                      {days?.map((d) => (
-                        <option key={d} value={d}>{d}</option>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
+                      onChange={(val) => onChange({ birthDay: val })}
+                      placeholder="Day"
+                      options={days}
+                      className="!pl-2 sm:!pl-3 !pr-6 sm:!pr-8 !py-3 !text-xs sm:!text-sm border-gray-200 rounded-lg"
+                    />
                   </div>
                 </div>
 
@@ -304,21 +292,15 @@ export default function BirthDetailsForm({
                     Month
                   </label>
                   <div className="relative">
-                    <select
+                    <CustomSelect
                       id="month-select"
                       required
                       value={data.birthMonth}
-                      onChange={(e) => onChange({ birthMonth: e.target.value })}
-                      className="w-full pl-2 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                    >
-                      <option value="" disabled>Month</option>
-                      {MONTHS?.map((m) => (
-                        <option key={m.val} value={m.val}>{m.name}</option>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
+                      onChange={(val) => onChange({ birthMonth: val })}
+                      placeholder="Month"
+                      options={MONTHS.map(m => ({ value: m.val, label: m.name }))}
+                      className="!pl-2 sm:!pl-3 !pr-6 sm:!pr-8 !py-3 !text-xs sm:!text-sm border-gray-200 rounded-lg"
+                    />
                   </div>
                 </div>
 
@@ -328,83 +310,83 @@ export default function BirthDetailsForm({
                     Year
                   </label>
                   <div className="relative">
-                    <select
+                    <CustomSelect
                       id="year-select"
                       required
                       value={data.birthYear}
-                      onChange={(e) => onChange({ birthYear: e.target.value })}
-                      className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                    >
-                      <option value="" disabled>Year</option>
-                      {years?.map((y) => (
-                        <option key={y} value={y}>{y}</option>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
+                      onChange={(val) => onChange({ birthYear: val })}
+                      placeholder="Year"
+                      options={years}
+                      className="!pl-2 sm:!pl-3 !pr-6 sm:!pr-8 !py-3 !text-xs sm:!text-sm border-gray-200 rounded-lg"
+                    />
                   </div>
                 </div>
               </div>
 
-              {/* Birth Time: Hour / Minute */}
-              <div className="grid grid-cols-2 gap-3 pt-1">
+              {/* Birth Time: Hour / Minute / Second */}
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-1">
                 {/* Hour */}
                 <div className="relative">
                   <label id="hour-label" htmlFor="hour-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
-                    Birth Hour
+                    Hour
                   </label>
                   <div className="relative">
-                    <select
+                    <CustomSelect
                       id="hour-select"
-                      aria-labelledby="hour-label"
                       required
                       value={data.birthHour}
-                      onChange={(e) => {
-                        const val = parseInt(e.target.value, 10);
+                      onChange={(val) => {
+                        const parsed = parseInt(val, 10);
                         onChange({
-                          birthHour: e.target.value,
-                          birthAmPm: val < 12 ? 'AM' : 'PM'
+                          birthHour: val,
+                          birthAmPm: parsed < 12 ? 'AM' : 'PM'
                         });
                       }}
-                      className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                    >
-                      <option value="">Hour</option>
-                      {Array.from({ length: 24 }, (_, i) => {
+                      placeholder="Hour"
+                      options={Array.from({ length: 24 }, (_, i) => {
                         const ampm = i < 12 ? 'Am' : 'pm';
                         const displayHour12 = i === 0 ? 12 : (i > 12 ? i - 12 : i);
                         const label = `${i} (${displayHour12} ${ampm})`;
-                        return <option key={i} value={String(i).padStart(2, '0')}>{label}</option>;
+                        return { value: String(i).padStart(2, '0'), label };
                       })}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
+                      className="!pl-2 sm:!pl-3 !pr-6 sm:!pr-8 !py-3 !text-xs sm:!text-sm border-gray-200 rounded-lg"
+                    />
                   </div>
                 </div>
 
                 {/* Minute */}
                 <div className="relative">
                   <label id="minute-label" htmlFor="minute-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
-                    Birth Minute
+                    Minute
                   </label>
                   <div className="relative">
-                    <select
+                    <CustomSelect
                       id="minute-select"
-                      aria-labelledby="minute-label"
                       required
                       value={data.birthMinute}
-                      onChange={(e) => onChange({ birthMinute: e.target.value })}
-                      className="w-full pl-3 pr-8 py-3 text-sm text-gray-700 font-medium bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                    >
-                      <option value="">Minute</option>
-                      {Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0'))?.map((min) => (
-                        <option key={min} value={min}>{min}</option>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-500 z-10">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
+                      onChange={(val) => onChange({ birthMinute: val })}
+                      placeholder="Min"
+                      options={Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0'))}
+                      className="!pl-2 sm:!pl-3 !pr-6 sm:!pr-8 !py-3 !text-xs sm:!text-sm border-gray-200 rounded-lg"
+                    />
+                  </div>
+                </div>
+
+                {/* Second */}
+                <div className="relative">
+                  <label id="second-label" htmlFor="second-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
+                    Second
+                  </label>
+                  <div className="relative">
+                    <CustomSelect
+                      id="second-select"
+                      required
+                      value={data.birthSecond || '00'}
+                      onChange={(val) => onChange({ birthSecond: val })}
+                      placeholder="Sec"
+                      options={Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0'))}
+                      className="!pl-2 sm:!pl-3 !pr-6 sm:!pr-8 !py-3 !text-xs sm:!text-sm border-gray-200 rounded-lg"
+                    />
                   </div>
                 </div>
               </div>
@@ -416,21 +398,15 @@ export default function BirthDetailsForm({
                     Country
                   </label>
                   <div className="relative">
-                    <select
+                    <CustomSelect
                       id="country-select"
                       required
                       value={data.birthCountry}
-                      onChange={(e) => onChange({ birthCountry: e.target.value, birthCity: '' })}
-                      className="w-full pl-4 pr-8 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 cursor-pointer appearance-none relative z-0"
-                    >
-                      <option value="">Select Country</option>
-                      {Country.getAllCountries()?.map((c: ICountry) => (
-                        <option key={c.isoCode} value={c.isoCode}>{c.name}</option>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500 z-10">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
+                      onChange={(val) => onChange({ birthCountry: val, birthCity: '' })}
+                      placeholder="Select Country"
+                      options={Country.getAllCountries().map((c: ICountry) => ({ value: c.isoCode, label: c.name }))}
+                      className="!pl-4 !pr-8 !py-3 !text-sm border-gray-200 rounded-xl"
+                    />
                   </div>
                 </div>
 
