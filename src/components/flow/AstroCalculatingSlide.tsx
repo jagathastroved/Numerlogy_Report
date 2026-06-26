@@ -12,29 +12,41 @@ const loadingTexts = [
   'Mapping Birth Chart...',
   'Generating Final Report...'
 ];
+import { useReport } from '../../context/ReportContext';
 
 export default function AstroCalculatingSlide({ onComplete }: AstroCalculatingSlideProps) {
   const [progress, setProgress] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
+  const { isLoading } = useReport();
 
   useEffect(() => {
     let current = 0;
     const interval = setInterval(() => {
-      current += 2;
+      if (isLoading) {
+        // Increment smoothly but increasingly slowly up to 95%
+        if (current < 50) current += 1.5;
+        else if (current < 80) current += 0.8;
+        else if (current < 95) current += 0.2;
+        else if (current < 99) current += 0.05; // Almost stopped at 99
+      } else {
+        // Once loading finishes, speed to 100%
+        current += 5;
+      }
+      
       if (current >= 100) {
         current = 100;
         clearInterval(interval);
         setTimeout(onComplete, 500);
       }
-      setProgress(current);
+      setProgress(Math.floor(current));
 
       // Update text index based on progress
       const newIndex = Math.min(Math.floor(current / 20), loadingTexts.length - 1);
       setTextIndex(newIndex);
-    }, 60);
+    }, 50);
 
     return () => clearInterval(interval);
-  }, [onComplete]);
+  }, [onComplete, isLoading]);
 
   // Numbers 1-9 for the mandala ring
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];

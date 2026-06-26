@@ -30,7 +30,6 @@ export default function App() {
     birthYear: '2000',
     birthHour: '12',
     birthMinute: '00',
-    birthAmPm: 'AM',
     birthSecond: '00',
     birthCountry: 'IN',
     birthCity: ''

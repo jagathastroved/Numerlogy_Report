@@ -5,18 +5,16 @@ import { reduceToNumerologyDigit } from '../../data/numerologyData';
 import { useReport } from '../../context/ReportContext';
 import { useNavigate } from 'react-router-dom';
 import { staticContent } from '../../data/numerologyData';
-import { DESTINY_INTERPRETATIONS } from '../../types';
 
-const PYTHAGOREAN_VALUE: Record<string, number> = {
-  A: 1, J: 1, S: 1,
-  B: 2, K: 2, T: 2,
-  C: 3, L: 3, U: 3,
-  D: 4, M: 4, V: 4,
-  E: 5, N: 5, W: 5,
-  F: 6, O: 6, X: 6,
-  G: 7, P: 7, Y: 7,
-  H: 8, Q: 8, Z: 8,
-  I: 9, R: 9
+const CHALDEAN_VALUE: Record<string, number> = {
+  A: 1, I: 1, J: 1, Q: 1, Y: 1,
+  B: 2, K: 2, R: 2,
+  C: 3, G: 3, L: 3, S: 3,
+  D: 4, M: 4, T: 4,
+  E: 5, H: 5, N: 5, X: 5,
+  U: 6, V: 6, W: 6,
+  O: 7, Z: 7,
+  F: 8, P: 8
 };
 
 export default function NameDestinyMath() {
@@ -28,9 +26,11 @@ export default function NameDestinyMath() {
   const characters = cleanedName.split('');
 
   // Calculate letter values
-  const values = characters?.map(char => PYTHAGOREAN_VALUE[char] || 1);
+  const values = characters?.map(char => CHALDEAN_VALUE[char] || 1);
   const sum = values.reduce((acc, val) => acc + val, 0);
-  const finalDestiny = reduceToNumerologyDigit(sum);
+
+  // Prioritize the API's fetched Name Number
+  const finalDestiny = reportData?.coreNumbers?.nameNumber || reduceToNumerologyDigit(sum);
 
   // Reduction explanation generation
   let reductionPath = String(sum);
@@ -46,11 +46,9 @@ export default function NameDestinyMath() {
     }
   }
 
-  // Check if desc is fully empty, or literally just "...", or undefined.
-  const hasReportDesc = !!reportData?.interpretations?.destiny?.desc && reportData?.interpretations?.destiny?.desc.length > 5;
-  const interpretation = hasReportDesc
+  const interpretation = reportData?.interpretations?.destiny?.desc
     ? reportData.interpretations.destiny
-    : DESTINY_INTERPRETATIONS[finalDestiny as keyof typeof DESTINY_INTERPRETATIONS] || DESTINY_INTERPRETATIONS[1];
+    : { title: "Your Destiny", desc: "Your destiny is a path of continuous growth and harmony." };
 
   const containerVariants = {
     hidden: { opacity: 0 },

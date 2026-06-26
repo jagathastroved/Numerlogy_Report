@@ -1,4 +1,4 @@
-import { NumerologyReportData, LIFE_PATH_INTERPRETATIONS, DESTINY_INTERPRETATIONS, NumerologyInsights } from '../types';
+import { NumerologyReportData, NumerologyInsights } from '../types';
 
 export const REPORT_PAGES = [
   { path: '/welcome', title: 'Welcome' },
@@ -69,8 +69,8 @@ export const staticContent = {
   },
   lifeDetailSlide: {
     title: "Your Life Path Number",
-    topStrengths: "Top 5 Strengths",
-    topChallenges: "Top 5 Challenges",
+    topStrengths: "Your Top Strengths",
+    topChallenges: "Your Top Challenges",
     bannerTitle: "Unlock Your Complete Numerological Destiny",
     bannerDesc: "Your Core Numbers reveal so much about you, but it's only the beginning! Buy the full premium report to unlock crucial insights into your future, wealth, health, and much more important cosmic secrets.",
     bannerBtn: "Book Your Numerology Report",
@@ -210,7 +210,6 @@ export const fallbackReport: NumerologyReportData = {
     birthHour: "12",
     birthMinute: "00",
     birthSecond: "00",
-    birthAmPm: "AM",
     birthCountry: "US",
     birthCity: "New York"
   },
@@ -220,8 +219,17 @@ export const fallbackReport: NumerologyReportData = {
     nameNumber: 8
   },
   interpretations: {
-    lifePath: LIFE_PATH_INTERPRETATIONS[5],
-    destiny: DESTINY_INTERPRETATIONS[1]
+    lifePath: {
+      title: "Loading Life Path...",
+      subtitle: "",
+      description: "",
+      traits: [],
+      strengths: [],
+      challenges: [],
+      careers: [],
+      compatibility: ""
+    },
+    destiny: { title: "Loading Destiny...", desc: "" }
   },
   lucky_traits: {
     lucky_numbers: [5, 14, 23, 3, 12, 21, 30],
@@ -310,71 +318,3 @@ export function calculateLuckyNumberThisYear(day: number, month: number, current
   return reduceToNumerologyDigit(sum);
 }
 
-/**
- * Retrieve supportive/hostile numbers based on standard Pythagorean relationships
- */
-export function getFriendlyAndEnemyNumbers(lifePath: number): { friendly: number[]; enemy: number[] } {
-  const normalized = lifePath > 9 ? reduceToNumerologyDigit(lifePath) : lifePath;
-  switch (normalized) {
-    case 1:
-      return { friendly: [1, 3, 5, 9], enemy: [4, 6, 8] };
-    case 2:
-      return { friendly: [2, 4, 6, 8], enemy: [1, 5, 9] };
-    case 3:
-      return { friendly: [1, 3, 5, 7], enemy: [4, 8] };
-    case 4:
-      return { friendly: [2, 4, 6, 8], enemy: [1, 3, 5] };
-    case 5:
-      return { friendly: [1, 3, 5, 7, 9], enemy: [2, 4, 6] };
-    case 6:
-      return { friendly: [2, 4, 6, 8, 9], enemy: [1, 7] };
-    case 7:
-      return { friendly: [1, 3, 5, 7, 9], enemy: [2, 8] };
-    case 8:
-      return { friendly: [2, 4, 6, 8], enemy: [1, 4, 5] };
-    case 9:
-      return { friendly: [1, 3, 6, 7, 9], enemy: [2, 4, 8] };
-    default:
-      return { friendly: [1, 3, 9], enemy: [4, 8] };
-  }
-}
-
-/**
- * Compile aggregate report insights for full rendering
- */
-export function generateNumerologyReport(
-  fullName: string,
-  dayStr: string,
-  monthStr: string,
-  yearStr: string
-): NumerologyInsights {
-  const day = parseInt(dayStr, 10) || 15;
-  const month = parseInt(monthStr, 10) || 5;
-  const year = parseInt(yearStr, 10) || 1990;
-
-  const lifePathNumber = calculateLifePathNumber(day, month, year);
-  const destinyNumber = calculateDestinyNumber(fullName);
-  const luckyNumberThisYear = calculateLuckyNumberThisYear(day, month, 2026);
-  const { friendly, enemy } = getFriendlyAndEnemyNumbers(lifePathNumber);
-
-  // Interpretations lookup
-  const lifePathDetails = LIFE_PATH_INTERPRETATIONS[lifePathNumber] || LIFE_PATH_INTERPRETATIONS[7];
-  const destinyDetails = DESTINY_INTERPRETATIONS[destinyNumber] || DESTINY_INTERPRETATIONS[5];
-
-  return {
-    lifePathNumber,
-    destinyNumber,
-    luckyNumberThisYear,
-    friendlyNumbers: friendly,
-    enemyNumbers: enemy,
-    lifePathTitle: lifePathDetails.title,
-    lifePathDescription: lifePathDetails.description,
-    destinyTitle: destinyDetails.title,
-    destinyDescription: destinyDetails.desc,
-    personalityTraits: lifePathDetails.traits,
-    strengths: lifePathDetails.strengths,
-    challenges: lifePathDetails.challenges,
-    careerRecommendations: lifePathDetails.careers,
-    relationshipCompatibility: lifePathDetails.compatibility
-  };
-}

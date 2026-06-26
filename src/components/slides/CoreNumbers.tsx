@@ -20,9 +20,9 @@ export default function CoreNumbers() {
 
   // Configuration for each core number card to give them unique, vibrant gradients
   const cardConfig = [
-    { key: 'birthNumber', val: birthNumber, label: staticContent?.coreNumbersSlide?.labels.birthNumber, desc: staticContent?.coreNumbersSlide?.descriptions?.birthNumber, grad: 'from-orange-400 to-rose-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(244,63,94,0.3)]' },
-    { key: 'destinyNumber', val: destinyNumber, label: staticContent?.coreNumbersSlide?.labels.destinyNumber, desc: staticContent?.coreNumbersSlide?.descriptions?.destinyNumber, grad: 'from-violet-500 to-purple-600', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(139,92,246,0.3)]' },
-    { key: 'nameNumber', val: nameNumber, label: staticContent?.coreNumbersSlide?.labels.nameNumber, desc: staticContent?.coreNumbersSlide?.descriptions?.nameNumber, grad: 'from-amber-400 to-orange-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(245,158,11,0.3)]' },
+    { key: 'birthNumber', val: birthNumber, label: staticContent?.coreNumbersSlide?.labels.birthNumber, desc: (coreNumbers as any).birthNumberContent || staticContent?.coreNumbersSlide?.descriptions?.birthNumber, grad: 'from-orange-400 to-rose-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(244,63,94,0.3)]' },
+    { key: 'destinyNumber', val: destinyNumber, label: staticContent?.coreNumbersSlide?.labels.destinyNumber, desc: (coreNumbers as any).destinyNumberContent || staticContent?.coreNumbersSlide?.descriptions?.destinyNumber, grad: 'from-violet-500 to-purple-600', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(139,92,246,0.3)]' },
+    { key: 'nameNumber', val: nameNumber, label: staticContent?.coreNumbersSlide?.labels.nameNumber, desc: (coreNumbers as any).nameNumberContent || staticContent?.coreNumbersSlide?.descriptions?.nameNumber, grad: 'from-amber-400 to-orange-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(245,158,11,0.3)]' },
   ];
 
   return (

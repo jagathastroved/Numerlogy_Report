@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { NumerologyReportData, PersonalDetails } from '../types';
-import { generateNumerologyReport, fallbackReport } from '../data/numerologyData';
+import { fetchNumerologyReport } from '../api/report';
 
 interface ReportContextType {
   reportData: NumerologyReportData | null;
@@ -27,45 +27,46 @@ export function ReportProvider({ children }: { children: ReactNode }) {
       // const response = await fetch('/api/numerology', { method: 'POST', body: JSON.stringify(details) });
       // const data = await response.json();
 
-      // Simulating API delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Call actual API
+      const apiData = await fetchNumerologyReport(details);
 
-      const dynamicInsights = generateNumerologyReport(
-        details.fullName || 'User',
-        details.birthDay,
-        details.birthMonth,
-        details.birthYear
-      );
-
-      // Construct the full NumerologyReportData shape using dynamic insights and fallback for missing properties
-      const mockData: NumerologyReportData = {
-        ...fallbackReport,
+      // Map API response to the frontend format
+      const mappedData: NumerologyReportData = {
         personalDetails: details,
         coreNumbers: {
-          birthNumber: dynamicInsights.destinyNumber,
-          destinyNumber: dynamicInsights.lifePathNumber,
-          nameNumber: dynamicInsights.destinyNumber,
+          birthNumber: apiData.coreNumbers?.birthNumber || 0,
+          destinyNumber: apiData.coreNumbers?.destinyNumber || 0,
+          nameNumber: apiData.coreNumbers?.nameNumber || 0,
+          lifePathNumber: apiData.lifePathDetail?.lifePathNumber || apiData.lifePathMath?.lifePathNumber || 0,
+          birthNumberContent: apiData.coreNumbers?.birthNumberContent || '',
+          destinyNumberContent: apiData.coreNumbers?.destinyNumberContent || '',
+          nameNumberContent: apiData.coreNumbers?.nameNumberContent || ''
         },
         interpretations: {
           lifePath: {
-            title: dynamicInsights.lifePathTitle,
-            subtitle: "Your Life Path",
-            description: dynamicInsights.lifePathDescription,
-            traits: dynamicInsights.personalityTraits,
-            strengths: dynamicInsights.strengths,
-            challenges: dynamicInsights.challenges,
-            careers: dynamicInsights.careerRecommendations,
-            compatibility: dynamicInsights.relationshipCompatibility
+            title: `Life Path ${apiData.lifePathDetail?.lifePathNumber || ''}`,
+            subtitle: "Your Foundational Vibration",
+            description: apiData.lifePathDetail?.numberContent || '',
+            traits: [],
+            strengths: apiData.lifePathDetail?.topStrengths || [],
+            challenges: apiData.lifePathDetail?.topChallenges || [],
+            careers: [],
+            compatibility: ""
           },
           destiny: {
-            title: dynamicInsights.destinyTitle,
-            desc: dynamicInsights.destinyDescription
+            title: `Name Number ${apiData.coreNumbers?.nameNumber || apiData.nameDestinyNumberPage?.nameDestinyNumber || ''}`,
+            desc: apiData.nameDestinyNumberPage?.destinyNumberContent || apiData.coreNumbers?.destinyNumberContent || ''
           }
-        }
+        },
+        lucky_traits: {
+          lucky_numbers: apiData.luckyTraits?.luckyNumbers || [],
+          lucky_colors: apiData.luckyTraits?.luckyColors || []
+        },
+        monthlyForecast: apiData.monthlyForecast?.monthForecastContent || ''
       };
 
-      setReportData(mockData);
-      sessionStorage.setItem('numerologyReportData', JSON.stringify(mockData));
+      setReportData(mappedData);
+      sessionStorage.setItem('numerologyReportData', JSON.stringify(mappedData));
     } catch (error) {
       console.error('Failed to fetch report:', error);
     } finally {

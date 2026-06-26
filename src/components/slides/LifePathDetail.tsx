@@ -10,7 +10,7 @@ export default function LifePathDetail() {
 
   // Dynamic lookup with fallback to prevent blank page on outdated cache
   const details = reportData?.interpretations?.lifePath || fallbackReport.interpretations.lifePath;
-  const lifePathNumber = reportData?.coreNumbers?.destinyNumber || 6;
+  const lifePathNumber = reportData?.coreNumbers?.lifePathNumber || 6;
 
   // Specific strengths/challenges default arrays if not found
   const strengths = details.strengths?.slice(0, 5) || [];

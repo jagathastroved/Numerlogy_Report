@@ -336,10 +336,8 @@ export default function BirthDetailsForm({
                       required
                       value={data.birthHour}
                       onChange={(val) => {
-                        const parsed = parseInt(val, 10);
                         onChange({
-                          birthHour: val,
-                          birthAmPm: parsed < 12 ? 'AM' : 'PM'
+                          birthHour: val
                         });
                       }}
                       placeholder="Hour"
