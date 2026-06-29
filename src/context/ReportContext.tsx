@@ -62,7 +62,10 @@ export function ReportProvider({ children }: { children: ReactNode }) {
           lucky_numbers: apiData.luckyTraits?.luckyNumbers || [],
           lucky_colors: apiData.luckyTraits?.luckyColors || []
         },
-        monthlyForecast: apiData.monthlyForecast?.monthForecastContent || ''
+        monthlyForecast: {
+          monthForecastNumber: apiData.monthlyForecast?.monthForecastNumber || 0,
+          monthForecastContent: apiData.monthlyForecast?.monthForecastContent || ''
+        }
       };
 
       setReportData(mappedData);

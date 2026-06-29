@@ -2,14 +2,23 @@ import { useReport } from '../../context/ReportContext';
 import { useNavigate } from 'react-router-dom';
 import { Compass, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { staticContent, fallbackReport } from '../../data/numerologyData';
+import { staticContent } from '../../data/numerologyData';
 
 export default function LifePathDetail() {
   const { reportData } = useReport();
   const navigate = useNavigate();
 
   // Dynamic lookup with fallback to prevent blank page on outdated cache
-  const details = reportData?.interpretations?.lifePath || fallbackReport.interpretations.lifePath;
+  const details = reportData?.interpretations?.lifePath || {
+    title: "",
+    subtitle: "",
+    description: "",
+    traits: [],
+    strengths: [],
+    challenges: [],
+    careers: [],
+    compatibility: ""
+  };
   const lifePathNumber = reportData?.coreNumbers?.lifePathNumber || 6;
 
   // Specific strengths/challenges default arrays if not found

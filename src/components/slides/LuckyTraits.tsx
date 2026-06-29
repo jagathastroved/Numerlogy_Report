@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Sparkles, Star, Palette } from 'lucide-react';
-import { staticContent, fallbackReport } from '../../data/numerologyData';
+import { staticContent } from '../../data/numerologyData';
 import { useReport } from '../../context/ReportContext';
 
 // Helper to map color names to actual hex values for styling
@@ -30,7 +30,7 @@ const getTextColor = (colorName: string) => {
 export default function LuckyTraits() {
   const { reportData } = useReport();
 
-  const luckyTraits = reportData?.lucky_traits || fallbackReport.lucky_traits;
+  const luckyTraits = reportData?.lucky_traits || { lucky_numbers: [], lucky_colors: [] };
 
   const containerVariants = {
     hidden: { opacity: 0 },

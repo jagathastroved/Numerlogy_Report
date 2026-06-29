@@ -24,7 +24,18 @@ export default function MonthForecast() {
   const juneMonthVal = 6;
   const personalMonth = reduceToNumerologyDigit(personalYear + juneMonthVal);
 
-  const interpretation = staticContent?.monthSlide?.interpretations[personalMonth as keyof typeof staticContent.monthSlide.interpretations] || staticContent?.monthSlide?.interpretations[1];
+  // Use API data if available, fallback to calculations
+  const apiMonthNumber = reportData?.monthlyForecast?.monthForecastNumber;
+  const apiMonthContent = reportData?.monthlyForecast?.monthForecastContent;
+
+  const displayMonthNumber = apiMonthNumber !== undefined ? apiMonthNumber : personalMonth;
+
+  const staticInterpretation = staticContent?.monthSlide?.interpretations[displayMonthNumber as keyof typeof staticContent.monthSlide.interpretations] || staticContent?.monthSlide?.interpretations[1];
+
+  const interpretation = {
+    title: staticInterpretation.title,
+    desc: apiMonthContent || staticInterpretation.desc
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -37,7 +48,7 @@ export default function MonthForecast() {
   };
 
   return (
-    <motion.div 
+    <motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -47,7 +58,7 @@ export default function MonthForecast() {
       {/* Header */}
       <motion.div variants={itemVariants} className="relative">
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-purple-300/30 blur-3xl rounded-full pointer-events-none"></div>
-        
+
         <div className="space-y-4 relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-full shadow-sm">
             <Sparkles className="w-4 h-4 text-purple-600" />
@@ -66,13 +77,13 @@ export default function MonthForecast() {
       {/* Giant Number Indicator badge */}
       <motion.div variants={itemVariants} className="flex flex-col items-center justify-center space-y-2 pt-2 pb-4 relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-orange-400/20 blur-3xl rounded-full pointer-events-none"></div>
-        
-        <motion.div 
+
+        <motion.div
           whileHover={{ scale: 1.05 }}
           className="w-36 h-36 rounded-full bg-gradient-to-br from-violet-600 via-fuchsia-600 to-orange-500 flex items-center justify-center font-black text-7xl leading-none text-white shadow-[0_15px_40px_-15px_rgba(249,115,22,0.6)] relative z-10 cursor-default"
         >
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay rounded-full"></div>
-          <span className="relative z-10 translate-y-1">{personalMonth}</span>
+          <span className="relative z-10 translate-y-1">{displayMonthNumber}</span>
         </motion.div>
 
         <p className="text-sm font-bold text-slate-500 tracking-[0.2em] uppercase mt-6 relative z-10">
@@ -92,7 +103,7 @@ export default function MonthForecast() {
       </motion.div>
 
       {/* Minimal Callout Box */}
-      <motion.div 
+      <motion.div
         variants={itemVariants}
         className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/50 border border-indigo-100 rounded-2xl shadow-sm mt-8"
       >

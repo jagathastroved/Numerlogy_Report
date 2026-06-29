@@ -1,4 +1,4 @@
-import { NumerologyReportData, NumerologyInsights } from '../types';
+import { NumerologyReportData } from '../types';
 
 export const REPORT_PAGES = [
   { path: '/welcome', title: 'Welcome' },
@@ -199,44 +199,6 @@ export const staticContent = {
   }
 };
 
-export const fallbackReport: NumerologyReportData = {
-  personalDetails: {
-    fullName: "John Doe",
-    email: "john@example.com",
-    gender: "",
-    birthDay: "01",
-    birthMonth: "01",
-    birthYear: "1990",
-    birthHour: "12",
-    birthMinute: "00",
-    birthSecond: "00",
-    birthCountry: "US",
-    birthCity: "New York"
-  },
-  coreNumbers: {
-    birthNumber: 7,
-    destinyNumber: 2,
-    nameNumber: 8
-  },
-  interpretations: {
-    lifePath: {
-      title: "Loading Life Path...",
-      subtitle: "",
-      description: "",
-      traits: [],
-      strengths: [],
-      challenges: [],
-      careers: [],
-      compatibility: ""
-    },
-    destiny: { title: "Loading Destiny...", desc: "" }
-  },
-  lucky_traits: {
-    lucky_numbers: [5, 14, 23, 3, 12, 21, 30],
-    lucky_colors: ["green", "light green", "parrot green", "yellow", "saffron", "gold", "dark blue"]
-  },
-  monthlyForecast: "This month you will experience a surge in creative energy and new opportunities for travel."
-};
 
 /**
  * Reduce a number to a single digit (1-9) or a Master Number (11, 22, 33)

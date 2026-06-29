@@ -72,6 +72,9 @@ export interface NumerologyReportData {
     lucky_numbers: number[];
     lucky_colors: string[];
   };
-  monthlyForecast: string;
+  monthlyForecast: {
+    monthForecastNumber: number;
+    monthForecastContent: string;
+  };
 }
 
