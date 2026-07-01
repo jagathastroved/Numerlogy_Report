@@ -1,8 +1,24 @@
 import { motion } from 'framer-motion';
 import { Compass, Sparkles } from 'lucide-react';
-import { reduceToNumerologyDigit } from '../../data/numerologyData';
 import { useReport } from '../../context/ReportContext';
-import { staticContent } from '../../data/numerologyData';
+
+/**
+ * Reduce a number to a single digit (1-9) or a Master Number (11, 22, 33)
+ */
+function reduceToNumerologyDigit(num: number): number {
+  if (num === 11 || num === 22 || num === 33) return num;
+  let current = num;
+  while (current > 9) {
+    let sum = 0;
+    while (current > 0) {
+      sum += current % 10;
+      current = Math.floor(current / 10);
+    }
+    current = sum;
+    if (current === 11 || current === 22 || current === 33) return current;
+  }
+  return current;
+}
 
 // Helper to generate the string of math steps for a given number
 function getReductionSteps(num: number): string[] {
@@ -79,10 +95,10 @@ export default function LifePathMath() {
           </div>
 
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
-            {staticContent?.lifeMathSlide?.title}
+            Decoding Your Life Path
           </h2>
           <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
-            {staticContent?.lifeMathSlide?.description}
+            Your Life Path Number is the most profound indicator of your character and the trajectory of your lifetime. We derive this powerful digit by systematically reducing your birth date until it reveals your foundational vibration or a rare Master Number.
           </p>
         </div>
       </motion.div>
@@ -92,20 +108,20 @@ export default function LifePathMath() {
         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-100/50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
         <p className="text-slate-500 font-bold text-xs text-center uppercase tracking-widest">
-          {staticContent?.lifeMathSlide?.exactDateLabel}
+          Your Exact Date of Birth
         </p>
 
         <div className="flex justify-center gap-6">
           <div className="flex flex-col items-center gap-2">
-            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{staticContent?.lifeMathSlide?.day}</span>
+            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Day</span>
             <span className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-md font-bold px-5 py-3 rounded-2xl text-xl">{dayVal}</span>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{staticContent?.lifeMathSlide?.month}</span>
+            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Month</span>
             <span className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-md font-bold px-5 py-3 rounded-2xl text-xl">{monthVal}</span>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{staticContent?.lifeMathSlide?.year}</span>
+            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Year</span>
             <span className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-md font-bold px-5 py-3 rounded-2xl text-xl">{yearVal}</span>
           </div>
         </div>
@@ -117,19 +133,19 @@ export default function LifePathMath() {
         {/* Step 1 */}
         <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <p className="text-sm text-slate-600 border-b border-slate-50 pb-3 font-medium">
-            <strong className="text-violet-600 font-bold mr-1">{staticContent?.lifeMathSlide?.step1}</strong> {staticContent?.lifeMathSlide?.step1Desc}
+            <strong className="text-violet-600 font-bold mr-1">Phase 1:</strong> Reduce the day, month, and year down to single digits.
           </p>
           <div className="space-y-3 text-sm text-slate-700 font-mono bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
             <div className="flex items-center gap-3">
-              <span className="w-12 text-slate-400 font-sans font-bold text-xs uppercase">{staticContent?.lifeMathSlide?.day}:</span>
+              <span className="w-12 text-slate-400 font-sans font-bold text-xs uppercase">Day:</span>
               <span className="font-semibold text-slate-800">{dayVal > 9 ? daySteps?.map((step, idx) => <span key={idx}>{idx > 0 && <span className="text-violet-400 mx-1">→</span>}{step}</span>) : dayVal}</span>
             </div>
             <div className="flex items-center gap-3">
-              <span className="w-12 text-slate-400 font-sans font-bold text-xs uppercase">{staticContent?.lifeMathSlide?.month}:</span>
+              <span className="w-12 text-slate-400 font-sans font-bold text-xs uppercase">Month:</span>
               <span className="font-semibold text-slate-800">{monthVal > 9 ? monthSteps?.map((step, idx) => <span key={idx}>{idx > 0 && <span className="text-violet-400 mx-1">→</span>}{step}</span>) : monthVal}</span>
             </div>
             <div className="flex items-center gap-3">
-              <span className="w-12 text-slate-400 font-sans font-bold text-xs uppercase">{staticContent?.lifeMathSlide?.year}:</span>
+              <span className="w-12 text-slate-400 font-sans font-bold text-xs uppercase">Year:</span>
               <span className="font-semibold text-slate-800">{yearVal > 9 ? yearSteps?.map((step, idx) => <span key={idx}>{idx > 0 && <span className="text-violet-400 mx-1">→</span>}{step}</span>) : yearVal}</span>
             </div>
           </div>
@@ -138,7 +154,7 @@ export default function LifePathMath() {
         {/* Step 2 */}
         <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <p className="text-sm text-slate-600 border-b border-slate-50 pb-3 font-medium">
-            <strong className="text-orange-500 font-bold mr-1">{staticContent?.lifeMathSlide?.step2}</strong> {staticContent?.lifeMathSlide?.step2Desc}
+            <strong className="text-orange-500 font-bold mr-1">Phase 2:</strong> Sum the reduced values together.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 font-mono text-lg sm:text-xl text-slate-800 bg-slate-50/50 p-3 sm:p-4 rounded-2xl border border-slate-100">
             <span className="bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-slate-200 font-bold shadow-sm text-indigo-900">{dayReduced}</span>
@@ -154,7 +170,7 @@ export default function LifePathMath() {
         {/* Step 3 */}
         <div className="space-y-5 pt-4 text-center flex flex-col items-center">
           <p className="text-sm text-slate-600 font-medium">
-            <strong className="text-rose-500 font-bold mr-1">{staticContent?.lifeMathSlide?.step3}</strong> {staticContent?.lifeMathSlide?.step3Desc}
+            <strong className="text-rose-500 font-bold mr-1">Phase 3:</strong> Reduce the final sum to unveil your single-digit path.
           </p>
 
           {rawSum > 9 && rawSum !== 11 && rawSum !== 22 && rawSum !== 33 && (
@@ -173,7 +189,7 @@ export default function LifePathMath() {
           </motion.div>
 
           <p className="text-xs font-bold text-slate-400 tracking-[0.2em] uppercase mt-4">
-            {staticContent?.lifeMathSlide?.lifePathLabel}
+            Your Core Life Path Number
           </p>
         </div>
       </motion.div>
@@ -188,7 +204,7 @@ export default function LifePathMath() {
         </div>
 
         <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
-          {staticContent?.lifeMathSlide?.calloutText}
+          Let's dig deeper! Click Next to discover what your Life Path reveals about your greatest advantages and karmic lessons.
         </p>
       </motion.div>
 

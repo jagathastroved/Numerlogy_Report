@@ -1,8 +1,39 @@
 import { Compass, Sparkles } from 'lucide-react';
-import { reduceToNumerologyDigit } from '../../data/numerologyData';
+
 import { useReport } from '../../context/ReportContext';
-import { staticContent } from '../../data/numerologyData';
 import { motion } from 'framer-motion';
+
+const interpretationsMap: Record<number, { title: string, desc: string }> = {
+  1: { title: "Fresh Starts & Bold Action", desc: "A Personal Month of 1 kicks off a dynamic cycle of new beginnings. Now is the exact moment to plant fresh seeds, launch new ventures, and assert your independence. Your leadership qualities are amplified—trust your gut and take decisive action." },
+  2: { title: "Harmony & Diplomatic Patience", desc: "A Personal Month of 2 shifts the focus to partnerships and emotional balance. It is a period for nurturing the seeds you recently planted. Empathy, teamwork, and careful diplomacy will yield the best results. Lean into your relationships." },
+  3: { title: "Creative Spark & Joyful Expression", desc: "A Personal Month of 3 is electric, social, and highly communicative. Your creative juices are overflowing, making it a stellar time for art, writing, or public speaking. Embrace joy, surround yourself with friends, and let your true self shine." },
+  4: { title: "Discipline & Solid Foundations", desc: "A Personal Month of 4 demands hard work, structure, and practical planning. It is time to roll up your sleeves and fortify your future. Concentrate on administrative tasks, manage your details, and build a sturdy framework for success." },
+  5: { title: "Dynamic Change & Liberation", desc: "A Personal Month of 5 ushers in adventure, unpredictability, and major shifts. Stay flexible and embrace the unknown. This is the ultimate time for travel, networking, and breaking free from stagnant routines. Expand your horizons." },
+  6: { title: "Domestic Harmony & Responsibility", desc: "A Personal Month of 6 revolves around love, family, and home life. You may be called upon to support loved ones or heal strained relationships. It is a beautiful period for beautifying your sanctuary and finding peace at home." },
+  7: { title: "Deep Introspection & Spiritual Awakening", desc: "A Personal Month of 7 invites you to step back from the chaos and journey inward. It is a profound period for meditation, research, and soul-searching. Listen closely to your inner voice and prioritize your spiritual and mental well-being." },
+  8: { title: "Manifestation & Material Power", desc: "A Personal Month of 8 activates your career and financial sectors. Your ability to manifest wealth is at its peak. Step confidently into your power, make bold executive decisions, and watch your disciplined efforts translate into material rewards." },
+  9: { title: "Culmination & Karmic Release", desc: "A Personal Month of 9 marks the end of a cycle. It is a time of deep reflection, closure, and releasing what no longer serves you. Declutter your life—both physically and emotionally—to clear the runway for your next great chapter." },
+  11: { title: "Divine Intuition & Illumination", desc: "A Master Personal Month of 11 opens a powerful channel to higher consciousness. Your psychic sensitivity and intuition are amplified. Utilize this rare energy for spiritual teaching, profound inspiration, and elevating your vibration." },
+  22: { title: "The Master Architect", desc: "A Master Personal Month of 22 presents a monumental opportunity to turn your most ambitious visions into tangible reality. By combining your high ideals with grounded, practical effort, you can achieve success on a massive scale." }
+};
+
+/**
+ * Reduce a number to a single digit (1-9) or a Master Number (11, 22, 33)
+ */
+function reduceToNumerologyDigit(num: number): number {
+  if (num === 11 || num === 22 || num === 33) return num;
+  let current = num;
+  while (current > 9) {
+    let sum = 0;
+    while (current > 0) {
+      sum += current % 10;
+      current = Math.floor(current / 10);
+    }
+    current = sum;
+    if (current === 11 || current === 22 || current === 33) return current;
+  }
+  return current;
+}
 
 export default function MonthForecast() {
   const { reportData } = useReport();
@@ -30,7 +61,7 @@ export default function MonthForecast() {
 
   const displayMonthNumber = apiMonthNumber !== undefined ? apiMonthNumber : personalMonth;
 
-  const staticInterpretation = staticContent?.monthSlide?.interpretations[displayMonthNumber as keyof typeof staticContent.monthSlide.interpretations] || staticContent?.monthSlide?.interpretations[1];
+  const staticInterpretation = interpretationsMap[displayMonthNumber] || interpretationsMap[1];
 
   const interpretation = {
     title: staticInterpretation.title,
@@ -66,10 +97,10 @@ export default function MonthForecast() {
           </div>
 
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
-            {staticContent?.monthSlide?.title}
+            Current Month Forecast
           </h2>
           <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
-            {staticContent?.monthSlide?.subtitle}
+            A detailed breakdown of the energetic forces shaping your current month
           </p>
         </div>
       </motion.div>
@@ -87,7 +118,7 @@ export default function MonthForecast() {
         </motion.div>
 
         <p className="text-sm font-bold text-slate-500 tracking-[0.2em] uppercase mt-6 relative z-10">
-          {staticContent?.monthSlide?.monthLabel}
+          Your Personal Monthly Cycle
         </p>
       </motion.div>
 
@@ -112,7 +143,7 @@ export default function MonthForecast() {
         </div>
 
         <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
-          {staticContent?.monthSlide?.calloutText}
+          That concludes your monthly preview. Now let's explore everything waiting for you in the full premium dossier.
         </p>
       </motion.div>
 

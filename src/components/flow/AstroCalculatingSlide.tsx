@@ -24,15 +24,15 @@ export default function AstroCalculatingSlide({ onComplete }: AstroCalculatingSl
     const interval = setInterval(() => {
       if (isLoading) {
         // Increment smoothly but increasingly slowly up to 95%
-        if (current < 50) current += 1.5;
-        else if (current < 80) current += 0.8;
-        else if (current < 95) current += 0.2;
-        else if (current < 99) current += 0.05; // Almost stopped at 99
+        if (current < 50) current += 1;
+        else if (current < 80) current += 0.5;
+        else if (current < 95) current += 0.5;
+        else if (current < 99) current += 0.02; // Almost stopped at 99
       } else {
         // Once loading finishes, speed to 100%
         current += 5;
       }
-      
+
       if (current >= 100) {
         current = 100;
         clearInterval(interval);

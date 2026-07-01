@@ -44,13 +44,10 @@ export interface NumerologyInsights {
 
 export interface NumerologyDefinition {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
-  traits: string[];
   strengths: string[];
   challenges: string[];
-  careers: string[];
-  compatibility: string;
 }
 
 export interface NumerologyReportData {

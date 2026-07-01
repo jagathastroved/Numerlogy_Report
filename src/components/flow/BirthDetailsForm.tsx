@@ -61,15 +61,17 @@ export default function BirthDetailsForm({
           return;
         }
 
-        // Filter by selected country
+        // Filter by selected country and ensure it's a Populated Place (city/town)
         const filteredByCountry = dataJson.results.filter((item: any) =>
-          item.country_code.toLowerCase() === data.birthCountry.toLowerCase()
+          item.country_code.toLowerCase() === data.birthCountry.toLowerCase() &&
+          (!item.feature_code || item.feature_code.startsWith('PPL'))
         );
 
         // Map the results to a unique list of city names
         const formattedCities = filteredByCountry.map((item: any) => ({
           name: item.name,
-          displayName: [item.name, item.admin2, item.admin1, item.country].filter(Boolean).join(", ")
+          // Simplify display name to just "City, Country" as requested
+          displayName: [item.name, item.country].filter(Boolean).join(", ")
         }));
 
         // Remove duplicates by name
@@ -92,6 +94,10 @@ export default function BirthDetailsForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!data.gender) {
+      alert("Please select your gender.");
+      return;
+    }
     if (data.birthCountry && (!data.birthCity || !isValidCity)) {
       alert("Please select a valid city from the suggested list.");
       return;

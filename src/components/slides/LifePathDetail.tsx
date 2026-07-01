@@ -2,28 +2,16 @@ import { useReport } from '../../context/ReportContext';
 import { useNavigate } from 'react-router-dom';
 import { Compass, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { staticContent } from '../../data/numerologyData';
-
 export default function LifePathDetail() {
   const { reportData } = useReport();
   const navigate = useNavigate();
 
-  // Dynamic lookup with fallback to prevent blank page on outdated cache
-  const details = reportData?.interpretations?.lifePath || {
-    title: "",
-    subtitle: "",
-    description: "",
-    traits: [],
-    strengths: [],
-    challenges: [],
-    careers: [],
-    compatibility: ""
-  };
-  const lifePathNumber = reportData?.coreNumbers?.lifePathNumber || 6;
+  const details = reportData?.interpretations?.lifePath;
+  const lifePathNumber = reportData?.coreNumbers?.lifePathNumber;
 
   // Specific strengths/challenges default arrays if not found
-  const strengths = details.strengths?.slice(0, 5) || [];
-  const challenges = details.challenges?.slice(0, 5) || [];
+  const strengths = details?.strengths?.slice(0, 5) || [];
+  const challenges = details?.challenges?.slice(0, 5) || [];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -55,7 +43,7 @@ export default function LifePathDetail() {
 
           <div className="flex items-center justify-between gap-4">
             <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
-              {staticContent?.lifeDetailSlide?.title}
+              Your Life Path Number
             </h2>
 
             {/* Glowing Circular Badge */}
@@ -71,10 +59,9 @@ export default function LifePathDetail() {
       <motion.div variants={itemVariants} className="bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg relative overflow-hidden space-y-4 hover:shadow-xl hover:bg-white/80 transition-all duration-300" id="life-path-description">
         <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-100/50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
-        <p className="font-bold text-indigo-950 text-lg leading-snug">{details.subtitle}</p>
+        <p className="font-bold text-indigo-950 text-lg leading-snug">{details?.subtitle}</p>
         <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed font-medium">
-          <p>{details.description}</p>
-          <p>You find your deepest motivation when you align with your cosmic archetype of <strong className="text-violet-600 font-bold">{details.title}</strong>, seeking harmony in everything you build.</p>
+          <p>{details?.description}</p>
         </div>
       </motion.div>
 
@@ -85,7 +72,7 @@ export default function LifePathDetail() {
         <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <h3 className="text-emerald-700 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
             <span className="w-6 h-1 bg-emerald-400 rounded-full"></span>
-            {staticContent?.lifeDetailSlide?.topStrengths}
+            Your Top Strengths
           </h3>
           <div className="flex flex-wrap gap-2.5">
             {strengths?.map((str, idx) => (
@@ -103,7 +90,7 @@ export default function LifePathDetail() {
         <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <h3 className="text-rose-700 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
             <span className="w-6 h-1 bg-rose-400 rounded-full"></span>
-            {staticContent?.lifeDetailSlide?.topChallenges}
+            Your Top Challenges
           </h3>
           <div className="flex flex-wrap gap-2.5">
             {challenges?.map((ch, idx) => (
@@ -140,11 +127,11 @@ export default function LifePathDetail() {
 
           <div className="order-1 inline-flex items-center gap-1.5 px-3 py-1 border border-[#c2964b] rounded-full">
             <svg className="w-3 h-3 text-[#e3b659]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg>
-            <span className="text-[9px] font-bold text-[#e1b971] tracking-widest uppercase">{staticContent?.lifeDetailSlide?.bannerSubLabel}</span>
+            <span className="text-[9px] font-bold text-[#e1b971] tracking-widest uppercase">GET YOUR PREMIUM NUMEROLOGY REPORT</span>
           </div>
 
           <h3 className="order-2 text-2xl lg:text-3xl font-bold text-white leading-tight text-center lg:text-left tracking-tight">
-            {staticContent?.lifeDetailSlide?.bannerTitle}
+            Unlock Your Complete Numerological Destiny
           </h3>
 
           {/* Premium Book Mockup (Mobile) */}
@@ -152,16 +139,24 @@ export default function LifePathDetail() {
             <img src="/images/Numerology_Book.png" alt="Numerology Report" className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" />
           </div>
 
-          <p className="order-4 text-sm text-indigo-100/80 leading-relaxed text-center lg:text-left">
-            {staticContent?.lifeDetailSlide?.bannerDesc}
-          </p>
+          <div className="order-4 w-full">
+            <p className="text-sm text-indigo-100/90 leading-relaxed text-center lg:text-left mb-3">
+              Your Life Path is just the beginning! The complete premium report unlocks deep karmic insights and your ultimate cosmic potential.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-[13px] font-medium text-indigo-200">
+              <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-[#e3b659] shrink-0" /> Ideal Business Fields</span>
+              <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-[#e3b659] shrink-0" /> Future Predictions</span>
+              <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-[#e3b659] shrink-0" /> Spiritual Remedies</span>
+              <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-[#e3b659] shrink-0" /> Core Numbers Analysis</span>
+            </div>
+          </div>
 
           <button
             type="button"
             onClick={() => navigate('/premium-deliverables')}
             className="order-5 hidden lg:block mt-2 px-6 py-3 bg-gradient-to-r from-[#e3b659] to-[#c2964b] hover:from-[#f0c366] hover:to-[#d1a55a] text-[#2a1148] text-sm font-bold rounded-xl shadow-[0_4px_15px_rgba(227,182,89,0.3)] transition-all hover:scale-105 active:scale-95"
           >
-            {staticContent?.lifeDetailSlide?.bannerBtn}
+            Book Your Numerology Report
           </button>
         </div>
 
@@ -172,7 +167,7 @@ export default function LifePathDetail() {
             onClick={() => navigate('/premium-deliverables')}
             className="w-full px-6 py-3.5 bg-gradient-to-r from-[#e3b659] to-[#c2964b] text-[#2a1148] text-sm font-bold rounded-xl shadow-[0_4px_15px_rgba(227,182,89,0.3)] active:scale-95 transition-transform"
           >
-            {staticContent?.lifeDetailSlide?.bannerBtn}
+            Book Your Numerology Report
           </button>
         </div>
 
@@ -188,7 +183,7 @@ export default function LifePathDetail() {
         </div>
 
         <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
-          {staticContent?.lifeDetailSlide?.calloutText}
+          Click Next to uncover your Core Numbers—the master blueprint of your personality.
         </p>
       </motion.div>
 

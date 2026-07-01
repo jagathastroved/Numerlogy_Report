@@ -6,8 +6,18 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, Navigate, useLocation, Outlet } from 'react-router-dom';
 import CelestialBackground from '../animations/CelestialBackground';
-import { REPORT_PAGES, staticContent } from '../../data/numerologyData';
 
+const REPORT_PAGES = [
+  { path: '/welcome', title: 'Welcome' },
+  { path: '/life-path-math', title: 'Life Path Math' },
+  { path: '/life-path-detail', title: 'Life Path Detail' },
+  { path: '/core-numbers', title: 'Core Numbers' },
+  { path: '/name-destiny-math', title: 'Name Destiny Math' },
+  { path: '/numerology-overview', title: 'Numerology Overview' },
+  { path: '/lucky-traits', title: 'Lucky Traits' },
+  { path: '/month-forecast', title: 'Month Forecast' },
+  { path: '/premium-deliverables', title: 'Premium Deliverables' }
+];
 export default function NumerologyReportLayout() {
   const { reportData } = useReport();
   const navigate = useNavigate();
@@ -91,7 +101,7 @@ export default function NumerologyReportLayout() {
               <BookOpen className="text-white" size={16} />
             </div>
             <span className="font-extrabold text-xs uppercase tracking-[0.15em] text-slate-800">
-              {staticContent?.layout?.reportIndex}
+              Report Index
             </span>
           </div>
           <button
@@ -157,7 +167,7 @@ export default function NumerologyReportLayout() {
             className="text-xs font-bold text-slate-500 hover:text-orange-600 flex items-center space-x-2 transition-colors focus:outline-none bg-white border-2 border-slate-100 hover:border-orange-200 hover:bg-orange-50 px-4 py-3 rounded-2xl w-full justify-center shadow-sm"
           >
             <RefreshCw size={14} />
-            <span className="tracking-widest uppercase text-[10px]">{staticContent?.layout?.enterDifferentDetails}</span>
+            <span className="tracking-widest uppercase text-[10px]">Enter Different Details</span>
           </button>
         </div>
       </aside>
@@ -171,7 +181,7 @@ export default function NumerologyReportLayout() {
             className="absolute top-4 left-4 z-30 p-2 px-3 bg-[var(--color-av-indigo)] hover:bg-[#5c5ce0] text-white text-xs font-normal rounded-lg transition-colors flex items-center shadow-lg shadow-[var(--color-av-indigo)]/30"
           >
             <BookOpen size={13} className="mr-1.5" />
-            <span>{staticContent?.layout?.showIndex}</span>
+            <span>Show Index</span>
           </button>
         )}
 
@@ -263,7 +273,7 @@ export default function NumerologyReportLayout() {
                   className="flex items-center px-7 py-3 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white text-xs font-black shadow-[0_8px_25px_-8px_rgba(249,115,22,0.6)] tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer relative overflow-hidden group"
                 >
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay"></div>
-                  <span className="relative z-10">{staticContent?.layout?.next}</span>
+                  <span className="relative z-10">Next</span>
                   <ArrowRight size={14} className="ml-1.5 relative z-10 transition-transform group-hover:translate-x-0.5" />
                 </button>
               )}

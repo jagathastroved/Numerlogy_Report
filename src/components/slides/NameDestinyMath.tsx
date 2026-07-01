@@ -1,11 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Compass, Sparkles } from 'lucide-react';
-import { reduceToNumerologyDigit } from '../../data/numerologyData';
+
 import { useReport } from '../../context/ReportContext';
 import { useNavigate } from 'react-router-dom';
-import { staticContent } from '../../data/numerologyData';
-
 const CHALDEAN_VALUE: Record<string, number> = {
   A: 1, I: 1, J: 1, Q: 1, Y: 1,
   B: 2, K: 2, R: 2,
@@ -16,6 +14,24 @@ const CHALDEAN_VALUE: Record<string, number> = {
   O: 7, Z: 7,
   F: 8, P: 8
 };
+
+/**
+ * Reduce a number to a single digit (1-9) or a Master Number (11, 22, 33)
+ */
+function reduceToNumerologyDigit(num: number): number {
+  if (num === 11 || num === 22 || num === 33) return num;
+  let current = num;
+  while (current > 9) {
+    let sum = 0;
+    while (current > 0) {
+      sum += current % 10;
+      current = Math.floor(current / 10);
+    }
+    current = sum;
+    if (current === 11 || current === 22 || current === 33) return current;
+  }
+  return current;
+}
 
 export default function NameDestinyMath() {
   const navigate = useNavigate();
@@ -79,11 +95,11 @@ export default function NameDestinyMath() {
           </div>
 
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
-            {staticContent?.nameMathSlide?.title}
+            Your Name Destiny Number
           </h2>
           <div className="space-y-2 text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
-            <p dangerouslySetInnerHTML={{ __html: staticContent?.nameMathSlide?.paragraphs[0] }} />
-            <p dangerouslySetInnerHTML={{ __html: staticContent?.nameMathSlide?.paragraphs[1] }} />
+            <p>Your Name Destiny Number, frequently known as your Minor Expression Number, is derived from the exact name you use on a daily basis. This could be a nickname, your professional title, or a new surname taken after marriage.</p>
+            <p>This powerful number dictates the distinct energetic frequency you project into the universe. It acts as your "vibrational signature," influencing your daily interactions, professional opportunities, and how others perceive you.</p>
           </div>
         </div>
       </motion.div>
@@ -93,7 +109,7 @@ export default function NameDestinyMath() {
         <div className="absolute top-0 left-0 w-32 h-32 bg-blue-100/50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
         <p className="text-slate-500 font-bold text-xs text-center uppercase tracking-widest">
-          {staticContent?.nameMathSlide?.fullNameLabel}
+          Your Current Full Name
         </p>
 
         <div className="flex flex-wrap justify-center items-center gap-2.5 relative z-10">
@@ -114,7 +130,7 @@ export default function NameDestinyMath() {
         {/* Step 1 */}
         <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <p className="text-sm text-slate-600 border-b border-slate-50 pb-3 font-medium">
-            <strong className="text-violet-600 font-bold mr-1">{staticContent?.nameMathSlide?.step1}</strong> {staticContent?.nameMathSlide?.step1Desc}
+            <strong className="text-violet-600 font-bold mr-1">Phase 1</strong> Assign the corresponding numerological value to every letter.
           </p>
           <div className="flex flex-wrap items-center gap-2.5 bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
             {values?.map((v, index) => (
@@ -131,7 +147,7 @@ export default function NameDestinyMath() {
         {/* Step 2 */}
         <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
           <p className="text-sm text-slate-600 border-b border-slate-50 pb-3 font-medium">
-            <strong className="text-orange-500 font-bold mr-1">{staticContent?.nameMathSlide?.step2}</strong> {staticContent?.nameMathSlide?.step2Desc}
+            <strong className="text-orange-500 font-bold mr-1">Phase 2</strong> Calculate the sum for your first, middle, and last names individually.
           </p>
           <div className="flex justify-center bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
             <span className="bg-gradient-to-r from-orange-100 to-rose-100 text-rose-700 shadow-sm border border-rose-200 px-6 py-3 rounded-xl font-mono text-base font-bold tracking-wide">
@@ -143,7 +159,7 @@ export default function NameDestinyMath() {
         {/* Step 3 */}
         <div className="space-y-5 pt-4 text-center flex flex-col items-center">
           <p className="text-sm text-slate-600 font-medium">
-            <strong className="text-rose-500 font-bold mr-1">{staticContent?.nameMathSlide?.step3}</strong> {staticContent?.nameMathSlide?.step3Desc}
+            <strong className="text-rose-500 font-bold mr-1">Phase 3</strong> Continue reducing the sums until you arrive at a master or single digit.
           </p>
 
           {/* Giant Circular Output */}
@@ -156,7 +172,7 @@ export default function NameDestinyMath() {
           </motion.div>
 
           <p className="text-xs font-bold text-slate-400 tracking-[0.2em] uppercase mt-4">
-            {staticContent?.nameMathSlide?.nameLabel}
+            Your Name Vibration
           </p>
         </div>
       </motion.div>
@@ -194,11 +210,11 @@ export default function NameDestinyMath() {
 
           <div className="order-1 inline-flex items-center gap-1.5 px-3 py-1 border border-[#c2964b] rounded-full">
             <svg className="w-3 h-3 text-[#e3b659]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" /></svg>
-            <span className="text-[9px] font-bold text-[#e1b971] tracking-widest uppercase">{staticContent?.lifeDetailSlide?.bannerSubLabel}</span>
+            <span className="text-[9px] font-bold text-[#e1b971] tracking-widest uppercase">GET YOUR PREMIUM NUMEROLOGY REPORT</span>
           </div>
 
           <h3 className="order-2 text-2xl lg:text-3xl font-bold text-white leading-tight text-center lg:text-left tracking-tight">
-            {staticContent?.lifeDetailSlide?.bannerTitle}
+            Unlock Your Complete Numerological Destiny
           </h3>
 
           {/* Premium Book Mockup (Mobile) */}
@@ -206,16 +222,24 @@ export default function NameDestinyMath() {
             <img src="/images/Numerology_Book.png" alt="Numerology Report" className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" />
           </div>
 
-          <p className="order-4 text-sm text-indigo-100/80 leading-relaxed text-center lg:text-left">
-            {staticContent?.lifeDetailSlide?.bannerDesc}
-          </p>
+          <div className="order-4 w-full">
+            <p className="text-sm text-indigo-100/90 leading-relaxed text-center lg:text-left mb-3">
+              Your Name Destiny is just the beginning! The complete premium report unlocks the secrets of names and numbers that attract success.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-[13px] font-medium text-indigo-200">
+              <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-[#e3b659] shrink-0" /> Business Name Frequency</span>
+              <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-[#e3b659] shrink-0" /> Mobile & Vehicle Numbers</span>
+              <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-[#e3b659] shrink-0" /> Future Predictions</span>
+              <span className="flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-[#e3b659] shrink-0" /> Lucky Dates & Temples</span>
+            </div>
+          </div>
 
           <button
             type="button"
             onClick={() => navigate('/premium-deliverables')}
             className="order-5 hidden lg:block mt-2 px-6 py-3 bg-gradient-to-r from-[#e3b659] to-[#c2964b] hover:from-[#f0c366] hover:to-[#d1a55a] text-[#2a1148] text-sm font-bold rounded-xl shadow-[0_4px_15px_rgba(227,182,89,0.3)] transition-all hover:scale-105 active:scale-95"
           >
-            {staticContent?.lifeDetailSlide?.bannerBtn}
+            Book Your Numerology Report
           </button>
         </div>
 
@@ -226,7 +250,7 @@ export default function NameDestinyMath() {
             onClick={() => navigate('/premium-deliverables')}
             className="w-full px-6 py-3.5 bg-gradient-to-r from-[#e3b659] to-[#c2964b] text-[#2a1148] text-sm font-bold rounded-xl shadow-[0_4px_15px_rgba(227,182,89,0.3)] active:scale-95 transition-transform"
           >
-            {staticContent?.lifeDetailSlide?.bannerBtn}
+            Book Your Numerology Report
           </button>
         </div>
 
@@ -242,7 +266,7 @@ export default function NameDestinyMath() {
         </div>
 
         <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
-          {staticContent?.nameMathSlide?.calloutText}
+          Let's advance to your comprehensive Personalized Numerology Overview.
         </p>
       </motion.div>
 

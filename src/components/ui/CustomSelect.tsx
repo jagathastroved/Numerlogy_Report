@@ -72,7 +72,7 @@ export default function CustomSelect({
 
       {/* Hidden select for form submission / required validation */}
       {required && (
-        <select value={value} onChange={() => { }} className="hidden" required aria-hidden="true" tabIndex={-1}>
+        <select value={value} onChange={() => { }} className="opacity-0 absolute inset-0 w-full h-full -z-10" required aria-hidden="true" tabIndex={-1}>
           <option value="" disabled>{placeholder}</option>
           {formattedOptions.map(opt => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -99,7 +99,7 @@ export default function CustomSelect({
                   }}
                   className={`px-3 py-2 text-sm cursor-pointer transition-colors ${value === option.value
                     ? 'bg-indigo-50 text-indigo-700 font-bold'
-                    : 'text-gray-700 hover:bg-gray-50'
+                    : 'text-gray-700 hover:bg-indigo-100 hover:text-indigo-800'
                     }`}
                 >
                   {option.label}

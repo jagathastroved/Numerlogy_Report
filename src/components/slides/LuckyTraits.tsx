@@ -1,30 +1,21 @@
 import { motion } from 'framer-motion';
 import { Sparkles, Star, Palette } from 'lucide-react';
-import { staticContent } from '../../data/numerologyData';
 import { useReport } from '../../context/ReportContext';
 
-// Helper to map color names to actual hex values for styling
-const colorMap: Record<string, string> = {
-  "green": "#22c55e",
-  "light green": "#86efac",
-  "parrot green": "#84cc16",
-  "yellow": "#eab308",
-  "saffron": "#f97316",
-  "gold": "#fbbf24",
-  "dark blue": "#1e3a8a",
-  "blue": "#3b82f6",
-  "red": "#ef4444",
-  "white": "#f1f5f9",
-  "black": "#0f172a",
-  "orange": "#f97316",
-  "purple": "#a855f7",
-  "pink": "#ec4899"
-};
-
-// Helper to determine if a color needs dark or light text
-const getTextColor = (colorName: string) => {
-  const lightColors = ["light green", "yellow", "gold", "white", "parrot green"];
-  return lightColors.includes(colorName.toLowerCase()) ? "#0f172a" : "#ffffff";
+// Helper to determine if text should be white or black based on background color
+const isDarkColor = (color: string) => {
+  if (color.startsWith('#')) {
+    const hex = color.replace('#', '');
+    // Handle both 3-digit and 6-digit hex
+    const r = parseInt(hex.length === 3 ? hex[0] + hex[0] : hex.substring(0, 2), 16) || 0;
+    const g = parseInt(hex.length === 3 ? hex[1] + hex[1] : hex.substring(2, 4), 16) || 0;
+    const b = parseInt(hex.length === 3 ? hex[2] + hex[2] : hex.substring(4, 6), 16) || 0;
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    return brightness < 128;
+  }
+  // List of known dark color names
+  const darkColors = ["black", "dark blue", "purple", "navy", "dark green", "maroon", "indigo", "dark red", "brown", "darkblue", "darkgreen", "darkred"];
+  return darkColors.includes(color.toLowerCase().trim());
 };
 
 export default function LuckyTraits() {
@@ -60,10 +51,10 @@ export default function LuckyTraits() {
           </div>
 
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 pb-1">
-            {staticContent?.luckyTraitsSlide?.title}
+            Your Lucky Traits
           </h2>
           <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
-            {staticContent?.luckyTraitsSlide?.subtitle}
+            Unlock the energetic frequencies and colors that align perfectly with your cosmic blueprint.
           </p>
         </div>
       </motion.div>
@@ -81,11 +72,11 @@ export default function LuckyTraits() {
               <div className="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center border border-emerald-200 text-emerald-600">
                 <Star className="w-7 h-7 fill-emerald-500" />
               </div>
-              <h3 className="font-extrabold text-slate-900 text-2xl tracking-tight">{staticContent?.luckyTraitsSlide?.numbersTitle}</h3>
+              <h3 className="font-extrabold text-slate-900 text-2xl tracking-tight">Your Auspicious Numbers</h3>
             </div>
 
             <p className="text-slate-600 text-[15px] leading-relaxed font-medium mb-8 relative z-10 max-w-lg">
-              {staticContent?.luckyTraitsSlide?.numbersDesc}
+              These numbers resonate with your highest vibrational potential. Use them for important dates, financial decisions, and major life events.
             </p>
 
             <div className="flex flex-wrap gap-4 relative z-10">
@@ -117,17 +108,57 @@ export default function LuckyTraits() {
               <div className="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center border border-blue-200 text-blue-600">
                 <Palette className="w-7 h-7" />
               </div>
-              <h3 className="font-extrabold text-slate-900 text-2xl tracking-tight">{staticContent?.luckyTraitsSlide?.colorsTitle}</h3>
+              <h3 className="font-extrabold text-slate-900 text-2xl tracking-tight">Your Power Colors</h3>
             </div>
 
             <p className="text-slate-600 text-[15px] leading-relaxed font-medium mb-8 relative z-10 max-w-lg">
-              {staticContent?.luckyTraitsSlide?.colorsDesc}
+              Wearing or surrounding yourself with these colors enhances your aura, attracts positive opportunities, and deflects negative energy.
             </p>
 
             <div className="flex flex-wrap gap-4 relative z-10">
               {luckyTraits.lucky_colors?.map((color: string, index: number) => {
-                const hexColor = colorMap[color.toLowerCase()] || "#94a3b8"; // Fallback to slate
-                const textColor = getTextColor(color);
+                // Determine a valid CSS color dynamically
+                let dynamicColor = color;
+                
+                if (!color.startsWith('#')) {
+                  const normalized = color.toLowerCase().replace(/[\s-]+/g, '');
+                  let isValid = false;
+                  
+                  // Check if color is valid natively
+                  if (typeof window !== 'undefined') {
+                    const s = new Option().style;
+                    s.color = normalized;
+                    if (s.color !== '') {
+                      dynamicColor = normalized;
+                      isValid = true;
+                    } else {
+                      // Try to find a valid base color word (e.g. "pink" from "pastel pink")
+                      const words = color.toLowerCase().split(/[\s-]+/);
+                      for (const word of words) {
+                        s.color = word;
+                        if (s.color !== '') {
+                          dynamicColor = word;
+                          isValid = true;
+                          break;
+                        }
+                      }
+                    }
+                  }
+                  
+                  // If completely unknown, generate a consistent dynamic color based on string hash
+                  if (!isValid && typeof window !== 'undefined') {
+                    let hash = 0;
+                    for (let i = 0; i < color.length; i++) {
+                      hash = color.charCodeAt(i) + ((hash << 5) - hash);
+                    }
+                    const h = Math.abs(hash) % 360;
+                    // Saffron and Cream will fall back to dynamic deterministic HSL colors
+                    dynamicColor = `hsl(${h}, 75%, 65%)`; 
+                  } else if (!isValid) {
+                    dynamicColor = normalized; // Fallback for SSR
+                  }
+                }
+                  
                 const formattedColor = color.charAt(0).toUpperCase() + color.slice(1).toLowerCase();
 
                 return (
@@ -136,13 +167,18 @@ export default function LuckyTraits() {
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 300, damping: 25, delay: index * 0.1 + 0.4 }}
-                    style={{ '--theme-color': hexColor, '--text-color': textColor, borderColor: hexColor } as React.CSSProperties}
+                    style={{
+                      '--theme-color': dynamicColor,
+                      borderColor: dynamicColor
+                    } as React.CSSProperties}
                     className="relative px-6 py-4 flex items-center justify-center rounded-2xl font-bold text-sm sm:text-base border-2 cursor-default tracking-wide transition-all duration-300 overflow-hidden group/color shadow-md hover:shadow-lg bg-white/40 backdrop-blur-sm"
                   >
                     {/* The Fill Background - Active by default, empties on hover */}
                     <div className="absolute inset-0 bg-[var(--theme-color)] transition-transform duration-500 ease-in-out origin-right scale-x-100 group-hover/color:scale-x-0"></div>
 
-                    <span className="relative z-10 text-[var(--text-color)] group-hover/color:text-[var(--theme-color)] transition-colors duration-500">
+                    <span
+                      className={`relative z-10 font-extrabold tracking-wider transition-colors duration-500 ${isDarkColor(dynamicColor) ? "text-white" : "text-black"} group-hover/color:text-[var(--theme-color)] group-hover/color:mix-blend-difference`}
+                    >
                       {formattedColor}
                     </span>
                   </motion.div>

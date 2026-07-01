@@ -2,14 +2,19 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Loader2, Sparkles, Lock } from 'lucide-react';
 import { useReport } from '../../context/ReportContext';
-import { staticContent } from '../../data/numerologyData';
-
 export default function PremiumDeliverables() {
   const { reportData } = useReport();
   const name = reportData?.personalDetails?.fullName;
   const [loading, setLoading] = useState(false);
 
-  const specialFeatures = staticContent?.checkoutSlide?.specialFeatures;
+  const specialFeatures = [
+    { title: "Deep Numerology Assessment", desc: "Discover how numbers map your life path, revealing hidden strengths." },
+    { title: "Karmic Debt Analysis", desc: "Identify recurring life challenges and the lessons you are meant to learn." },
+    { title: "Auspicious Names for Business", desc: "Ensure your startup is aligned with energies of wealth and prosperity." },
+    { title: "Life Cycle Forecast", desc: "Gain a timeline of major turning points and phases in your life journey." },
+    { title: "Daily & Monthly Luck Ratings", desc: "Know the optimal times to make decisions, invest, or start something new." },
+    { title: "Relationship Compatibility Matrix", desc: "See which soul numbers harmonize with you for romance or partnerships." }
+  ];
 
   const handleCheckout = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,12 +62,12 @@ export default function PremiumDeliverables() {
           {/* Label */}
           <div className="order-1 inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-full shadow-sm">
             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-            <span className="text-[11px] font-bold tracking-widest uppercase text-emerald-700">{staticContent?.checkoutSlide?.title1}</span>
+            <span className="text-[11px] font-bold tracking-widest uppercase text-emerald-700">Premium Numerology Report</span>
           </div>
 
           {/* Title */}
           <h2 className="order-2 font-display text-2xl sm:text-4xl font-extrabold text-indigo-950 tracking-tight leading-snug">
-            {staticContent?.checkoutSlide?.title2Prefix} <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500 capitalize">{name || 'Seeker'}</span>
+            Numerology Report For <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500 capitalize">{name || 'Seeker'}</span>
           </h2>
 
           {/* Cover book (Mobile) */}
@@ -76,7 +81,7 @@ export default function PremiumDeliverables() {
 
           {/* Description */}
           <p className="order-4 text-slate-600 text-sm sm:text-[15px] leading-relaxed font-medium">
-            {staticContent?.checkoutSlide?.desc}
+            We have successfully analyzed your birth data and computed your numbers. Everything you need to understand your life's purpose and make lucky choices is waiting for you.
           </p>
         </div>
       </motion.div>
@@ -85,7 +90,7 @@ export default function PremiumDeliverables() {
       <motion.div variants={itemVariants} className="space-y-5 pt-4">
         <h3 className="font-bold text-xl text-indigo-950 tracking-tight flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-purple-600" />
-          {staticContent?.checkoutSlide?.whatsIncluded}
+          What's Included In Your Report
         </h3>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -114,24 +119,24 @@ export default function PremiumDeliverables() {
         <form onSubmit={handleCheckout} className="space-y-6 pt-4">
 
           {/* Pricing Box layout */}
-          <div className="bg-gradient-to-br from-emerald-500 to-teal-600 border border-emerald-400 rounded-xl p-3 sm:p-5 shadow-[0_4px_20px_-10px_rgba(16,185,129,0.4)] flex flex-row flex-nowrap justify-between items-center gap-2 relative overflow-hidden">
+          <div className="bg-gradient-to-br from-emerald-500 to-teal-600 border border-emerald-400 rounded-xl p-3 sm:p-5 shadow-[0_4px_20px_-10px_rgba(16,185,129,0.4)] flex flex-wrap sm:flex-nowrap justify-between items-center gap-3 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
 
-            <div className="flex flex-col relative z-10 shrink-0">
-              <span className="text-[9px] sm:text-[11px] font-black text-emerald-100 uppercase tracking-[0.1em] sm:tracking-[0.15em] mb-0.5 sm:mb-1 flex items-center gap-1 sm:gap-1.5">
-                <Lock className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                {staticContent?.checkoutSlide?.pricing?.label}
+            <div className="flex flex-col relative z-10 min-w-0 flex-1">
+              <span className="text-[10px] sm:text-[11px] font-black text-emerald-100 uppercase tracking-widest mb-1 flex items-center gap-1.5 truncate">
+                <Lock className="w-3 h-3 shrink-0" />
+                <span className="truncate">Total Order Price</span>
               </span>
-              <div className="flex items-center gap-1.5 sm:gap-3">
-                <span className="text-emerald-200 line-through text-base sm:text-xl font-bold decoration-emerald-400/50 decoration-2">{staticContent?.checkoutSlide?.pricing?.originalPrice}</span>
-                <span className="text-xl sm:text-3xl font-black text-white tracking-tight drop-shadow-md">{staticContent?.checkoutSlide?.pricing?.currentPrice}</span>
+              <div className="flex items-baseline gap-2 sm:gap-3 flex-wrap">
+                <span className="text-emerald-200 line-through text-lg sm:text-xl font-bold decoration-emerald-400/50 decoration-2">₹1199</span>
+                <span className="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-md">₹599</span>
               </div>
             </div>
 
             {/* Discount Badge */}
-            <div className="bg-white text-emerald-700 text-[8px] sm:text-[10px] font-black uppercase px-2 py-1 sm:px-4 sm:py-2 rounded-lg shadow-md relative z-10 flex flex-col items-center border border-white/50 text-center shrink-0">
-              <span className="tracking-wide sm:tracking-wider">{staticContent?.checkoutSlide?.pricing?.discountLine1}</span>
-              <span className="text-emerald-500 text-[7px] sm:text-[9px] mt-0.5">{staticContent?.checkoutSlide?.pricing?.discountLine2}</span>
+            <div className="bg-white text-emerald-700 font-black uppercase px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg shadow-md relative z-10 flex flex-col items-center border border-white/50 text-center shrink-0">
+              <span className="text-[9px] sm:text-[10px] tracking-wide whitespace-nowrap">INSTANT 50% OFF</span>
+              <span className="text-emerald-500 text-[8px] sm:text-[9px] mt-0.5 whitespace-nowrap">APPLIED TODAY</span>
             </div>
           </div>
 
@@ -145,12 +150,12 @@ export default function PremiumDeliverables() {
             {loading ? (
               <>
                 <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin text-white relative z-10" />
-                <span className="relative z-10">{staticContent?.checkoutSlide?.pricing?.processing || "Processing..."}</span>
+                <span className="relative z-10">Processing...</span>
               </>
             ) : (
               <>
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 transition-transform group-hover:scale-110" />
-                <span className="relative z-10">{staticContent?.checkoutSlide?.pricing?.btnText || "Proceed to Pay ₹399"}</span>
+                <span className="relative z-10">Unlock Complete Report for ₹599</span>
               </>
             )}
           </button>

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Compass, CheckCircle2, Sparkles } from 'lucide-react';
 import { useReport } from '../../context/ReportContext';
-import { staticContent } from '../../data/numerologyData';
 
 export default function Welcome() {
   const { reportData } = useReport();
@@ -27,18 +26,19 @@ export default function Welcome() {
           </div>
 
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight">
-            <span className="text-slate-800">{staticContent?.introSlide?.greeting} </span>
+            <span className="text-slate-800">Hey </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-fuchsia-500 to-orange-500 drop-shadow-sm capitalize">
               {name || "Seeker"}
             </span>
           </h2>
 
           <div className="pt-2 space-y-3">
-            {staticContent?.introSlide?.paragraphs?.map((p, idx) => (
-              <p key={idx} className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
-                {p}
-              </p>
-            ))}
+            <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
+              Your numbers carry a unique energetic blueprint that influences your personality, strengths, talents, and life direction. Discover the deeper patterns that make your journey truly one of a kind.
+            </p>
+            <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
+              This personalized Numerology Report reveals valuable insights into your potential, opportunities, and personal growth. Use this wisdom to navigate life with greater clarity, confidence, and purpose.
+            </p>
           </div>
         </div>
       </div>
@@ -47,12 +47,18 @@ export default function Welcome() {
       <div className="relative z-10 space-y-5">
         <h3 className="font-bold text-lg text-slate-800 flex items-center gap-3">
           <span className="w-8 h-1.5 bg-gradient-to-r from-violet-500 to-orange-500 rounded-full shadow-sm"></span>
-          {staticContent?.introSlide?.whatWeCoverTitle}
+          Your personalized Numerology Report includes:
         </h3>
 
         {/* Feature Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {staticContent?.introSlide?.whatWeCoverItems?.map((item, idx) => (
+          {[
+            "Your core numbers (life path, destiny, name, and more)",
+            "Your hidden strengths, core personality, and areas for growth",
+            "In-depth Birth Number calculation with personality profiling",
+            "Decoding your Name Destiny and its numerological impact",
+            "Exclusive Monthly Forecast tailored for your upcoming journey"
+          ].map((item, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -81,7 +87,7 @@ export default function Welcome() {
         </div>
 
         <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
-          {staticContent?.introSlide?.calloutText}
+          Click Next to calculate your Life Path number—the most important number in your numerology profile.
         </p>
       </motion.div>
 

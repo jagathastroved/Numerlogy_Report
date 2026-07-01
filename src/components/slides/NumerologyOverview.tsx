@@ -1,13 +1,48 @@
 import { ArrowRight, CheckCircle2, Star, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { staticContent } from '../../data/numerologyData';
 
 export default function NumerologyOverview() {
   const navigate = useNavigate();
 
-  const preparedItems = staticContent?.overviewSlide?.preparedItems;
-
+  const preparedItems = [
+    {
+      title: "Analysis of Your Core Numbers",
+      desc: "Unlock the hidden meanings behind your Destiny, Soul Urge, and Expression vibrations to understand your true self."
+    },
+    {
+      title: "Your Life Path Number",
+      desc: "Unveil your ultimate soul mission, innate talents, and the specific cosmic path you were born to fulfill."
+    },
+    {
+      title: "Business Name Number",
+      desc: "Determine the exact numerological frequency that will attract maximum wealth and success to your enterprise."
+    },
+    {
+      title: "Suitable Business Fields",
+      desc: "Pinpoint the ideal career trajectories and industries that perfectly match your energetic blueprint."
+    },
+    {
+      title: "Mobile Number Selection Guide",
+      desc: "Discover the secret to picking a phone number that acts as a magnet for prosperity, luck, and powerful connections."
+    },
+    {
+      title: "Vehicle Number Selection",
+      desc: "Guarantee safety, smooth journeys, and constant good fortune by selecting an auspicious license plate."
+    },
+    {
+      title: "Your Future Predictions",
+      desc: "Receive highly accurate, customized forecasts and strategic cosmic advice for the upcoming years."
+    },
+    {
+      title: "Favorable Calendar Dates",
+      desc: "Identify your absolute luckiest days of the month to sign contracts, travel, or make life-altering choices."
+    },
+    {
+      title: "Temples to Visit",
+      desc: "Access powerful spiritual remedies and specific sacred locations tailored to balance your unique energies."
+    }
+  ];
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
@@ -33,11 +68,11 @@ export default function NumerologyOverview() {
         <div className="flex flex-col items-center xl:items-start text-center xl:text-left flex-1 relative z-10 order-1 xl:order-1 mt-2 xl:mt-0 gap-4">
           <div className="order-1 inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-full shadow-sm">
             <Sparkles className="w-4 h-4 text-purple-600" />
-            <span className="text-[11px] font-bold tracking-widest uppercase text-purple-700">{staticContent?.overviewSlide?.subtitle}</span>
+            <span className="text-[11px] font-bold tracking-widest uppercase text-purple-700">Your Personal Numerology Report Is Here</span>
           </div>
 
           <h2 className="order-2 font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
-            {staticContent?.overviewSlide?.title}
+            Here We Have Prepared Your In-Depth Personalized Numerology Report
           </h2>
 
           <div className="order-3 xl:hidden flex justify-center items-center shrink-0 relative z-10 w-48 sm:w-56 animate-float cursor-pointer group py-2">
@@ -63,7 +98,7 @@ export default function NumerologyOverview() {
       <motion.div variants={itemVariants} className="space-y-6">
         <div className="flex items-center gap-4 before:h-px before:flex-1 before:bg-indigo-100 after:h-px after:flex-1 after:bg-indigo-100">
           <p className="text-xs text-indigo-900/60 font-bold tracking-widest uppercase text-center shrink-0">
-            {staticContent?.overviewSlide?.checklistTitle}
+            What You'll Find Inside
           </p>
         </div>
 
@@ -96,11 +131,11 @@ export default function NumerologyOverview() {
 
         <div className="flex items-center gap-4 relative z-10">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-400 to-rose-500 flex items-center justify-center text-white font-bold text-lg shadow-lg border border-orange-300/50">
-            {staticContent?.overviewSlide?.testimonial.initials}
+            AS
           </div>
           <div>
-            <h4 className="text-sm font-bold text-white tracking-wide">{staticContent?.overviewSlide?.testimonial.name}</h4>
-            <p className="text-xs text-indigo-200/80 uppercase tracking-widest font-bold mt-0.5">{staticContent?.overviewSlide?.testimonial.role}</p>
+            <h4 className="text-sm font-bold text-white tracking-wide">Anjali</h4>
+            <p className="text-xs text-indigo-200/80 uppercase tracking-widest font-bold mt-0.5">Verified User</p>
           </div>
 
           {/* Stars */}
@@ -112,7 +147,7 @@ export default function NumerologyOverview() {
         </div>
 
         <p className="text-sm sm:text-[15px] text-indigo-100/90 italic leading-relaxed relative z-10 font-medium">
-          "{staticContent?.overviewSlide?.testimonial.text}"
+          "This numerology report completely blew me away. It broke down complex cosmic concepts into simple, actionable advice. The personalized remedies have brought so much clarity and peace to my daily life. I can't recommend this enough!"
         </p>
       </motion.div>
 
@@ -124,7 +159,7 @@ export default function NumerologyOverview() {
           className="w-full py-5 bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-400 hover:to-rose-400 active:scale-[0.98] text-white font-bold rounded-2xl shadow-[0_10px_30px_-10px_rgba(244,63,94,0.6)] transition-all duration-300 text-lg flex items-center justify-center gap-3 relative overflow-hidden group cursor-pointer"
         >
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay"></div>
-          <span className="relative z-10 tracking-wide">{staticContent?.overviewSlide?.checkoutBtn}</span>
+          <span className="relative z-10 tracking-wide">Book Your Numerology Report</span>
           <ArrowRight className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" />
         </button>
       </motion.div>

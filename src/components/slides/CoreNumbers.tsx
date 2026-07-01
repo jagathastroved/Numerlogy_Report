@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Compass, Sparkles } from 'lucide-react';
 import { useReport } from '../../context/ReportContext';
-import { staticContent } from '../../data/numerologyData';
 
 export default function CoreNumbers() {
   const { reportData } = useReport();
@@ -20,9 +19,9 @@ export default function CoreNumbers() {
 
   // Configuration for each core number card to give them unique, vibrant gradients
   const cardConfig = [
-    { key: 'birthNumber', val: birthNumber, label: staticContent?.coreNumbersSlide?.labels.birthNumber, desc: (coreNumbers as any).birthNumberContent || staticContent?.coreNumbersSlide?.descriptions?.birthNumber, grad: 'from-orange-400 to-rose-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(244,63,94,0.3)]' },
-    { key: 'destinyNumber', val: destinyNumber, label: staticContent?.coreNumbersSlide?.labels.destinyNumber, desc: (coreNumbers as any).destinyNumberContent || staticContent?.coreNumbersSlide?.descriptions?.destinyNumber, grad: 'from-violet-500 to-purple-600', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(139,92,246,0.3)]' },
-    { key: 'nameNumber', val: nameNumber, label: staticContent?.coreNumbersSlide?.labels.nameNumber, desc: (coreNumbers as any).nameNumberContent || staticContent?.coreNumbersSlide?.descriptions?.nameNumber, grad: 'from-amber-400 to-orange-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(245,158,11,0.3)]' },
+    { key: 'birthNumber', val: birthNumber, label: "Birth Number", desc: (coreNumbers as any).birthNumberContent || "Your Birth Number reveals your fundamental character traits, hidden talents, and the innate potential you were born with. It highlights your natural disposition and the core energy you project into the world.", grad: 'from-orange-400 to-rose-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(244,63,94,0.3)]' },
+    { key: 'destinyNumber', val: destinyNumber, label: "Destiny-Life Path Number", desc: (coreNumbers as any).destinyNumberContent || "The Destiny-Life Path Number is the most critical vibration in your chart. It points you toward your true soul's purpose, the primary karmic lessons you must learn, and the ultimate path you are destined to walk.", grad: 'from-violet-500 to-purple-600', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(139,92,246,0.3)]' },
+    { key: 'nameNumber', val: nameNumber, label: "Name Destiny Number", desc: (coreNumbers as any).nameNumberContent || "Your Name Destiny Number acts as a powerful vibrational magnet. It influences the types of opportunities you attract, your professional success, and how you are perceived by others in society.", grad: 'from-amber-400 to-orange-500', shadow: 'hover:shadow-[0_8px_30px_-10px_rgba(245,158,11,0.3)]' },
   ];
 
   return (
@@ -44,11 +43,12 @@ export default function CoreNumbers() {
           </div>
 
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
-            {staticContent?.coreNumbersSlide?.title}
+            Your Foundational Core Numbers
           </h2>
           <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
-            {staticContent?.coreNumbersSlide?.description}
+            Your core numbers are the foundation of your numerology profile. Each number reveals a unique aspect of your personality, strengths, talents, and life purpose. Together, they provide a deeper understanding of who you are, the opportunities you may encounter, and the path that can lead to personal growth and success.
           </p>
+          <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium"> Explore the insights below to discover what your core numbers reveal about you.</p>
         </div>
       </div>
 
@@ -87,7 +87,7 @@ export default function CoreNumbers() {
         </div>
 
         <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
-          {staticContent?.coreNumbersSlide?.calloutText}
+          Ready to explore further? Click Next to decode your Name Destiny number.
         </p>
       </motion.div>
 
