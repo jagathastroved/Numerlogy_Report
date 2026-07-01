@@ -6,7 +6,6 @@ import { useReport } from '../../context/ReportContext';
  * Reduce a number to a single digit (1-9) or a Master Number (11, 22, 33)
  */
 function reduceToNumerologyDigit(num: number): number {
-  if (num === 11 || num === 22 || num === 33) return num;
   let current = num;
   while (current > 9) {
     let sum = 0;
@@ -15,17 +14,12 @@ function reduceToNumerologyDigit(num: number): number {
       current = Math.floor(current / 10);
     }
     current = sum;
-    if (current === 11 || current === 22 || current === 33) return current;
   }
   return current;
 }
 
 // Helper to generate the string of math steps for a given number
 function getReductionSteps(num: number): string[] {
-  if (num === 11 || num === 22 || num === 33) {
-    return [num.toString()];
-  }
-
   const steps: string[] = [];
   let current = num;
 
@@ -34,10 +28,6 @@ function getReductionSteps(num: number): string[] {
     const sum = digits.reduce((a, b) => a + b, 0);
     steps.push(`${digits.join(' + ')} = ${sum}`);
     current = sum;
-
-    if (current === 11 || current === 22 || current === 33) {
-      break;
-    }
   }
   return steps;
 }
@@ -59,12 +49,23 @@ export default function LifePathMath() {
   const yearReduced = reduceToNumerologyDigit(yearVal);
 
   const rawSum = dayReduced + monthReduced + yearReduced;
-  const lifePathFinal = reduceToNumerologyDigit(rawSum);
+
+  // Fetch lifePath from the API data if available, otherwise fallback to frontend computation
+  const lifePathFinal = reportData?.coreNumbers?.lifePathNumber ?? reduceToNumerologyDigit(rawSum);
 
   const daySteps = getReductionSteps(dayVal);
   const monthSteps = getReductionSteps(monthVal);
   const yearSteps = getReductionSteps(yearVal);
-  const finalSteps = getReductionSteps(rawSum);
+
+  // Dynamically generate the math steps from rawSum down to the fetched API lifePathFinal
+  const finalSteps: string[] = [];
+  let currentRaw = rawSum;
+  while (currentRaw > 9 && currentRaw !== lifePathFinal) {
+    const digits = currentRaw.toString().split('').map(Number);
+    const sum = digits.reduce((a, b) => a + b, 0);
+    finalSteps.push(`${digits.join(' + ')} = ${sum}`);
+    currentRaw = sum;
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -173,7 +174,7 @@ export default function LifePathMath() {
             <strong className="text-rose-500 font-bold mr-1">Phase 3:</strong> Reduce the final sum to unveil your single-digit path.
           </p>
 
-          {rawSum > 9 && rawSum !== 11 && rawSum !== 22 && rawSum !== 33 && (
+          {finalSteps.length > 0 && (
             <div className="text-sm text-slate-700 font-mono bg-white px-5 py-3 rounded-xl border border-slate-100 shadow-sm font-bold">
               {finalSteps?.map((step, idx) => <span key={idx}>{idx > 0 && <span className="text-rose-400 mx-2">→</span>}{step}</span>)}
             </div>
