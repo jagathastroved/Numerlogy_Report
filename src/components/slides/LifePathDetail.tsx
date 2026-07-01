@@ -42,7 +42,7 @@ export default function LifePathDetail() {
           </div>
 
           <div className="flex items-center justify-between gap-4">
-            <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 dark:text-slate-100 pb-1">
               Your Life Path Number
             </h2>
 
@@ -56,11 +56,11 @@ export default function LifePathDetail() {
       </motion.div>
 
       {/* Detailed Descriptions */}
-      <motion.div variants={itemVariants} className="bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg relative overflow-hidden space-y-4 hover:shadow-xl hover:bg-white/80 transition-all duration-300" id="life-path-description">
+      <motion.div variants={itemVariants} className="bg-white/60 dark:bg-slate-700/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 dark:border-slate-600 shadow-lg relative overflow-hidden space-y-4 hover:shadow-xl hover:bg-white/80 dark:hover:bg-slate-700/80 transition-all duration-300" id="life-path-description">
         <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-100/50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
-        <p className="font-bold text-indigo-950 text-lg leading-snug">{details?.subtitle}</p>
-        <div className="space-y-4 text-slate-600 text-[15px] leading-relaxed font-medium">
+        <p className="font-bold text-indigo-950 dark:text-slate-100 text-lg leading-snug">{details?.subtitle}</p>
+        <div className="space-y-4 text-slate-600 dark:text-slate-300 text-[15px] leading-relaxed font-medium">
           <p>{details?.description}</p>
         </div>
       </motion.div>
@@ -69,7 +69,7 @@ export default function LifePathDetail() {
       <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
 
         {/* Strengths Column */}
-        <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
+        <div className="space-y-4 bg-white/60 dark:bg-slate-700/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 dark:border-slate-600 shadow-lg hover:shadow-xl hover:bg-white/80 dark:hover:bg-slate-700/80 transition-all duration-300">
           <h3 className="text-emerald-700 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
             <span className="w-6 h-1 bg-emerald-400 rounded-full"></span>
             Your Top Strengths
@@ -87,7 +87,7 @@ export default function LifePathDetail() {
         </div>
 
         {/* Challenges */}
-        <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
+        <div className="space-y-4 bg-white/60 dark:bg-slate-700/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 dark:border-slate-600 shadow-lg hover:shadow-xl hover:bg-white/80 dark:hover:bg-slate-700/80 transition-all duration-300">
           <h3 className="text-rose-700 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
             <span className="w-6 h-1 bg-rose-400 rounded-full"></span>
             Your Top Challenges
@@ -176,13 +176,13 @@ export default function LifePathDetail() {
       {/* Minimal Callout Box */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 backdrop-blur-md border border-indigo-100/60 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 dark:bg-slate-700/60 backdrop-blur-md border border-indigo-100/60 dark:border-slate-600 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
       >
-        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white rounded-2xl border border-indigo-200 shadow-sm">
+        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-800 rounded-2xl border border-indigo-200 dark:border-slate-600 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
         </div>
 
-        <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
+        <p className="text-indigo-950 dark:text-slate-100 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
           Click Next to uncover your Core Numbers—the master blueprint of your personality.
         </p>
       </motion.div>

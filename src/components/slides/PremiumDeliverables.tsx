@@ -66,7 +66,7 @@ export default function PremiumDeliverables() {
           </div>
 
           {/* Title */}
-          <h2 className="order-2 font-display text-2xl sm:text-4xl font-extrabold text-indigo-950 tracking-tight leading-snug">
+          <h2 className="order-2 font-display text-2xl sm:text-4xl font-extrabold text-indigo-950 dark:text-slate-100 tracking-tight leading-snug">
             Numerology Report For <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500 capitalize">{name || 'Seeker'}</span>
           </h2>
 
@@ -80,7 +80,7 @@ export default function PremiumDeliverables() {
           </div>
 
           {/* Description */}
-          <p className="order-4 text-slate-600 text-sm sm:text-[15px] leading-relaxed font-medium">
+          <p className="order-4 text-slate-600 dark:text-slate-300 text-sm sm:text-[15px] leading-relaxed font-medium">
             We have successfully analyzed your birth data and computed your numbers. Everything you need to understand your life's purpose and make lucky choices is waiting for you.
           </p>
         </div>
@@ -88,7 +88,7 @@ export default function PremiumDeliverables() {
 
       {/* Special Feature Points */}
       <motion.div variants={itemVariants} className="space-y-5 pt-4">
-        <h3 className="font-bold text-xl text-indigo-950 tracking-tight flex items-center gap-2">
+        <h3 className="font-bold text-xl text-indigo-950 dark:text-slate-100 tracking-tight flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-purple-600" />
           What's Included In Your Report
         </h3>
@@ -98,16 +98,16 @@ export default function PremiumDeliverables() {
             <motion.div
               whileHover={{ scale: 1.02 }}
               key={idx}
-              className="flex items-start gap-4 p-5 bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/80 hover:border-indigo-200 group relative overflow-hidden"
+              className="flex items-start gap-4 p-5 bg-white/60 dark:bg-slate-700/60 backdrop-blur-md border border-white/60 dark:border-slate-600 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/80 dark:hover:bg-slate-700/80 hover:border-indigo-200 dark:hover:border-slate-500 group relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/20 to-purple-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-              <div className="relative z-10 w-10 h-10 rounded-xl bg-indigo-100/80 flex items-center justify-center shrink-0 group-hover:bg-indigo-500 transition-colors duration-300 shadow-sm border border-indigo-200/50">
-                <CheckCircle2 className="w-5 h-5 text-indigo-600 group-hover:text-white transition-colors duration-300" />
+              <div className="relative z-10 w-10 h-10 rounded-xl bg-indigo-100/80 dark:bg-indigo-900/40 flex items-center justify-center shrink-0 group-hover:bg-indigo-500 transition-colors duration-300 shadow-sm border border-indigo-200/50 dark:border-indigo-500/30">
+                <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 group-hover:text-white transition-colors duration-300" />
               </div>
               <div className="space-y-1 relative z-10">
-                <h3 className="text-[15px] font-bold text-indigo-950 tracking-tight">{feat.title}</h3>
-                <p className="text-sm text-slate-700 leading-relaxed font-medium">{feat.desc}</p>
+                <h3 className="text-[15px] font-bold text-indigo-950 dark:text-slate-100 tracking-tight">{feat.title}</h3>
+                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">{feat.desc}</p>
               </div>
             </motion.div>
           ))}

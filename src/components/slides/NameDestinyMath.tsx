@@ -94,10 +94,10 @@ export default function NameDestinyMath() {
             <span className="text-[11px] font-bold tracking-widest uppercase text-purple-700">Name Math</span>
           </div>
 
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
+          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 dark:text-slate-100 pb-1">
             Your Name Destiny Number
           </h2>
-          <div className="space-y-2 text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
+          <div className="space-y-2 text-slate-600 dark:text-slate-300 text-[15px] sm:text-base leading-relaxed font-medium">
             <p>Your Name Destiny Number, frequently known as your Minor Expression Number, is derived from the exact name you use on a daily basis. This could be a nickname, your professional title, or a new surname taken after marriage.</p>
             <p>This powerful number dictates the distinct energetic frequency you project into the universe. It acts as your "vibrational signature," influencing your daily interactions, professional opportunities, and how others perceive you.</p>
           </div>
@@ -105,20 +105,20 @@ export default function NameDestinyMath() {
       </motion.div>
 
       {/* Full Name letter pills */}
-      <motion.div variants={itemVariants} className="space-y-4 bg-white/60 backdrop-blur-md border border-white/60 p-6 rounded-[2rem] shadow-lg relative overflow-hidden group hover:bg-white/80 transition-colors duration-300">
+      <motion.div variants={itemVariants} className="space-y-4 bg-white/60 dark:bg-slate-700/60 backdrop-blur-md border border-white/60 dark:border-slate-600 p-6 rounded-[2rem] shadow-lg relative overflow-hidden group hover:bg-white/80 dark:hover:bg-slate-700/80 transition-colors duration-300">
         <div className="absolute top-0 left-0 w-32 h-32 bg-blue-100/50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
-        <p className="text-slate-500 font-bold text-xs text-center uppercase tracking-widest">
+        <p className="text-slate-500 dark:text-slate-400 font-bold text-xs text-center uppercase tracking-widest">
           Your Current Full Name
         </p>
 
         <div className="flex flex-wrap justify-center items-center gap-2.5 relative z-10">
           {characters?.map((char, index) => (
             <div key={index} className="flex items-center gap-2.5">
-              <span className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-50 to-white text-indigo-900 font-bold text-xl flex items-center justify-center shadow-md border border-indigo-100/50 transition-transform hover:-translate-y-1">
+              <span className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-50 to-white dark:from-slate-700 dark:to-slate-800 text-indigo-900 dark:text-indigo-100 font-bold text-xl flex items-center justify-center shadow-md border border-indigo-100/50 dark:border-slate-600 transition-transform hover:-translate-y-1">
                 {char}
               </span>
-              {index < characters.length - 1 && <span className="text-slate-900 font-medium text-sm">+</span>}
+              {index < characters.length - 1 && <span className="text-slate-900 dark:text-slate-100 font-medium text-sm">+</span>}
             </div>
           ))}
         </div>
@@ -128,28 +128,28 @@ export default function NameDestinyMath() {
       <motion.div variants={itemVariants} className="space-y-6">
 
         {/* Step 1 */}
-        <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
-          <p className="text-sm text-slate-600 border-b border-slate-50 pb-3 font-medium">
+        <div className="space-y-4 bg-white/60 dark:bg-slate-700/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 dark:border-slate-600 shadow-lg hover:shadow-xl hover:bg-white/80 dark:hover:bg-slate-700/80 transition-all duration-300">
+          <p className="text-sm text-slate-600 dark:text-slate-300 border-b border-slate-50 dark:border-slate-600 pb-3 font-medium">
             <strong className="text-violet-600 font-bold mr-1">Phase 1</strong> Assign the corresponding numerological value to every letter.
           </p>
-          <div className="flex flex-wrap items-center gap-2.5 bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
+          <div className="flex flex-wrap items-center gap-2.5 bg-slate-50/50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700">
             {values?.map((v, index) => (
               <React.Fragment key={index}>
-                <span className="w-10 h-10 rounded-xl bg-white text-violet-700 font-black text-lg flex items-center justify-center shadow-sm border border-slate-200 transition-transform hover:-translate-y-1">
+                <span className="w-10 h-10 rounded-xl bg-white dark:bg-slate-700 text-violet-700 dark:text-violet-300 font-black text-lg flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-600 transition-transform hover:-translate-y-1">
                   {v}
                 </span>
-                {index < values.length - 1 && <span className="text-slate-900 font-medium text-sm">+</span>}
+                {index < values.length - 1 && <span className="text-slate-900 dark:text-slate-100 font-medium text-sm">+</span>}
               </React.Fragment>
             ))}
           </div>
         </div>
 
         {/* Step 2 */}
-        <div className="space-y-4 bg-white/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-xl hover:bg-white/80 transition-all duration-300">
-          <p className="text-sm text-slate-600 border-b border-slate-50 pb-3 font-medium">
+        <div className="space-y-4 bg-white/60 dark:bg-slate-700/60 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 dark:border-slate-600 shadow-lg hover:shadow-xl hover:bg-white/80 dark:hover:bg-slate-700/80 transition-all duration-300">
+          <p className="text-sm text-slate-600 dark:text-slate-300 border-b border-slate-50 dark:border-slate-600 pb-3 font-medium">
             <strong className="text-orange-500 font-bold mr-1">Phase 2</strong> Calculate the sum for your first, middle, and last names individually.
           </p>
-          <div className="flex justify-center bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
+          <div className="flex justify-center bg-slate-50/50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700">
             <span className="bg-gradient-to-r from-orange-100 to-rose-100 text-rose-700 shadow-sm border border-rose-200 px-6 py-3 rounded-xl font-mono text-base font-bold tracking-wide">
               {reductionPath}
             </span>
@@ -158,7 +158,7 @@ export default function NameDestinyMath() {
 
         {/* Step 3 */}
         <div className="space-y-5 pt-4 text-center flex flex-col items-center">
-          <p className="text-sm text-slate-600 font-medium">
+          <p className="text-sm text-slate-600 dark:text-slate-300 font-medium">
             <strong className="text-rose-500 font-bold mr-1">Phase 3</strong> Continue reducing the sums until you arrive at a master or single digit.
           </p>
 
@@ -179,9 +179,9 @@ export default function NameDestinyMath() {
 
       {/* Personality text description box */}
       <motion.div variants={itemVariants} className="bg-gradient-to-br from-violet-600 via-fuchsia-600 to-orange-500 p-[3px] rounded-[2rem] shadow-[0_15px_40px_-15px_rgba(249,115,22,0.5)] relative overflow-hidden">
-        <div className="bg-white p-6 sm:p-8 rounded-[1.8rem] relative z-10">
-          <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
-            Your name number is <strong className="text-violet-600 font-black text-xl">{finalDestiny}</strong>. Every time you use this name, you give off the vibe of a "<span className="text-orange-500 font-bold">{interpretation.title}</span>".
+        <div className="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-[1.8rem] relative z-10">
+          <p className="text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
+            Your name number is <strong className="text-violet-600 dark:text-violet-400 font-black text-xl">{finalDestiny}</strong>. Every time you use this name, you give off the vibe of a "<span className="text-orange-500 font-bold">{interpretation.title}</span>".
             <br /><br />
             {interpretation.desc}
           </p>
@@ -259,13 +259,13 @@ export default function NameDestinyMath() {
       {/* Minimal Callout Box */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 backdrop-blur-md border border-indigo-100/60 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 dark:bg-slate-700/60 backdrop-blur-md border border-indigo-100/60 dark:border-slate-600 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
       >
-        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white rounded-2xl border border-indigo-200 shadow-sm">
+        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-800 rounded-2xl border border-indigo-200 dark:border-slate-600 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
         </div>
 
-        <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
+        <p className="text-indigo-950 dark:text-slate-100 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
           Let's advance to your comprehensive Personalized Numerology Overview.
         </p>
       </motion.div>

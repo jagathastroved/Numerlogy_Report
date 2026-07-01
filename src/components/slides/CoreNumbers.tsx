@@ -42,13 +42,13 @@ export default function CoreNumbers() {
             <span className="text-[11px] font-bold tracking-widest uppercase text-purple-700">Your Cosmic Blueprint</span>
           </div>
 
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
+          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 dark:text-slate-100 pb-1">
             Your Foundational Core Numbers
           </h2>
-          <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
+          <p className="text-slate-600 dark:text-slate-300 text-[15px] sm:text-base leading-relaxed font-medium">
             Your core numbers are the foundation of your numerology profile. Each number reveals a unique aspect of your personality, strengths, talents, and life purpose. Together, they provide a deeper understanding of who you are, the opportunities you may encounter, and the path that can lead to personal growth and success.
           </p>
-          <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium"> Explore the insights below to discover what your core numbers reveal about you.</p>
+          <p className="text-slate-600 dark:text-slate-300 text-[15px] sm:text-base leading-relaxed font-medium"> Explore the insights below to discover what your core numbers reveal about you.</p>
         </div>
       </div>
 
@@ -60,15 +60,15 @@ export default function CoreNumbers() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 + (i * 0.05) }}
-            className={`flex flex-col bg-white/60 backdrop-blur-md rounded-2xl p-5 shadow-lg border border-white/60 transition-all duration-300 hover:scale-[1.02] cursor-default group hover:bg-white/80 hover:shadow-xl hover:border-transparent ${card.shadow}`}
+            className={`flex flex-col bg-white/60 dark:bg-slate-700/60 backdrop-blur-md rounded-2xl p-5 shadow-lg border border-white/60 dark:border-slate-600 transition-all duration-300 hover:scale-[1.02] cursor-default group hover:bg-white/80 dark:hover:bg-slate-700/80 hover:shadow-xl hover:border-transparent ${card.shadow}`}
           >
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
-              <span className="font-bold text-slate-800 text-base leading-snug transition-colors pr-2">{card.label}</span>
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-600 pb-4 mb-4">
+              <span className="font-bold text-slate-800 dark:text-slate-100 text-base leading-snug transition-colors pr-2">{card.label}</span>
               <div className={`w-12 h-12 shrink-0 bg-gradient-to-br ${card.grad} rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-inner group-hover:scale-110 transition-transform`}>
                 {card.val}
               </div>
             </div>
-            <p className="text-[14px] text-slate-600 leading-relaxed font-medium">
+            <p className="text-[14px] text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
               {card.desc}
             </p>
           </motion.div>
@@ -80,13 +80,13 @@ export default function CoreNumbers() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 backdrop-blur-md border border-indigo-100/60 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 dark:bg-slate-700/60 backdrop-blur-md border border-indigo-100/60 dark:border-slate-600 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
       >
-        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white rounded-2xl border border-indigo-200 shadow-sm">
+        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-800 rounded-2xl border border-indigo-200 dark:border-slate-600 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
         </div>
 
-        <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
+        <p className="text-indigo-950 dark:text-slate-100 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
           Ready to explore further? Click Next to decode your Name Destiny number.
         </p>
       </motion.div>

@@ -50,10 +50,10 @@ export default function LuckyTraits() {
             <span className="text-[11px] font-bold tracking-widest uppercase text-fuchsia-700">Cosmic Alignments</span>
           </div>
 
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 pb-1">
+          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 pb-1">
             Your Lucky Traits
           </h2>
-          <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
+          <p className="text-slate-600 dark:text-slate-300 text-[15px] sm:text-base leading-relaxed font-medium">
             Unlock the energetic frequencies and colors that align perfectly with your cosmic blueprint.
           </p>
         </div>
@@ -62,20 +62,20 @@ export default function LuckyTraits() {
       <div className="grid grid-cols-1 gap-10">
         {/* ================= LUCKY NUMBERS ================= */}
         <motion.div variants={itemVariants} className="relative group">
-          <div className="relative bg-white/60 backdrop-blur-md border border-white/60 shadow-lg rounded-[2rem] p-6 sm:p-8 overflow-hidden transition-all duration-300 hover:shadow-xl hover:bg-white/80">
+          <div className="relative bg-white/60 dark:bg-slate-700/60 backdrop-blur-md border border-white/60 dark:border-slate-600 shadow-lg rounded-[2rem] p-6 sm:p-8 overflow-hidden transition-all duration-300 hover:shadow-xl hover:bg-white/80 dark:hover:bg-slate-700/80">
 
             {/* Background elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-50 to-transparent rounded-full pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-cyan-50 to-transparent rounded-full pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-50 dark:from-emerald-500/10 to-transparent rounded-full pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-cyan-50 dark:from-cyan-500/10 to-transparent rounded-full pointer-events-none"></div>
 
-            <div className="flex items-center gap-4 border-b border-slate-100 pb-5 mb-6 relative z-10">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center border border-emerald-200 text-emerald-600">
+            <div className="flex items-center gap-4 border-b border-slate-100 dark:border-slate-600 pb-5 mb-6 relative z-10">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center border border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400">
                 <Star className="w-7 h-7 fill-emerald-500" />
               </div>
-              <h3 className="font-extrabold text-slate-900 text-2xl tracking-tight">Your Auspicious Numbers</h3>
+              <h3 className="font-extrabold text-slate-900 dark:text-slate-100 text-2xl tracking-tight">Your Auspicious Numbers</h3>
             </div>
 
-            <p className="text-slate-600 text-[15px] leading-relaxed font-medium mb-8 relative z-10 max-w-lg">
+            <p className="text-slate-600 dark:text-slate-300 text-[15px] leading-relaxed font-medium mb-8 relative z-10 max-w-lg">
               These numbers resonate with your highest vibrational potential. Use them for important dates, financial decisions, and major life events.
             </p>
 
@@ -87,7 +87,7 @@ export default function LuckyTraits() {
                   animate={{ scale: 1, opacity: 1, rotate: 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.08 + 0.3 }}
                   whileHover={{ scale: 1.1, rotate: 5, y: -5 }}
-                  className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-[1.25rem] font-black text-2xl sm:text-3xl text-emerald-700 bg-emerald-50 border border-emerald-200 cursor-default"
+                  className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-[1.25rem] font-black text-2xl sm:text-3xl text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-slate-800 border border-emerald-200 dark:border-emerald-500/30 cursor-default"
                 >
                   <span className="relative z-10">{num}</span>
                 </motion.div>
@@ -98,20 +98,20 @@ export default function LuckyTraits() {
 
         {/* ================= LUCKY COLORS ================= */}
         <motion.div variants={itemVariants} className="relative group">
-          <div className="relative bg-white/60 backdrop-blur-md border border-white/60 shadow-lg rounded-[2rem] p-6 sm:p-8 overflow-hidden transition-all duration-300 hover:shadow-xl hover:bg-white/80">
+          <div className="relative bg-white/60 dark:bg-slate-700/60 backdrop-blur-md border border-white/60 dark:border-slate-600 shadow-lg rounded-[2rem] p-6 sm:p-8 overflow-hidden transition-all duration-300 hover:shadow-xl hover:bg-white/80 dark:hover:bg-slate-700/80">
 
             {/* Background elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-transparent rounded-full pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-indigo-50 to-transparent rounded-full pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 dark:from-blue-500/10 to-transparent rounded-full pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-indigo-50 dark:from-indigo-500/10 to-transparent rounded-full pointer-events-none"></div>
 
-            <div className="flex items-center gap-4 border-b border-slate-100 pb-5 mb-6 relative z-10">
-              <div className="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center border border-blue-200 text-blue-600">
+            <div className="flex items-center gap-4 border-b border-slate-100 dark:border-slate-600 pb-5 mb-6 relative z-10">
+              <div className="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center border border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400">
                 <Palette className="w-7 h-7" />
               </div>
-              <h3 className="font-extrabold text-slate-900 text-2xl tracking-tight">Your Power Colors</h3>
+              <h3 className="font-extrabold text-slate-900 dark:text-slate-100 text-2xl tracking-tight">Your Power Colors</h3>
             </div>
 
-            <p className="text-slate-600 text-[15px] leading-relaxed font-medium mb-8 relative z-10 max-w-lg">
+            <p className="text-slate-600 dark:text-slate-300 text-[15px] leading-relaxed font-medium mb-8 relative z-10 max-w-lg">
               Wearing or surrounding yourself with these colors enhances your aura, attracts positive opportunities, and deflects negative energy.
             </p>
 
@@ -171,7 +171,7 @@ export default function LuckyTraits() {
                       '--theme-color': dynamicColor,
                       borderColor: dynamicColor
                     } as React.CSSProperties}
-                    className="relative px-6 py-4 flex items-center justify-center rounded-2xl font-bold text-sm sm:text-base border-2 cursor-default tracking-wide transition-all duration-300 overflow-hidden group/color shadow-md hover:shadow-lg bg-white/40 backdrop-blur-sm"
+                    className="relative px-6 py-4 flex items-center justify-center rounded-2xl font-bold text-sm sm:text-base border-2 cursor-default tracking-wide transition-all duration-300 overflow-hidden group/color shadow-md hover:shadow-lg bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm"
                   >
                     {/* The Fill Background - Active by default, empties on hover */}
                     <div className="absolute inset-0 bg-[var(--theme-color)] transition-transform duration-500 ease-in-out origin-right scale-x-100 group-hover/color:scale-x-0"></div>

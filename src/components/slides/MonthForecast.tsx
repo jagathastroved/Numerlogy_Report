@@ -96,10 +96,10 @@ export default function MonthForecast() {
             <span className="text-[11px] font-bold tracking-widest uppercase text-purple-700">Monthly Forecast</span>
           </div>
 
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
+          <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 dark:text-slate-100 pb-1">
             Current Month Forecast
           </h2>
-          <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
+          <p className="text-slate-600 dark:text-slate-300 text-[15px] sm:text-base leading-relaxed font-medium">
             A detailed breakdown of the energetic forces shaping your current month
           </p>
         </div>
@@ -117,7 +117,7 @@ export default function MonthForecast() {
           <span className="relative z-10 translate-y-1">{displayMonthNumber}</span>
         </motion.div>
 
-        <p className="text-sm font-bold text-slate-500 tracking-[0.2em] uppercase mt-6 relative z-10">
+        <p className="text-sm font-bold text-slate-500 dark:text-slate-400 tracking-[0.2em] uppercase mt-6 relative z-10">
           Your Personal Monthly Cycle
         </p>
       </motion.div>
@@ -125,9 +125,9 @@ export default function MonthForecast() {
       {/* Interpretation Details */}
       <motion.div variants={itemVariants} className="relative">
         <div className="absolute -inset-1 bg-gradient-to-br from-indigo-200 to-purple-200 rounded-[2rem] blur opacity-30"></div>
-        <div className="relative bg-white border border-indigo-50 p-6 sm:p-8 rounded-[1.8rem] shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)]">
-          <p className="font-bold text-indigo-950 text-xl sm:text-2xl tracking-tight mb-4">{interpretation.title}</p>
-          <p className="text-slate-600 text-[15px] sm:text-base leading-relaxed font-medium">
+        <div className="relative bg-white dark:bg-slate-800 border border-indigo-50 dark:border-slate-700 p-6 sm:p-8 rounded-[1.8rem] shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)] dark:shadow-none">
+          <p className="font-bold text-indigo-950 dark:text-slate-100 text-xl sm:text-2xl tracking-tight mb-4">{interpretation.title}</p>
+          <p className="text-slate-600 dark:text-slate-300 text-[15px] sm:text-base leading-relaxed font-medium">
             {interpretation.desc}
           </p>
         </div>
@@ -136,13 +136,13 @@ export default function MonthForecast() {
       {/* Minimal Callout Box */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/50 border border-indigo-100 rounded-2xl shadow-sm mt-8"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/50 dark:bg-slate-700/50 border border-indigo-100 dark:border-slate-600 rounded-2xl shadow-sm mt-8"
       >
-        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white rounded-2xl border border-indigo-200 shadow-sm">
+        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-800 rounded-2xl border border-indigo-200 dark:border-slate-600 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
         </div>
 
-        <p className="text-indigo-950 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
+        <p className="text-indigo-950 dark:text-slate-100 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
           That concludes your monthly preview. Now let's explore everything waiting for you in the full premium dossier.
         </p>
       </motion.div>

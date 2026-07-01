@@ -71,7 +71,7 @@ export default function NumerologyOverview() {
             <span className="text-[11px] font-bold tracking-widest uppercase text-purple-700">Your Personal Numerology Report Is Here</span>
           </div>
 
-          <h2 className="order-2 font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 pb-1">
+          <h2 className="order-2 font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-indigo-950 dark:text-slate-100 pb-1">
             Here We Have Prepared Your In-Depth Personalized Numerology Report
           </h2>
 
@@ -96,8 +96,8 @@ export default function NumerologyOverview() {
 
       {/* Heading checklist description */}
       <motion.div variants={itemVariants} className="space-y-6">
-        <div className="flex items-center gap-4 before:h-px before:flex-1 before:bg-indigo-100 after:h-px after:flex-1 after:bg-indigo-100">
-          <p className="text-xs text-indigo-900/60 font-bold tracking-widest uppercase text-center shrink-0">
+        <div className="flex items-center gap-4 before:h-px before:flex-1 before:bg-indigo-100 dark:before:bg-slate-700 after:h-px after:flex-1 after:bg-indigo-100 dark:after:bg-slate-700">
+          <p className="text-xs text-indigo-900/60 dark:text-indigo-200/60 font-bold tracking-widest uppercase text-center shrink-0">
             What You'll Find Inside
           </p>
         </div>
@@ -108,17 +108,17 @@ export default function NumerologyOverview() {
             <motion.div
               whileHover={{ scale: 1.02 }}
               key={idx}
-              className="flex items-start gap-4 p-5 bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/80 hover:border-indigo-200 group relative overflow-hidden"
+              className="flex items-start gap-4 p-5 bg-white/60 dark:bg-slate-700/60 backdrop-blur-md border border-white/60 dark:border-slate-600 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/80 dark:hover:bg-slate-700/80 hover:border-indigo-200 dark:hover:border-slate-500 group relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/20 to-purple-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
               {/* Check circle */}
-              <div className="relative z-10 w-10 h-10 rounded-xl bg-indigo-100/80 flex items-center justify-center shrink-0 group-hover:bg-indigo-500 transition-colors duration-300 shadow-sm border border-indigo-200/50">
-                <CheckCircle2 className="w-5 h-5 text-indigo-600 group-hover:text-white transition-colors duration-300" />
+              <div className="relative z-10 w-10 h-10 rounded-xl bg-indigo-100/80 dark:bg-indigo-900/40 flex items-center justify-center shrink-0 group-hover:bg-indigo-500 transition-colors duration-300 shadow-sm border border-indigo-200/50 dark:border-indigo-500/30">
+                <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 group-hover:text-white transition-colors duration-300" />
               </div>
               <div className="space-y-1 relative z-10">
-                <h3 className="text-[15px] font-bold text-indigo-950 tracking-tight">{item.title}</h3>
-                <p className="text-sm text-slate-700 leading-relaxed font-medium">{item.desc}</p>
+                <h3 className="text-[15px] font-bold text-indigo-950 dark:text-slate-100 tracking-tight">{item.title}</h3>
+                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">{item.desc}</p>
               </div>
             </motion.div>
           ))}
