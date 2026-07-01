@@ -5,13 +5,7 @@ export default function CelestialBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#05060A]">
-      {/* The requested background image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90 mix-blend-screen"
-        style={{
-          backgroundImage: "url('/images/mystic_starfield.png')"
-        }}
-      />
+
       
       {/* Dark overlay to ensure text remains readable if the image is too bright */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A14] via-transparent to-[#0A0A14] opacity-80" />
