@@ -7,18 +7,49 @@ export default function PremiumDeliverables() {
   const name = reportData?.personalDetails?.fullName;
   const [loading, setLoading] = useState(false);
 
+
   const specialFeatures = [
-    { title: "Deep Numerology Assessment", desc: "Discover how numbers map your life path, revealing hidden strengths." },
-    { title: "Karmic Debt Analysis", desc: "Identify recurring life challenges and the lessons you are meant to learn." },
-    { title: "Auspicious Names for Business", desc: "Ensure your startup is aligned with energies of wealth and prosperity." },
-    { title: "Life Cycle Forecast", desc: "Gain a timeline of major turning points and phases in your life journey." },
-    { title: "Daily & Monthly Luck Ratings", desc: "Know the optimal times to make decisions, invest, or start something new." },
-    { title: "Relationship Compatibility Matrix", desc: "See which soul numbers harmonize with you for romance or partnerships." }
+    {
+      title: "Analysis of Your Core Numbers",
+      desc: "Unlock the hidden meanings behind your Destiny, Soul Urge, and Expression vibrations to understand your true self."
+    },
+    {
+      title: "Business Name Number",
+      desc: "Determine the exact numerological frequency that will attract maximum wealth and success to your enterprise."
+    },
+    {
+      title: "Suitable Business Fields",
+      desc: "Pinpoint the ideal career trajectories and industries that perfectly match your energetic blueprint."
+    },
+    {
+      title: "Mobile Number Selection Guide",
+      desc: "Discover the secret to picking a phone number that acts as a magnet for prosperity, luck, and powerful connections."
+    },
+    {
+      title: "Vehicle Number Selection",
+      desc: "Guarantee safety, smooth journeys, and constant good fortune by selecting an auspicious license plate."
+    },
+    {
+      title: "Your Future Predictions",
+      desc: "Receive highly accurate, customized forecasts and strategic cosmic advice for the upcoming years."
+    },
+    {
+      title: "Favorable Calendar Dates",
+      desc: "Identify your absolute luckiest days of the month to sign contracts, travel, or make life-altering choices."
+    },
+    {
+      title: "Temples to Visit",
+      desc: "Access powerful spiritual remedies and specific sacred locations tailored to balance your unique energies."
+    }
+
+
   ];
+
 
   const handleCheckout = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
 
     // Simulate clicking the button, but do not navigate or redirect to a success page.
     setTimeout(() => {
@@ -26,15 +57,18 @@ export default function PremiumDeliverables() {
     }, 1500);
   };
 
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
+
   const itemVariants = {
     hidden: { opacity: 0, y: 15 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
+
 
   return (
     <motion.div
@@ -47,6 +81,7 @@ export default function PremiumDeliverables() {
       <motion.div variants={itemVariants} className="relative flex flex-col xl:flex-row items-center xl:items-start gap-8">
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-300/30 blur-3xl rounded-full pointer-events-none"></div>
 
+
         {/* Cover book (Desktop) */}
         <div className="hidden xl:flex justify-center items-center shrink-0 relative z-10 order-1 w-44 animate-float-straight cursor-pointer group">
           <img
@@ -56,8 +91,10 @@ export default function PremiumDeliverables() {
           />
         </div>
 
+
         {/* Content Block */}
         <div className="flex flex-col items-center xl:items-start text-center xl:text-left flex-1 z-10 order-2 gap-4">
+
 
           {/* Label */}
           <div className="order-1 inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-full shadow-sm">
@@ -65,10 +102,12 @@ export default function PremiumDeliverables() {
             <span className="text-[11px] font-bold tracking-widest uppercase text-emerald-700">Premium Numerology Report</span>
           </div>
 
+
           {/* Title */}
           <h2 className="order-2 font-display text-2xl sm:text-4xl font-extrabold text-indigo-950 dark:text-slate-100 tracking-tight leading-snug">
             Numerology Report For <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500 capitalize">{name || 'Seeker'}</span>
           </h2>
+
 
           {/* Cover book (Mobile) */}
           <div className="order-3 xl:hidden flex justify-center items-center shrink-0 relative z-10 w-48 sm:w-56 animate-float-straight cursor-pointer group py-2">
@@ -79,6 +118,7 @@ export default function PremiumDeliverables() {
             />
           </div>
 
+
           {/* Description */}
           <p className="order-4 text-slate-600 dark:text-slate-300 text-sm sm:text-[15px] leading-relaxed font-medium">
             We have successfully analyzed your birth data and computed your numbers. Everything you need to understand your life's purpose and make lucky choices is waiting for you.
@@ -86,12 +126,14 @@ export default function PremiumDeliverables() {
         </div>
       </motion.div>
 
+
       {/* Special Feature Points */}
       <motion.div variants={itemVariants} className="space-y-5 pt-4">
         <h3 className="font-bold text-xl text-indigo-950 dark:text-slate-100 tracking-tight flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-purple-600" />
           What's Included In Your Report
         </h3>
+
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {specialFeatures?.map((feat, idx) => (
@@ -101,6 +143,7 @@ export default function PremiumDeliverables() {
               className="flex items-start gap-4 p-5 bg-white/60 dark:bg-slate-700/60 backdrop-blur-md border border-white/60 dark:border-slate-600 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/80 dark:hover:bg-slate-700/80 hover:border-indigo-200 dark:hover:border-slate-500 group relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/20 to-purple-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
 
               <div className="relative z-10 w-10 h-10 rounded-xl bg-indigo-100/80 dark:bg-indigo-900/40 flex items-center justify-center shrink-0 group-hover:bg-indigo-500 transition-colors duration-300 shadow-sm border border-indigo-200/50 dark:border-indigo-500/30">
                 <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 group-hover:text-white transition-colors duration-300" />
@@ -114,13 +157,16 @@ export default function PremiumDeliverables() {
         </div>
       </motion.div>
 
+
       {/* Interactive checkout section */}
       <motion.div variants={itemVariants}>
         <form onSubmit={handleCheckout} className="space-y-6 pt-4">
 
+
           {/* Pricing Box layout */}
           <div className="bg-gradient-to-br from-emerald-500 to-teal-600 border border-emerald-400 rounded-xl p-3 sm:p-5 shadow-[0_4px_20px_-10px_rgba(16,185,129,0.4)] flex flex-wrap sm:flex-nowrap justify-between items-center gap-3 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+
 
             <div className="flex flex-col relative z-10 min-w-0 flex-1">
               <span className="text-[10px] sm:text-[11px] font-black text-emerald-100 uppercase tracking-widest mb-1 flex items-center gap-1.5 truncate">
@@ -133,12 +179,14 @@ export default function PremiumDeliverables() {
               </div>
             </div>
 
+
             {/* Discount Badge */}
             <div className="bg-white text-emerald-700 font-black uppercase px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg shadow-md relative z-10 flex flex-col items-center border border-white/50 text-center shrink-0">
               <span className="text-[9px] sm:text-[10px] tracking-wide whitespace-nowrap">INSTANT 50% OFF</span>
               <span className="text-emerald-500 text-[8px] sm:text-[9px] mt-0.5 whitespace-nowrap">APPLIED TODAY</span>
             </div>
           </div>
+
 
           {/* CTA action button */}
           <button
@@ -159,6 +207,7 @@ export default function PremiumDeliverables() {
               </>
             )}
           </button>
+
 
           <p className="text-center text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center justify-center gap-1 sm:gap-1.5 mt-2 sm:mt-3">
             <Lock className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> 100% Secure Checkout
