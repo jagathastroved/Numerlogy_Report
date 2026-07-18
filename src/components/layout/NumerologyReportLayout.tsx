@@ -7,6 +7,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, Navigate, useLocation, Outlet } from 'react-router-dom';
 import CelestialBackground from '../animations/CelestialBackground';
+import MaintenanceError from '../ui/MaintenanceError';
 
 const REPORT_PAGES = [
   { path: '/welcome', title: 'Welcome' },
@@ -20,7 +21,7 @@ const REPORT_PAGES = [
   { path: '/premium-deliverables', title: 'Premium Deliverables' }
 ];
 export default function NumerologyReportLayout() {
-  const { reportData } = useReport();
+  const { reportData, hasError } = useReport();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,6 +45,10 @@ export default function NumerologyReportLayout() {
   };
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  if (hasError) {
+    return <MaintenanceError onRetry={handleResetReport} />;
+  }
 
   if (!reportData) return <Navigate to="/" replace />;
 

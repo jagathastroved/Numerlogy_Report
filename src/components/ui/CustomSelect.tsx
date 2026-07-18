@@ -15,6 +15,7 @@ interface CustomSelectProps {
   disabled?: boolean;
   className?: string;
   required?: boolean;
+  searchable?: boolean;
   'aria-labelledby'?: string;
 }
 
@@ -27,9 +28,11 @@ export default function CustomSelect({
   disabled,
   className,
   required,
+  searchable,
   'aria-labelledby': ariaLabelledby
 }: CustomSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Handle outside click
@@ -37,6 +40,7 @@ export default function CustomSelect({
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
+        setSearchTerm('');
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -46,6 +50,10 @@ export default function CustomSelect({
   // Format options to object
   const formattedOptions: Option[] = options.map(opt =>
     typeof opt === 'string' ? { value: opt, label: opt } : opt
+  );
+
+  const filteredOptions = formattedOptions.filter(opt =>
+    opt.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const selectedOption = formattedOptions.find(opt => opt.value === value);
@@ -87,15 +95,29 @@ export default function CustomSelect({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"
+            className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl flex flex-col max-h-60 overflow-hidden"
           >
-            <ul className="py-1">
-              {formattedOptions.map((option) => (
+            {searchable && (
+              <div className="p-2 border-b border-gray-100 bg-white shrink-0">
+                <input
+                  type="text"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
+                  placeholder="Search..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onClick={(e) => e.stopPropagation()}
+                  onKeyDown={(e) => e.stopPropagation()}
+                />
+              </div>
+            )}
+            <ul className="py-1 overflow-y-auto custom-scrollbar flex-1">
+              {filteredOptions.length > 0 ? filteredOptions.map((option) => (
                 <li
                   key={option.value}
                   onClick={() => {
                     onChange(option.value);
                     setIsOpen(false);
+                    setSearchTerm('');
                   }}
                   className={`px-3 py-2 text-sm cursor-pointer transition-colors ${value === option.value
                     ? 'bg-indigo-50 text-indigo-700 font-bold'
@@ -104,7 +126,9 @@ export default function CustomSelect({
                 >
                   {option.label}
                 </li>
-              ))}
+              )) : (
+                <li className="px-3 py-2 text-sm text-gray-500 text-center">No results found</li>
+              )}
             </ul>
           </motion.div>
         )}

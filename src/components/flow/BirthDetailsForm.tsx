@@ -6,7 +6,7 @@ import { useReport } from '../../context/ReportContext';
 import { motion, AnimatePresence } from 'motion/react';
 import CelestialBackground from '../animations/CelestialBackground';
 import CustomSelect from '../ui/CustomSelect';
-
+import { searchLocation } from '../../api/locationAPi';
 interface BirthDetailsFormProps {
   data: PersonalDetails;
   language: string;
@@ -53,25 +53,20 @@ export default function BirthDetailsForm({
     const timer = setTimeout(async () => {
       setIsSearching(true);
       try {
-        const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(data.birthCity)}&count=20&language=en&format=json`);
-        const dataJson = await response.json();
+        const countryName = Country.getCountryByCode(data.birthCountry)?.name || data.birthCountry;
+        const results = await searchLocation(data.birthCity, countryName);
 
-        if (!dataJson.results) {
+        if (!results || results.length === 0) {
           setApiCities([]);
           return;
         }
 
-        // Filter by selected country and ensure it's a Populated Place (city/town)
-        const filteredByCountry = dataJson.results.filter((item: any) =>
-          item.country_code.toLowerCase() === data.birthCountry.toLowerCase() &&
-          (!item.feature_code || item.feature_code.startsWith('PPL'))
-        );
-
         // Map the results to a unique list of city names
-        const formattedCities = filteredByCountry.map((item: any) => ({
-          name: item.name,
-          // Simplify display name to just "City, Country" as requested
-          displayName: [item.name, item.country].filter(Boolean).join(", ")
+        const formattedCities = results.map((item: any) => ({
+          name: item.City || item.name || item.display_name?.split(',')[0],
+          displayName: item.City
+            ? `${item.City}, ${item.StateorProvince ? item.StateorProvince + ', ' : ''}${item.Country}`
+            : item.display_name
         }));
 
         // Remove duplicates by name
@@ -405,6 +400,7 @@ export default function BirthDetailsForm({
                     <CustomSelect
                       id="country-select"
                       required
+                      searchable
                       value={data.birthCountry}
                       onChange={(val) => onChange({ birthCountry: val, birthCity: '' })}
                       placeholder="Select Country"
