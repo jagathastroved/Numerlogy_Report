@@ -75,7 +75,7 @@ export default function PremiumDeliverables() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-8 pt-2 pb-12"
+      className="space-y-8 pt-2 pb-2"
     >
       {/* Cover logo illustration and brief */}
       <motion.div variants={itemVariants} className="relative flex flex-col xl:flex-row items-center xl:items-start gap-8">

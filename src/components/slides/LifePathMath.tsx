@@ -82,7 +82,7 @@ export default function LifePathMath() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-8 pt-2 pb-12"
+      className="space-y-8 pt-2 pb-2"
     >
 
       {/* Header */}
@@ -112,18 +112,18 @@ export default function LifePathMath() {
           Your Exact Date of Birth
         </p>
 
-        <div className="flex justify-center gap-6">
-          <div className="flex flex-col items-center gap-2">
+        <div className="flex justify-center gap-3 sm:gap-6">
+          <div className="flex flex-col items-center gap-2 flex-1 max-w-[90px]">
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Day</span>
-            <span className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-md font-bold px-5 py-3 rounded-2xl text-xl">{dayVal}</span>
+            <div className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-md font-bold w-full aspect-[4/3] flex items-center justify-center rounded-2xl text-lg sm:text-xl shrink-0">{dayVal}</div>
           </div>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 flex-1 max-w-[90px]">
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Month</span>
-            <span className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-md font-bold px-5 py-3 rounded-2xl text-xl">{monthVal}</span>
+            <div className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-md font-bold w-full aspect-[4/3] flex items-center justify-center rounded-2xl text-lg sm:text-xl shrink-0">{monthVal}</div>
           </div>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 flex-1 max-w-[90px]">
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Year</span>
-            <span className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-md font-bold px-5 py-3 rounded-2xl text-xl">{yearVal}</span>
+            <div className="bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-md font-bold w-full aspect-[4/3] flex items-center justify-center rounded-2xl text-lg sm:text-xl shrink-0">{yearVal}</div>
           </div>
         </div>
       </motion.div>
@@ -137,17 +137,17 @@ export default function LifePathMath() {
             <strong className="text-violet-600 dark:text-violet-400 font-bold mr-1">Phase 1:</strong> Reduce the day, month, and year down to single digits.
           </p>
           <div className="space-y-3 text-sm text-slate-700 dark:text-slate-200 font-mono bg-slate-50/50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700">
-            <div className="flex items-center gap-3">
-              <span className="w-12 text-slate-400 dark:text-slate-400 font-sans font-bold text-xs uppercase">Day:</span>
-              <span className="font-semibold text-slate-800 dark:text-slate-100">{dayVal > 9 ? daySteps?.map((step, idx) => <span key={idx}>{idx > 0 && <span className="text-violet-400 mx-1">→</span>}{step}</span>) : dayVal}</span>
+            <div className="flex items-start gap-3">
+              <span className="w-12 text-slate-400 dark:text-slate-400 font-sans font-bold text-xs uppercase mt-1">Day:</span>
+              <span className="font-semibold text-slate-800 dark:text-slate-100 mt-0.5">{dayVal > 9 ? daySteps?.map((step, idx) => <span key={idx}>{idx > 0 && <span className="text-violet-400 mx-1">→</span>}{step}</span>) : dayVal}</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="w-12 text-slate-400 dark:text-slate-400 font-sans font-bold text-xs uppercase">Month:</span>
-              <span className="font-semibold text-slate-800 dark:text-slate-100">{monthVal > 9 ? monthSteps?.map((step, idx) => <span key={idx}>{idx > 0 && <span className="text-violet-400 mx-1">→</span>}{step}</span>) : monthVal}</span>
+            <div className="flex items-start gap-3">
+              <span className="w-12 text-slate-400 dark:text-slate-400 font-sans font-bold text-xs uppercase mt-1">Month:</span>
+              <span className="font-semibold text-slate-800 dark:text-slate-100 mt-0.5">{monthVal > 9 ? monthSteps?.map((step, idx) => <span key={idx}>{idx > 0 && <span className="text-violet-400 mx-1">→</span>}{step}</span>) : monthVal}</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="w-12 text-slate-400 dark:text-slate-400 font-sans font-bold text-xs uppercase">Year:</span>
-              <span className="font-semibold text-slate-800 dark:text-slate-100">{yearVal > 9 ? yearSteps?.map((step, idx) => <span key={idx}>{idx > 0 && <span className="text-violet-400 mx-1">→</span>}{step}</span>) : yearVal}</span>
+            <div className="flex items-start gap-3">
+              <span className="w-12 text-slate-400 dark:text-slate-400 font-sans font-bold text-xs uppercase mt-1">Year:</span>
+              <span className="font-semibold text-slate-800 dark:text-slate-100 mt-0.5 leading-relaxed">{yearVal > 9 ? yearSteps?.map((step, idx) => <span key={idx}>{idx > 0 && <span className="text-violet-400 mx-1">→</span>}{step}</span>) : yearVal}</span>
             </div>
           </div>
         </div>
@@ -158,13 +158,13 @@ export default function LifePathMath() {
             <strong className="text-orange-500 font-bold mr-1">Phase 2:</strong> Sum the reduced values together.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 font-mono text-lg sm:text-xl text-slate-800 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-800/50 p-3 sm:p-4 rounded-2xl border border-slate-100 dark:border-slate-700">
-            <span className="bg-white dark:bg-slate-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-slate-200 dark:border-slate-600 font-bold shadow-sm text-indigo-900 dark:text-indigo-100">{dayReduced}</span>
-            <span className="text-slate-900 dark:text-slate-100">+</span>
-            <span className="bg-white dark:bg-slate-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-slate-200 dark:border-slate-600 font-bold shadow-sm text-indigo-900 dark:text-indigo-100">{monthReduced}</span>
-            <span className="text-slate-900 dark:text-slate-100">+</span>
-            <span className="bg-white dark:bg-slate-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-slate-200 dark:border-slate-600 font-bold shadow-sm text-indigo-900 dark:text-indigo-100">{yearReduced}</span>
-            <span className="text-slate-900 dark:text-slate-100">=</span>
-            <span className="bg-gradient-to-r from-orange-100 to-rose-100 text-rose-700 font-black px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-rose-200 shadow-sm">{rawSum}</span>
+            <span className="bg-white dark:bg-slate-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-slate-200 dark:border-slate-600 font-bold shadow-sm text-indigo-900 dark:text-indigo-100 shrink-0 text-center min-w-[2.5rem]">{dayReduced}</span>
+            <span className="text-slate-900 dark:text-slate-100 shrink-0">+</span>
+            <span className="bg-white dark:bg-slate-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-slate-200 dark:border-slate-600 font-bold shadow-sm text-indigo-900 dark:text-indigo-100 shrink-0 text-center min-w-[2.5rem]">{monthReduced}</span>
+            <span className="text-slate-900 dark:text-slate-100 shrink-0">+</span>
+            <span className="bg-white dark:bg-slate-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-slate-200 dark:border-slate-600 font-bold shadow-sm text-indigo-900 dark:text-indigo-100 shrink-0 text-center min-w-[2.5rem]">{yearReduced}</span>
+            <span className="text-slate-900 dark:text-slate-100 shrink-0">=</span>
+            <span className="bg-gradient-to-r from-orange-100 to-rose-100 text-rose-700 font-black px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-rose-200 shadow-sm shrink-0 min-w-[2.5rem] text-center">{rawSum}</span>
           </div>
         </div>
 
@@ -198,13 +198,13 @@ export default function LifePathMath() {
       {/* Minimal Callout Box */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 dark:bg-slate-700/60 backdrop-blur-md border border-indigo-100/60 dark:border-slate-600 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 p-5 sm:p-6 bg-indigo-50/60 dark:bg-slate-700/60 backdrop-blur-md border border-indigo-100/60 dark:border-slate-600 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
       >
-        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-800 rounded-2xl border border-indigo-200 dark:border-slate-600 shadow-sm">
+        <div className="relative shrink-0 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white dark:bg-slate-800 rounded-2xl border border-indigo-200 dark:border-slate-600 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
         </div>
 
-        <p className="text-indigo-950 dark:text-slate-100 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
+        <p className="text-indigo-950 dark:text-slate-100 font-medium text-base leading-relaxed text-center sm:text-left text-sm sm:text-base">
           Let's dig deeper! Click Next to discover what your Life Path reveals about your greatest advantages and karmic lessons.
         </p>
       </motion.div>

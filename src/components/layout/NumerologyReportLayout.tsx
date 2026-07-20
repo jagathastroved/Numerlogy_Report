@@ -44,7 +44,12 @@ export default function NumerologyReportLayout() {
     navigate('/');
   };
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 1024;
+    }
+    return true;
+  });
 
   if (hasError) {
     return <MaintenanceError onRetry={handleResetReport} />;
@@ -85,21 +90,21 @@ export default function NumerologyReportLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row overflow-hidden relative">
+    <div className="min-h-[100dvh] flex flex-col lg:flex-row overflow-hidden relative w-full">
       <CelestialBackground />
 
       {/* Mobile Drawer Overlay */}
       <div
-        className={`md:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        className={`lg:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
         onClick={() => setIsSidebarOpen(false)}
       />
 
       {/* Modern Collapsible Table of Contents Navigation Drawer */}
       <aside
-        className={`fixed md:relative inset-y-0 left-0 h-screen z-50 md:z-20 border-r border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${isSidebarOpen
-          ? 'translate-x-0 w-[85vw] sm:w-80 shadow-[20px_0_40px_rgba(0,0,0,0.15)] md:shadow-none md:w-80 opacity-100'
-          : '-translate-x-full md:translate-x-0 w-[85vw] sm:w-80 md:w-0 md:opacity-0 md:overflow-hidden'
+        className={`fixed lg:relative inset-y-0 left-0 h-[100dvh] z-50 lg:z-20 border-r border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${isSidebarOpen
+          ? 'translate-x-0 w-[85vw] sm:w-80 shadow-[20px_0_40px_rgba(0,0,0,0.15)] lg:shadow-none lg:w-80 opacity-100'
+          : '-translate-x-full lg:translate-x-0 w-[85vw] sm:w-80 lg:w-0 lg:opacity-0 lg:overflow-hidden'
           }`}
       >
         <div className="p-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center bg-white dark:bg-slate-800">
@@ -111,13 +116,42 @@ export default function NumerologyReportLayout() {
               Report Index
             </span>
           </div>
-          <button
-            onClick={() => setIsSidebarOpen(false)}
-            className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1.5 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors block"
-            title="Collapse Sidebar"
-          >
-            <PanelLeftClose size={18} />
-          </button>
+          <div className="flex items-center space-x-2">
+            {/* Theme Toggle for Mobile inside Sidebar */}
+            <button
+              onClick={() => {
+                toggleTheme();
+                setIsSidebarOpen(false);
+              }}
+              className="lg:hidden flex items-center w-16 h-8 bg-slate-200 border border-slate-300 dark:bg-slate-700/80 dark:border-slate-600 rounded-full shadow-inner p-0.5 transition-colors relative"
+              title="Toggle Theme"
+            >
+              <div className="w-full flex justify-between items-center px-1.5">
+                <Moon size={14} className="text-indigo-400 dark:text-indigo-300" />
+                <Sun size={14} className="text-amber-500 dark:text-amber-300" />
+              </div>
+              <motion.div
+                className="absolute left-1 w-6 h-6 bg-white rounded-full shadow flex items-center justify-center"
+                animate={{ x: theme === 'dark' ? 0 : 32 }}
+                initial={false}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              >
+                {theme === 'dark' ? (
+                  <Moon size={12} className="text-indigo-600" />
+                ) : (
+                  <Sun size={12} className="text-amber-500" />
+                )}
+              </motion.div>
+            </button>
+
+            <button
+              onClick={() => setIsSidebarOpen(false)}
+              className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1.5 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors block"
+              title="Collapse Sidebar"
+            >
+              <PanelLeftClose size={18} />
+            </button>
+          </div>
         </div>
 
         {/* Scrollable checklist items */}
@@ -132,7 +166,7 @@ export default function NumerologyReportLayout() {
                 onClick={() => {
                   setPage(idx);
                   handleScrollToTop();
-                  if (window.innerWidth < 768) setIsSidebarOpen(false);
+                  if (window.innerWidth < 1024) setIsSidebarOpen(false);
                 }}
                 className={`relative w-full flex items-center px-4 py-3 rounded-xl text-left text-[13px] font-bold transition-colors duration-300 group z-0 ${isActive
                   ? 'text-orange-900 dark:text-orange-400'
@@ -180,16 +214,16 @@ export default function NumerologyReportLayout() {
       </aside>
 
       {/* Main Booklet container view */}
-      <main className="flex-1 flex flex-col h-screen md:h-screen overflow-hidden relative">
+      <main className="flex-1 flex flex-col h-[100dvh] lg:h-[100dvh] overflow-hidden relative w-full">
         {/* Theme Toggle Switch */}
         <button
           onClick={toggleTheme}
-          className="absolute top-6 right-6 md:top-8 md:right-8 z-50 flex items-center w-20 h-10 bg-slate-200 md:bg-white/10 backdrop-blur-md border border-slate-300 md:border-white/20 dark:bg-slate-700/80 dark:border-slate-600 rounded-full shadow-lg p-1 transition-colors duration-300 hover:bg-slate-300 md:hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 md:focus:ring-white/30"
+          className="hidden lg:flex absolute top-6 right-6 lg:top-8 lg:right-8 z-50 items-center w-20 h-10 bg-slate-200 lg:bg-white/10 backdrop-blur-md border border-slate-300 lg:border-white/20 dark:bg-slate-700/80 dark:border-slate-600 rounded-full shadow-lg p-1 transition-colors duration-300 hover:bg-slate-300 lg:hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 lg:focus:ring-white/30"
           title="Toggle Theme"
         >
           <div className="w-full flex justify-between items-center px-1.5">
-            <Moon size={16} className="text-indigo-400 md:text-indigo-200 dark:text-indigo-300" />
-            <Sun size={16} className="text-amber-500 md:text-amber-300 dark:text-amber-300" />
+            <Moon size={16} className="text-indigo-400 lg:text-indigo-200 dark:text-indigo-300" />
+            <Sun size={16} className="text-amber-500 lg:text-amber-300 dark:text-amber-300" />
           </div>
           <motion.div
             className="absolute left-1 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center"
@@ -219,10 +253,10 @@ export default function NumerologyReportLayout() {
         {/* Outer PDF Page Body Grid */}
         <section
           id="report-page-scroller"
-          className="flex-1 overflow-y-auto px-4 md:px-12 py-8 flex items-start justify-center custom-scrollbar"
+          className="flex-1 overflow-y-auto px-4 lg:px-12 py-8 flex items-start justify-center custom-scrollbar w-full"
         >
           {/* Virtual Booklet Frame centering - SOLID WHITE THEME */}
-          <div className="w-full max-w-2xl bg-[#FFFFFF] dark:bg-slate-800 shadow-[0_20px_60px_rgba(0,0,0,0.6)] rounded-3xl md:rounded-[2rem] flex flex-col p-6 md:p-10 relative select-text min-h-[580px] justify-between text-slate-900 dark:text-slate-100 overflow-hidden border border-slate-100 dark:border-slate-700">
+          <div className="w-full max-w-2xl bg-[#FFFFFF] dark:bg-slate-800 shadow-[0_20px_60px_rgba(0,0,0,0.6)] rounded-3xl lg:rounded-[2rem] flex flex-col p-6 lg:p-10 relative select-text text-slate-900 dark:text-slate-100 overflow-hidden border border-slate-100 dark:border-slate-700 mx-auto">
 
             {/* Dynamic Header Progress Bar */}
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-slate-100">
@@ -234,7 +268,7 @@ export default function NumerologyReportLayout() {
               />
             </div>
 
-            <div className="block flex-1 mt-2 min-w-0">
+            <div className="block mt-2 min-w-0">
               {/* Header inside the booklet page */}
               <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-100 dark:border-slate-700 relative">
                 {/* Left Logo */}
@@ -274,7 +308,7 @@ export default function NumerologyReportLayout() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.35, ease: 'easeOut' }}
-                  className="space-y-6 text-slate-800 dark:text-slate-200 leading-relaxed text-sm md:text-base font-normal selection:bg-indigo-100 dark:selection:bg-indigo-900/50 selection:text-indigo-900 dark:selection:text-indigo-100"
+                  className="space-y-6 text-slate-800 dark:text-slate-200 leading-relaxed text-sm lg:text-base font-normal selection:bg-indigo-100 dark:selection:bg-indigo-900/50 selection:text-indigo-900 dark:selection:text-indigo-100"
                 >
                   <Outlet />
                 </motion.div>
@@ -282,7 +316,7 @@ export default function NumerologyReportLayout() {
             </div>
 
             {/* Bottom Book Navigator Buttons */}
-            <footer className="mt-10 pt-6 border-t border-slate-100 dark:border-slate-700 flex justify-between items-center relative z-20">
+            <footer className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-between items-center relative z-20">
               <button
                 onClick={() => {
                   prevPage();

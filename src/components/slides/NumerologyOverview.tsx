@@ -58,7 +58,7 @@ export default function NumerologyOverview() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-8 pt-2 pb-12"
+      className="space-y-8 pt-2 pb-2"
     >
 
       {/* Header */}
@@ -129,19 +129,19 @@ export default function NumerologyOverview() {
       <motion.div variants={itemVariants} className="bg-gradient-to-br from-indigo-950 to-slate-900 border border-indigo-500/30 p-6 sm:p-8 rounded-[2rem] space-y-4 shadow-2xl relative overflow-hidden group">
         <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-indigo-500/20 transition-colors duration-700"></div>
 
-        <div className="flex items-center gap-4 relative z-10">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-400 to-rose-500 flex items-center justify-center text-white font-bold text-lg shadow-lg border border-orange-300/50">
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-4 relative z-10">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-orange-400 to-rose-500 flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-lg border border-orange-300/50 shrink-0">
             AS
           </div>
-          <div>
+          <div className="shrink-0">
             <h4 className="text-sm font-bold text-white tracking-wide">Anjali</h4>
-            <p className="text-xs text-indigo-200/80 uppercase tracking-widest font-bold mt-0.5">Verified User</p>
+            <p className="text-[10px] sm:text-xs text-indigo-200/80 uppercase tracking-widest font-bold mt-0.5">Verified User</p>
           </div>
 
           {/* Stars */}
-          <div className="flex items-center gap-1 ml-auto bg-black/20 px-3 py-1.5 rounded-full border border-white/5">
+          <div className="flex items-center gap-1 ml-auto bg-black/20 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-white/5 shrink-0">
             {[1, 2, 3, 4, 5]?.map((s) => (
-              <Star key={s} className="w-4 h-4 text-yellow-400 fill-yellow-400 drop-shadow-sm" />
+              <Star key={s} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400 drop-shadow-sm" />
             ))}
           </div>
         </div>
@@ -156,11 +156,11 @@ export default function NumerologyOverview() {
         <button
           onClick={() => navigate('/premium-deliverables')}
           type="button"
-          className="w-full py-5 bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-400 hover:to-rose-400 active:scale-[0.98] text-white font-bold rounded-2xl shadow-[0_10px_30px_-10px_rgba(244,63,94,0.6)] transition-all duration-300 text-lg flex items-center justify-center gap-3 relative overflow-hidden group cursor-pointer"
+          className="w-full py-4 sm:py-5 px-4 bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-400 hover:to-rose-400 active:scale-[0.98] text-white font-bold rounded-2xl shadow-[0_10px_30px_-10px_rgba(244,63,94,0.6)] transition-all duration-300 text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 relative overflow-hidden group cursor-pointer"
         >
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay"></div>
-          <span className="relative z-10 tracking-wide">Book Your Numerology Report</span>
-          <ArrowRight className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" />
+          <span className="relative z-10 tracking-wide text-center leading-tight">Book Your Numerology Report</span>
+          <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 group-hover:translate-x-1 transition-transform shrink-0" />
         </button>
       </motion.div>
 

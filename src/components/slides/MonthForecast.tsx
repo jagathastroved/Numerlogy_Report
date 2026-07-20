@@ -83,7 +83,7 @@ export default function MonthForecast() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-8 pt-2 pb-12"
+      className="space-y-8 pt-2 pb-2"
     >
 
       {/* Header */}
@@ -136,13 +136,13 @@ export default function MonthForecast() {
       {/* Minimal Callout Box */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/50 dark:bg-slate-700/50 border border-indigo-100 dark:border-slate-600 rounded-2xl shadow-sm mt-8"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 p-5 sm:p-6 bg-indigo-50/50 dark:bg-slate-700/50 border border-indigo-100 dark:border-slate-600 rounded-2xl shadow-sm mt-8"
       >
-        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-800 rounded-2xl border border-indigo-200 dark:border-slate-600 shadow-sm">
+        <div className="relative shrink-0 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white dark:bg-slate-800 rounded-2xl border border-indigo-200 dark:border-slate-600 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
         </div>
 
-        <p className="text-indigo-950 dark:text-slate-100 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
+        <p className="text-indigo-950 dark:text-slate-100 font-medium text-base leading-relaxed text-center sm:text-left text-sm sm:text-base">
           That concludes your monthly preview. Now let's explore everything waiting for you in the full premium dossier.
         </p>
       </motion.div>

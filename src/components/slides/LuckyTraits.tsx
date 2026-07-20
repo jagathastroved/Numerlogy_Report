@@ -38,7 +38,7 @@ export default function LuckyTraits() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-8 pt-2 pb-12"
+      className="space-y-8 pt-2 pb-2"
     >
       {/* Header */}
       <motion.div variants={itemVariants} className="relative">
@@ -119,11 +119,11 @@ export default function LuckyTraits() {
               {luckyTraits.lucky_colors?.map((color: string, index: number) => {
                 // Determine a valid CSS color dynamically
                 let dynamicColor = color;
-                
+
                 if (!color.startsWith('#')) {
                   const normalized = color.toLowerCase().replace(/[\s-]+/g, '');
                   let isValid = false;
-                  
+
                   // Check if color is valid natively
                   if (typeof window !== 'undefined') {
                     const s = new Option().style;
@@ -144,7 +144,7 @@ export default function LuckyTraits() {
                       }
                     }
                   }
-                  
+
                   // If completely unknown, generate a consistent dynamic color based on string hash
                   if (!isValid && typeof window !== 'undefined') {
                     let hash = 0;
@@ -153,12 +153,12 @@ export default function LuckyTraits() {
                     }
                     const h = Math.abs(hash) % 360;
                     // Saffron and Cream will fall back to dynamic deterministic HSL colors
-                    dynamicColor = `hsl(${h}, 75%, 65%)`; 
+                    dynamicColor = `hsl(${h}, 75%, 65%)`;
                   } else if (!isValid) {
                     dynamicColor = normalized; // Fallback for SSR
                   }
                 }
-                  
+
                 const formattedColor = color.charAt(0).toUpperCase() + color.slice(1).toLowerCase();
 
                 return (

@@ -81,7 +81,7 @@ export default function NameDestinyMath() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-8 pt-2 pb-12"
+      className="space-y-8 pt-2 pb-2"
     >
 
       {/* Header */}
@@ -112,14 +112,14 @@ export default function NameDestinyMath() {
           Your Current Full Name
         </p>
 
-        <div className="flex flex-wrap justify-center items-center gap-2.5 relative z-10">
+        <div className="flex flex-wrap justify-center items-center gap-x-2.5 gap-y-3 relative z-10">
           {characters?.map((char, index) => (
-            <div key={index} className="flex items-center gap-2.5">
-              <span className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-50 to-white dark:from-slate-700 dark:to-slate-800 text-indigo-900 dark:text-indigo-100 font-bold text-xl flex items-center justify-center shadow-md border border-indigo-100/50 dark:border-slate-600 transition-transform hover:-translate-y-1">
+            <React.Fragment key={index}>
+              <span className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-indigo-50 to-white dark:from-slate-700 dark:to-slate-800 text-indigo-900 dark:text-indigo-100 font-bold text-lg sm:text-xl flex items-center justify-center shadow-md border border-indigo-100/50 dark:border-slate-600 transition-transform hover:-translate-y-1 shrink-0">
                 {char}
               </span>
-              {index < characters.length - 1 && <span className="text-slate-900 dark:text-slate-100 font-medium text-sm">+</span>}
-            </div>
+              {index < characters.length - 1 && <span className="text-slate-900 dark:text-slate-100 font-medium text-xs sm:text-sm shrink-0">+</span>}
+            </React.Fragment>
           ))}
         </div>
       </motion.div>
@@ -132,13 +132,13 @@ export default function NameDestinyMath() {
           <p className="text-sm text-slate-600 dark:text-slate-300 border-b border-slate-50 dark:border-slate-600 pb-3 font-medium">
             <strong className="text-violet-600 font-bold mr-1">Phase 1</strong> Assign the corresponding numerological value to every letter.
           </p>
-          <div className="flex flex-wrap items-center gap-2.5 bg-slate-50/50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700">
+          <div className="flex flex-wrap justify-center items-center gap-x-2.5 gap-y-3 bg-slate-50/50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700">
             {values?.map((v, index) => (
               <React.Fragment key={index}>
-                <span className="w-10 h-10 rounded-xl bg-white dark:bg-slate-700 text-violet-700 dark:text-violet-300 font-black text-lg flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-600 transition-transform hover:-translate-y-1">
+                <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white dark:bg-slate-700 text-violet-700 dark:text-violet-300 font-black text-base sm:text-lg flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-600 transition-transform hover:-translate-y-1 shrink-0">
                   {v}
                 </span>
-                {index < values.length - 1 && <span className="text-slate-900 dark:text-slate-100 font-medium text-sm">+</span>}
+                {index < values.length - 1 && <span className="text-slate-900 dark:text-slate-100 font-medium text-xs sm:text-sm shrink-0">+</span>}
               </React.Fragment>
             ))}
           </div>
@@ -259,13 +259,13 @@ export default function NameDestinyMath() {
       {/* Minimal Callout Box */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-6 bg-indigo-50/60 dark:bg-slate-700/60 backdrop-blur-md border border-indigo-100/60 dark:border-slate-600 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
+        className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 p-5 sm:p-6 bg-indigo-50/60 dark:bg-slate-700/60 backdrop-blur-md border border-indigo-100/60 dark:border-slate-600 rounded-2xl shadow-md mt-8 hover:shadow-lg transition-shadow duration-300"
       >
-        <div className="relative shrink-0 w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-800 rounded-2xl border border-indigo-200 dark:border-slate-600 shadow-sm">
+        <div className="relative shrink-0 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white dark:bg-slate-800 rounded-2xl border border-indigo-200 dark:border-slate-600 shadow-sm">
           <Compass className="w-6 h-6 text-indigo-600 animate-spin" style={{ animationDuration: '30s' }} />
         </div>
 
-        <p className="text-indigo-950 dark:text-slate-100 font-medium text-base leading-relaxed text-center sm:text-left mt-1 sm:mt-0">
+        <p className="text-indigo-950 dark:text-slate-100 font-medium text-base leading-relaxed text-center sm:text-left text-sm sm:text-base">
           Let's advance to your comprehensive Personalized Numerology Overview.
         </p>
       </motion.div>

@@ -83,7 +83,18 @@ export default function BirthDetailsForm({
     return () => clearTimeout(timer);
   }, [data.birthCity, data.birthCountry]);
 
-  const days = Array.from({ length: 31 }, (_, i) => String(i + 1));
+  // Dynamic Calendar Validation
+  const maxDays = data.birthMonth
+    ? new Date(data.birthYear ? Number(data.birthYear) : 2024, Number(data.birthMonth), 0).getDate()
+    : 31;
+  const days = Array.from({ length: maxDays }, (_, i) => String(i + 1));
+
+  useEffect(() => {
+    if (data.birthDay && Number(data.birthDay) > maxDays) {
+      onChange({ birthDay: String(maxDays) });
+    }
+  }, [maxDays]);
+
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: currentYear - 1920 + 1 }, (_, i) => String(currentYear - i));
 
@@ -98,6 +109,22 @@ export default function BirthDetailsForm({
       return;
     }
     fetchReport(data);
+
+    // Clear form fields
+    onChange({
+      fullName: '',
+      email: '',
+      gender: '',
+      birthDay: '1',
+      birthMonth: '1',
+      birthYear: '2000',
+      birthHour: '12',
+      birthMinute: '00',
+      birthSecond: '00',
+      birthCountry: 'IN',
+      birthCity: ''
+    });
+
     navigate('/calculating');
   };
 
@@ -191,7 +218,7 @@ export default function BirthDetailsForm({
               </div>
 
               {/* Language Selection */}
-              <div className="relative mt-1">
+              {/* <div className="relative mt-1">
                 <label htmlFor="language-select" className="absolute -top-2 left-2 px-1 bg-white text-[10px] text-indigo-600 font-normal tracking-wide z-10">
                   Language
                 </label>
@@ -204,7 +231,7 @@ export default function BirthDetailsForm({
                     className="!pl-3 !pr-8 !py-2 !text-sm border-gray-200 rounded-lg"
                   />
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Input Details form */}
@@ -221,7 +248,10 @@ export default function BirthDetailsForm({
                     type="text"
                     required
                     value={data.fullName}
-                    onChange={(e) => onChange({ fullName: e.target.value })}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+                      onChange({ fullName: val });
+                    }}
                     className="w-full px-4 py-3 text-sm text-gray-800 font-medium placeholder-gray-500 border border-gray-200 rounded-xl focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400"
                     placeholder="Your Name"
                   />
