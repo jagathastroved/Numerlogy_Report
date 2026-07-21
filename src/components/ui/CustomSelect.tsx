@@ -78,9 +78,24 @@ export default function CustomSelect({
         </span>
       </button>
 
+      {/* Mobile native select overlay (if not searchable) for better iOS/Android UX */}
+      {!searchable && (
+        <select
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="opacity-0 absolute inset-0 w-full h-full z-10 md:hidden cursor-pointer"
+          disabled={disabled}
+        >
+          <option value="" disabled>{placeholder}</option>
+          {formattedOptions.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      )}
+
       {/* Hidden select for form submission / required validation */}
       {required && (
-        <select value={value} onChange={() => { }} className="opacity-0 absolute inset-0 w-full h-full -z-10" required aria-hidden="true" tabIndex={-1}>
+        <select value={value} onChange={() => { }} className={`opacity-0 absolute inset-0 w-full h-full -z-10 ${!searchable ? 'hidden md:block' : ''}`} required aria-hidden="true" tabIndex={-1}>
           <option value="" disabled>{placeholder}</option>
           {formattedOptions.map(opt => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -95,7 +110,7 @@ export default function CustomSelect({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl flex flex-col max-h-60 overflow-hidden"
+            className="relative md:absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl flex flex-col max-h-60 overflow-hidden"
           >
             {searchable && (
               <div className="p-2 border-b border-gray-100 bg-white shrink-0">

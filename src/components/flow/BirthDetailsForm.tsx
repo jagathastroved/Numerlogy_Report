@@ -130,23 +130,23 @@ export default function BirthDetailsForm({
 
   return (
     <div
-      className="min-h-screen w-full flex items-center justify-center p-4 relative overflow-x-hidden overflow-y-auto"
+      className="min-h-[100dvh] lg:h-[100dvh] w-full flex items-center justify-center p-4 lg:p-8 relative overflow-x-hidden overflow-y-auto lg:overflow-hidden"
     >
       <div className="fixed inset-0 z-0 bg-[#0B0F19]">
         <CelestialBackground />
       </div>
-      <div className="max-w-6xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center relative z-10 py-8 md:py-12">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-16 items-center relative z-10 py-6 md:py-8 lg:py-12">
 
         {/* Left Side Text */}
-        <div className="text-white space-y-6 flex flex-col items-center md:items-start w-full">
-          <h1 className="text-4xl md:text-5xl font-normal leading-tight text-white drop-shadow-md font-serif text-center md:text-left">
+        <div className="text-white space-y-5 lg:space-y-7 flex flex-col items-center md:items-start w-full">
+          <h1 className="text-3xl md:text-2xl lg:text-5xl font-normal leading-tight text-white drop-shadow-md font-serif text-center md:text-left">
             Discover Your True Path <br className="hidden md:block" /> Through Numerology
           </h1>
-          <p className="text-white/90 text-sm md:text-base leading-relaxed font-normal max-w-lg mx-auto md:mx-0 text-center md:text-left">
+          <p className="text-white/90 text-sm md:text-sm lg:text-base leading-relaxed font-normal max-w-lg mx-auto md:mx-0 text-center md:text-left">
             Unlock the hidden meanings of your birth numbers and name. Gain deep insights into your personality, destiny, and life's true purpose.
           </p>
 
-          <div className="space-y-4 pt-4 border-t border-white/20 max-w-md w-full">
+          <div className="space-y-3 lg:space-y-5 pt-4 border-t border-white/20 max-w-md w-full">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-600/20 flex items-center justify-center border border-indigo-500/50 mt-0.5">
                 <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
@@ -205,11 +205,11 @@ export default function BirthDetailsForm({
             </button>
           </div>
 
-          <div className="p-5 md:p-6 space-y-4 relative flex-1">
+          <div className="p-4 md:p-5 lg:p-6 space-y-3 lg:space-y-4 relative flex-1">
             {/* Header Title Grid */}
             <div className="flex justify-between items-start">
               <div>
-                <h2 className="font-serif text-xl font-normal text-gray-800 tracking-tight leading-none">
+                <h2 className="font-serif text-lg md:text-xl lg:text-2xl font-normal text-gray-800 tracking-tight leading-none">
                   Enter Your Birth Details
                 </h2>
                 <p className="text-gray-500 text-sm mt-2 font-medium">
@@ -510,7 +510,7 @@ export default function BirthDetailsForm({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3 px-6 bg-indigo-600 hover:bg-indigo-700 active:scale-[0.98] text-white font-normal text-base rounded-xl shadow-lg transition-all duration-200 cursor-pointer text-center"
+                  className="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 active:scale-[0.98] text-white font-normal text-sm md:text-[13px] lg:text-base whitespace-nowrap rounded-xl shadow-lg transition-all duration-200 cursor-pointer text-center"
                 >
                   Create Your Numerology Report Now
                 </button>
