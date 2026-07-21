@@ -22,7 +22,7 @@ export default defineConfig(() => {
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
       proxy: {
         '/api/proxy': {
-          target: 'https://spray-judo-cradle.ngrok-free.dev',
+          target: 'https://ai-numerology.astroved.com',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api\/proxy/, ''),
         },

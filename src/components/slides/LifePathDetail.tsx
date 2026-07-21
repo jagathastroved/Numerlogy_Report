@@ -48,7 +48,7 @@ export default function LifePathDetail() {
 
             {/* Glowing Circular Badge */}
             <div className="w-16 h-16 shrink-0 rounded-full bg-gradient-to-br from-violet-600 via-fuchsia-600 to-orange-500 text-white font-display font-black text-3xl flex items-center justify-center shadow-[0_8px_20px_-5px_rgba(249,115,22,0.6)] relative overflow-hidden">
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay"></div>
+              <div className="absolute inset-0 opacity-30 mix-blend-overlay"></div>
               <span className="relative z-10">{lifePathNumber}</span>
             </div>
           </div>

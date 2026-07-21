@@ -11,15 +11,15 @@ export const fetchNumerologyReport = async (details: PersonalDetails) => {
     const payload = {
       fullName: details.fullName,
       email: details.email,
-      gender: details.gender.toLowerCase(),
-      birthDay: details.birthDay.padStart(2, '0'),
-      birthMonth: details.birthMonth.padStart(2, '0'),
+      gender: details.gender,
+      birthDay: details.birthDay,
+      birthMonth: details.birthMonth,
       birthYear: details.birthYear,
-      birthHour: details.birthHour.padStart(2, '0'),
-      birthMinute: details.birthMinute.padStart(2, '0'),
-      birthSecond: details.birthSecond ? details.birthSecond.padStart(2, '0') : '00',
-      birthCountry: countryName.toLowerCase(),
-      birthCity: details.birthCity.toLowerCase()
+      birthHour: details.birthHour,
+      birthMinute: details.birthMinute,
+      birthSecond: details.birthSecond || '00',
+      birthCountry: countryName,
+      birthCity: details.birthCity
     };
 
     console.log('Sending API Payload:', payload);

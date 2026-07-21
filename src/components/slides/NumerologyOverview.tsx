@@ -158,7 +158,7 @@ export default function NumerologyOverview() {
           type="button"
           className="w-full py-4 sm:py-5 px-4 bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-400 hover:to-rose-400 active:scale-[0.98] text-white font-bold rounded-2xl shadow-[0_10px_30px_-10px_rgba(244,63,94,0.6)] transition-all duration-300 text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 relative overflow-hidden group cursor-pointer"
         >
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay"></div>
+          <div className="absolute inset-0 opacity-20 mix-blend-overlay"></div>
           <span className="relative z-10 tracking-wide text-center leading-tight">Book Your Numerology Report</span>
           <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 group-hover:translate-x-1 transition-transform shrink-0" />
         </button>

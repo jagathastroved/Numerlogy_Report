@@ -185,7 +185,7 @@ export default function LifePathMath() {
             whileHover={{ scale: 1.05 }}
             className="w-32 h-32 mt-4 rounded-full bg-gradient-to-br from-violet-600 via-fuchsia-600 to-orange-500 flex items-center justify-center font-sans font-black text-6xl leading-none text-white shadow-[0_10px_30px_-10px_rgba(249,115,22,0.5)] relative cursor-default"
           >
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay rounded-full"></div>
+            <div className="absolute inset-0 opacity-30 mix-blend-overlay rounded-full"></div>
             <span className="relative z-10 translate-y-1">{lifePathFinal}</span>
           </motion.div>
 
