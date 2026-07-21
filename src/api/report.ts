@@ -1,7 +1,7 @@
 import { PersonalDetails } from '../types';
 import { Country } from 'country-state-city';
 
-const API_URL = import.meta.env.DEV ? '/api/proxy/generate-report' : 'https://ai-numerology.astroved.com/generate-report';
+const API_URL = '/api/proxy/generate-report';
 
 export const fetchNumerologyReport = async (details: PersonalDetails) => {
   try {
