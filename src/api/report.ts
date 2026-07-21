@@ -1,16 +1,17 @@
 import { PersonalDetails } from '../types';
 import { Country } from 'country-state-city';
+import axios from 'axios';
 
-const API_URL = 'https://ai-numerology.astroved.com/generate-report';
+const API_URL = '/api/proxy/generate-report';
 
 export const fetchNumerologyReport = async (details: PersonalDetails) => {
   try {
-    const countryObj = Country.getCountryByCode(details.birthCountry.toUpperCase());
+    const countryObj = Country.getCountryByCode(details.birthCountry.trim().toUpperCase());
     const countryName = countryObj ? countryObj.name : details.birthCountry;
 
     const payload = {
-      fullName: details.fullName,
-      email: details.email,
+      fullName: details.fullName.trim(),
+      email: details.email.trim(),
       gender: details.gender ? details.gender.toLowerCase() : '',
       birthDay: details.birthDay.padStart(2, '0'),
       birthMonth: details.birthMonth.padStart(2, '0'),
@@ -18,27 +19,21 @@ export const fetchNumerologyReport = async (details: PersonalDetails) => {
       birthHour: details.birthHour.padStart(2, '0'),
       birthMinute: details.birthMinute.padStart(2, '0'),
       birthSecond: (details.birthSecond || '00').padStart(2, '0'),
-      birthCountry: countryName.toLowerCase(),
-      birthCity: details.birthCity.toLowerCase()
+      birthCountry: countryName.trim().toLowerCase(),
+      birthCity: details.birthCity.trim().toLowerCase()
     };
 
     console.log('Sending API Payload:', payload);
 
-    const response = await fetch(API_URL, {
-      method: 'POST',
+    const response = await axios.post(API_URL, payload, {
       headers: {
         'Content-Type': 'application/json',
         'ngrok-skip-browser-warning': 'true'
-      },
-      body: JSON.stringify(payload),
+      }
     });
 
-    if (!response.ok) {
-      throw new Error(`Error fetching report: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    console.log(data)
+    const data = response.data;
+    console.log("Response Data: ", data);
     return data;
   } catch (error) {
     console.error('API request failed:', error);

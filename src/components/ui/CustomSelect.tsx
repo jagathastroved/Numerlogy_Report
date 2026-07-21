@@ -53,7 +53,7 @@ export default function CustomSelect({
   );
 
   const filteredOptions = formattedOptions.filter(opt =>
-    opt.label.toLowerCase().includes(searchTerm.toLowerCase())
+    opt.label.toLowerCase().includes(searchTerm.trim().toLowerCase())
   );
 
   const selectedOption = formattedOptions.find(opt => opt.value === value);

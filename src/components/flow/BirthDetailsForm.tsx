@@ -45,7 +45,10 @@ export default function BirthDetailsForm({
   const [isValidCity, setIsValidCity] = useState(false);
 
   useEffect(() => {
-    if (!data.birthCountry || !data.birthCity || data.birthCity.length < 3) {
+    const citySearchTerm = (data.birthCity || '').trim();
+    const countryCode = (data.birthCountry || '').trim();
+
+    if (!countryCode || !citySearchTerm || citySearchTerm.length < 3) {
       setApiCities([]);
       return;
     }
@@ -53,8 +56,8 @@ export default function BirthDetailsForm({
     const timer = setTimeout(async () => {
       setIsSearching(true);
       try {
-        const countryName = Country.getCountryByCode(data.birthCountry)?.name || data.birthCountry;
-        const results = await searchLocation(data.birthCity, countryName);
+        const countryName = Country.getCountryByCode(countryCode)?.name || countryCode;
+        const results = await searchLocation(citySearchTerm, countryName);
 
         if (!results || results.length === 0) {
           setApiCities([]);
