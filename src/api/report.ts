@@ -1,7 +1,7 @@
 import { PersonalDetails } from '../types';
 import { Country } from 'country-state-city';
 
-const API_URL = '/api/proxy/generate-report';
+const API_URL = 'https://ai-numerology.astroved.com/generate-report';
 
 export const fetchNumerologyReport = async (details: PersonalDetails) => {
   try {
@@ -11,15 +11,15 @@ export const fetchNumerologyReport = async (details: PersonalDetails) => {
     const payload = {
       fullName: details.fullName,
       email: details.email,
-      gender: details.gender,
-      birthDay: details.birthDay,
-      birthMonth: details.birthMonth,
+      gender: details.gender ? details.gender.toLowerCase() : '',
+      birthDay: details.birthDay.padStart(2, '0'),
+      birthMonth: details.birthMonth.padStart(2, '0'),
       birthYear: details.birthYear,
-      birthHour: details.birthHour,
-      birthMinute: details.birthMinute,
-      birthSecond: details.birthSecond || '00',
-      birthCountry: countryName,
-      birthCity: details.birthCity
+      birthHour: details.birthHour.padStart(2, '0'),
+      birthMinute: details.birthMinute.padStart(2, '0'),
+      birthSecond: (details.birthSecond || '00').padStart(2, '0'),
+      birthCountry: countryName.toLowerCase(),
+      birthCity: details.birthCity.toLowerCase()
     };
 
     console.log('Sending API Payload:', payload);
