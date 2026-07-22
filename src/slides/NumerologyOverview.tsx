@@ -1,3 +1,4 @@
+import bookImg from '@/assets/images/Numerology_Book.png';
 import { ArrowRight, CheckCircle2, Star, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -77,7 +78,7 @@ export default function NumerologyOverview() {
 
           <div className="order-3 xl:hidden flex justify-center items-center shrink-0 relative z-10 w-48 sm:w-56 animate-float cursor-pointer group py-2">
             <img 
-              src="/images/Numerology_Book.png" 
+              src={bookImg} 
               alt="Numerology Report" 
               className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" 
             />
@@ -87,7 +88,7 @@ export default function NumerologyOverview() {
         {/* Cover book (Desktop) */}
         <div className="hidden xl:flex justify-center items-center shrink-0 relative z-10 order-2 w-44 animate-float cursor-pointer group">
           <img 
-            src="/images/Numerology_Book.png" 
+            src={bookImg} 
             alt="Numerology Report" 
             className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" 
           />

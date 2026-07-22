@@ -12,7 +12,7 @@ const loadingTexts = [
   'Mapping Birth Chart...',
   'Generating Final Report...'
 ];
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '@/context/ReportContext';
 
 export default function AstroCalculatingSlide({ onComplete }: AstroCalculatingSlideProps) {
   const [progress, setProgress] = useState(0);

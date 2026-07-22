@@ -1,7 +1,8 @@
+import bookImg from '@/assets/images/Numerology_Book.png';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Loader2, Sparkles, Lock } from 'lucide-react';
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '@/context/ReportContext';
 export default function PremiumDeliverables() {
   const { reportData } = useReport();
   const name = reportData?.personalDetails?.fullName;
@@ -85,7 +86,7 @@ export default function PremiumDeliverables() {
         {/* Cover book (Desktop) */}
         <div className="hidden xl:flex justify-center items-center shrink-0 relative z-10 order-1 w-44 animate-float-straight cursor-pointer group">
           <img
-            src="/images/Numerology_Book.png"
+            src={bookImg}
             alt="Numerology Report"
             className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
           />
@@ -112,7 +113,7 @@ export default function PremiumDeliverables() {
           {/* Cover book (Mobile) */}
           <div className="order-3 xl:hidden flex justify-center items-center shrink-0 relative z-10 w-48 sm:w-56 animate-float-straight cursor-pointer group py-2">
             <img
-              src="/images/Numerology_Book.png"
+              src={bookImg}
               alt="Numerology Report"
               className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
             />

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Compass, Sparkles } from 'lucide-react';
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '@/context/ReportContext';
 
 /**
  * Reduce a number to a single digit (1-9) or a Master Number (11, 22, 33)

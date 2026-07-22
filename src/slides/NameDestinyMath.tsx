@@ -1,8 +1,9 @@
+import bookImg from '@/assets/images/Numerology_Book.png';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Compass, Sparkles } from 'lucide-react';
 
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '@/context/ReportContext';
 import { useNavigate } from 'react-router-dom';
 const CHALDEAN_VALUE: Record<string, number> = {
   A: 1, I: 1, J: 1, Q: 1, Y: 1,
@@ -202,7 +203,7 @@ export default function NameDestinyMath() {
 
         {/* Premium Book Mockup (Desktop) */}
         <div className="hidden lg:flex relative z-10 shrink-0 w-44 lg:order-1 mx-auto animate-float cursor-pointer group items-center justify-center mb-4 lg:mb-0">
-          <img src="/images/Numerology_Book.png" alt="Numerology Report" className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" />
+          <img src={bookImg} alt="Numerology Report" className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" />
         </div>
 
         {/* Text Content Block */}
@@ -219,7 +220,7 @@ export default function NameDestinyMath() {
 
           {/* Premium Book Mockup (Mobile) */}
           <div className="order-3 lg:hidden relative z-10 shrink-0 w-48 sm:w-56 mx-auto animate-float cursor-pointer group flex items-center justify-center py-2">
-            <img src="/images/Numerology_Book.png" alt="Numerology Report" className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" />
+            <img src={bookImg} alt="Numerology Report" className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" />
           </div>
 
           <div className="order-4 w-full">

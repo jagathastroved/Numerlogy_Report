@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Sparkles, Star, Palette } from 'lucide-react';
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '@/context/ReportContext';
 
 // Helper to determine if text should be white or black based on background color
 const isDarkColor = (color: string) => {

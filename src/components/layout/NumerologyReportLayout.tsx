@@ -205,10 +205,13 @@ export default function NumerologyReportLayout() {
         <div className="p-5 border-t border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800 flex justify-center">
           <button
             onClick={handleResetReport}
-            className="text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-orange-600 dark:hover:text-orange-400 flex items-center space-x-2 transition-colors focus:outline-none bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 hover:border-orange-200 dark:hover:border-orange-500/50 hover:bg-orange-50 dark:hover:bg-slate-700 px-4 py-3 rounded-2xl w-full justify-center shadow-sm"
+            className="group relative flex items-center justify-center space-x-2 w-full px-2 sm:px-4 py-3.5 bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600 text-white rounded-2xl shadow-[0_8px_20px_-6px_rgba(244,63,94,0.5)] hover:shadow-[0_12px_25px_-6px_rgba(244,63,94,0.7)] transition-all duration-300 focus:outline-none overflow-hidden active:scale-[0.98] border border-white/10"
           >
-            <RefreshCw size={14} />
-            <span className="tracking-widest uppercase text-[10px]">Enter Different Details</span>
+            <div className="absolute inset-0 bg-white/20 group-hover:translate-x-full transition-transform duration-700 ease-in-out -skew-x-12 -translate-x-[150%]"></div>
+            <RefreshCw size={14} className="relative z-10 transition-transform duration-500 group-hover:rotate-180 flex-shrink-0" />
+            <span className="relative z-10 text-[9px] sm:text-[11px] font-extrabold tracking-wide sm:tracking-[0.15em] uppercase drop-shadow-sm whitespace-nowrap">
+              Enter Different Details
+            </span>
           </button>
         </div>
       </aside>

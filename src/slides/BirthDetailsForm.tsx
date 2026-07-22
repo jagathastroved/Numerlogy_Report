@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { PersonalDetails } from '../../types';
+import { PersonalDetails } from '@/types';
 import { useNavigate } from 'react-router-dom';
 import { Country, ICountry } from 'country-state-city';
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '@/context/ReportContext';
 import { motion, AnimatePresence } from 'motion/react';
-import CelestialBackground from '../animations/CelestialBackground';
-import CustomSelect from '../ui/CustomSelect';
-import { searchLocation } from '../../api/locationAPi';
+import CelestialBackground from '@/components/animations/CelestialBackground';
+import CustomSelect from '@/components/ui/CustomSelect';
+import { searchLocation } from '@/api/locationAPi';
 interface BirthDetailsFormProps {
   data: PersonalDetails;
   language: string;
@@ -31,8 +31,6 @@ const MONTHS = [
 
 export default function BirthDetailsForm({
   data,
-  language,
-  setLanguage,
   onChange,
 }: BirthDetailsFormProps) {
   const navigate = useNavigate();

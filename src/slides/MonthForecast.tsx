@@ -1,6 +1,6 @@
 import { Compass, Sparkles } from 'lucide-react';
 
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '@/context/ReportContext';
 import { motion } from 'framer-motion';
 
 const interpretationsMap: Record<number, { title: string, desc: string }> = {

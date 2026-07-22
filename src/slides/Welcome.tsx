@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Compass, CheckCircle2, Sparkles } from 'lucide-react';
-import { useReport } from '../../context/ReportContext';
+import { useReport } from '@/context/ReportContext';
 
 export default function Welcome() {
   const { reportData } = useReport();
