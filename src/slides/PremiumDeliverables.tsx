@@ -22,7 +22,7 @@ export default function PremiumDeliverables() {
       const currency = currencyInfo.currencyCode.toUpperCase();
       if (currency === "MYR") {
         setPriceDetails({
-          symbol: "RM",
+          symbol: "MYR",
           price: "50.00",
           strikeout: "100.00",
           savings: "50.00",
@@ -230,7 +230,7 @@ export default function PremiumDeliverables() {
               </>
             )}
           </button>
-          
+
           {/* View Sample Report Button */}
           <a
             href="https://www.astroved.com/reacthome/reports/Sample%20Numerology%20Report.pdf"

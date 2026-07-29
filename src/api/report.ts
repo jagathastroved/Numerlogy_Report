@@ -20,7 +20,9 @@ export const fetchNumerologyReport = async (details: PersonalDetails) => {
       birthMinute: details.birthMinute.padStart(2, '0'),
       birthSecond: (details.birthSecond || '00').padStart(2, '0'),
       birthCountry: countryName.trim().toLowerCase(),
-      birthCity: details.birthCity.trim().toLowerCase()
+      birthCity: details.birthCity.trim().toLowerCase(),
+      latitude: details.latitude,
+      longitude: details.longitude
     };
 
     console.log('Sending API Payload:', payload);

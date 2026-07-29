@@ -38,7 +38,7 @@ export default function BirthDetailsForm({
   const [activeTab, setActiveTab] = useState<'Numerology'>('Numerology');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const [apiCities, setApiCities] = useState<{ name: string, displayName: string }[]>([]);
+  const [apiCities, setApiCities] = useState<{ name: string, displayName: string, lat?: string | number, lon?: string | number }[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isValidCity, setIsValidCity] = useState(false);
 
@@ -80,11 +80,13 @@ export default function BirthDetailsForm({
           name: item.City || item.name || item.display_name?.split(',')[0],
           displayName: item.City
             ? `${item.City}, ${item.StateorProvince ? item.StateorProvince + ', ' : ''}${item.Country}`
-            : item.display_name
+            : item.display_name,
+          lat: item.lat || item.latitude,
+          lon: item.lon || item.longitude
         }));
 
         // Remove duplicates by name
-        const uniqueCities = Array.from(new Map(formattedCities.map((item: any) => [item.name, item])).values()) as { name: string, displayName: string }[];
+        const uniqueCities = Array.from(new Map(formattedCities.map((item: any) => [item.name, item])).values()) as { name: string, displayName: string, lat: string | number, lon: string | number }[];
 
         setApiCities(uniqueCities);
       } catch (error) {
@@ -136,7 +138,9 @@ export default function BirthDetailsForm({
       birthMinute: '00',
       birthSecond: '00',
       birthCountry: 'IN',
-      birthCity: ''
+      birthCity: '',
+      latitude: '',
+      longitude: ''
     });
 
     navigate('/calculating');
@@ -498,7 +502,7 @@ export default function BirthDetailsForm({
                                 key={`${city.name}-${idx}`}
                                 onMouseDown={(e) => e.preventDefault()}
                                 onClick={() => {
-                                  onChange({ birthCity: city.name });
+                                  onChange({ birthCity: city.name, latitude: city.lat, longitude: city.lon });
                                   setIsValidCity(true);
                                   setShowSuggestions(false);
                                 }}

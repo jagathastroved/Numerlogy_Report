@@ -17,6 +17,8 @@ export interface PersonalDetails {
   birthSecond: string;
   birthCountry: string;
   birthCity: string;
+  latitude?: number | string;
+  longitude?: number | string;
 }
 
 export interface LocationPreferences {
