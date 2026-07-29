@@ -16,7 +16,7 @@ export default function PremiumDeliverables() {
 
   const [loading, setLoading] = useState(false);
 
-  const [priceDetails, setPriceDetails] = useState({ symbol: '₹', price: 499 });
+  const [priceDetails, setPriceDetails] = useState({ symbol: '₹', price: '499.00', strikeout: '999.00', savings: '500.00' });
 
   useEffect(() => {
 
@@ -35,17 +35,11 @@ export default function PremiumDeliverables() {
     const currency = getCookie('currentcurrency')?.toUpperCase();
 
     if (currency === 'MYR') {
-
-      setPriceDetails({ symbol: 'RM', price: 50 });
-
+      setPriceDetails({ symbol: 'RM', price: '50.00', strikeout: '100.00', savings: '50.00' });
     } else if (currency === 'USD' || currency === 'US') {
-
-      setPriceDetails({ symbol: '$', price: 15 });
-
+      setPriceDetails({ symbol: '$', price: '15.00', strikeout: '30.00', savings: '15.00' });
     } else {
-
-      setPriceDetails({ symbol: '₹', price: 499 });
-
+      setPriceDetails({ symbol: '₹', price: '499.00', strikeout: '999.00', savings: '500.00' });
     }
 
   }, []);
@@ -54,7 +48,9 @@ export default function PremiumDeliverables() {
 
   const currentSymbol = priceDetails.symbol;
 
-  const strikeoutPrice = Math.round(currentPrice / 0.85);
+  const strikeoutPrice = priceDetails.strikeout;
+
+  const savings = priceDetails.savings;
 
   const specialFeatures = [
 
@@ -130,13 +126,7 @@ export default function PremiumDeliverables() {
 
     setLoading(true);
 
-    // Simulate clicking the button, but do not navigate or redirect to a success page.
-
-    setTimeout(() => {
-
-      setLoading(false);
-
-    }, 1500);
+    window.location.href = "https://www.astroved.com/prediction-services-personalized-numerology-report-P88425.aspx";
 
   };
 
@@ -316,9 +306,9 @@ export default function PremiumDeliverables() {
 
               <div className="flex items-baseline gap-2 sm:gap-3 flex-wrap">
 
-                <span className="text-emerald-200 line-through text-lg sm:text-xl font-bold decoration-emerald-400/50 decoration-2">{currentSymbol}{strikeoutPrice}</span>
+                <span className="text-emerald-200 line-through text-lg sm:text-xl font-bold decoration-emerald-400/50 decoration-2">{currentSymbol} {strikeoutPrice}</span>
 
-                <span className="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-md">{currentSymbol}{currentPrice}</span>
+                <span className="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-md">{currentSymbol} {currentPrice}</span>
 
               </div>
 
@@ -328,9 +318,7 @@ export default function PremiumDeliverables() {
 
             <div className="bg-white text-emerald-700 font-black uppercase px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg shadow-md relative z-10 flex flex-col items-center border border-white/50 text-center shrink-0">
 
-              <span className="text-[9px] sm:text-[10px] tracking-wide whitespace-nowrap">INSTANT 50% OFF</span>
-
-              <span className="text-emerald-500 text-[8px] sm:text-[9px] mt-0.5 whitespace-nowrap">APPLIED TODAY</span>
+              <span className="text-[9px] sm:text-[10px] tracking-wide whitespace-nowrap">You Save: {currentSymbol} {savings} (50%)</span>
 
             </div>
 
@@ -366,7 +354,7 @@ export default function PremiumDeliverables() {
 
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 transition-transform group-hover:scale-110" />
 
-                <span className="relative z-10">Unlock Complete Report for {currentSymbol}{currentPrice}</span>
+                <span className="relative z-10">Unlock Complete Report for {currentSymbol} {currentPrice}</span>
 
               </>
 
