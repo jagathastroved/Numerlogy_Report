@@ -12,7 +12,19 @@ interface ReportContextType {
 const ReportContext = createContext<ReportContextType | undefined>(undefined);
 
 export function ReportProvider({ children }: { children: ReactNode }) {
-  const [reportData, setReportData] = useState<NumerologyReportData | null>(null);
+  const [reportData, setReportData] = useState<NumerologyReportData | null>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = sessionStorage.getItem('numerologyReportData');
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (e) {
+          return null;
+        }
+      }
+    }
+    return null;
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
@@ -63,10 +75,16 @@ export function ReportProvider({ children }: { children: ReactNode }) {
       };
 
       setReportData(mappedData);
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('numerologyReportData', JSON.stringify(mappedData));
+      }
     } catch (error) {
       console.error('Failed to fetch report:', error);
       setHasError(true);
       setReportData(null);
+      if (typeof window !== 'undefined') {
+        sessionStorage.removeItem('numerologyReportData');
+      }
     } finally {
       setIsLoading(false);
     }

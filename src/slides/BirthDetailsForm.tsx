@@ -43,6 +43,19 @@ export default function BirthDetailsForm({
   const [isValidCity, setIsValidCity] = useState(false);
 
   useEffect(() => {
+    if (!data.birthCountry || data.birthCountry === 'IN') { // Default was IN previously, or empty
+      const initCountry = async () => {
+        const { getUserCountryCode } = await import('@/lib/timezoneCurrency');
+        const defaultCountry = getUserCountryCode();
+        if (!data.birthCountry || data.birthCountry !== defaultCountry) {
+          onChange({ birthCountry: defaultCountry });
+        }
+      };
+      initCountry();
+    }
+  }, []);
+
+  useEffect(() => {
     const citySearchTerm = (data.birthCity || '').trim();
     const countryCode = (data.birthCountry || '').trim();
 
